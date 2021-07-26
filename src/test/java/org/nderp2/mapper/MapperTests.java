@@ -1,7 +1,10 @@
 package org.nderp2.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.nderp2.domain.CodeDAO;
 import org.nderp2.mapper.CodeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,8 +24,12 @@ public class MapperTests {
 	
 	@Test
 	public void testCode(){
-		log.info(mapper.getReligion());
-		
+		List<CodeDAO> list = mapper.getForeignlang();
+		for(int i = 0 ;i <list.size();i++){
+			CodeDAO dao= list.get(i);
+			log.info(dao.toString());
+		}
+	
 	}
 	
 }

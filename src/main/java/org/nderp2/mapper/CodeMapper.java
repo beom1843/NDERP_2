@@ -18,11 +18,11 @@ public interface CodeMapper {
 	public List<CodeDAO> getHired();
 	public List<CodeDAO> getCertification();
 	public List<CodeDAO> getForeignlang();
-	public List<CodeDAO> getInstitution();
+	public List<CodeDAO> getInstStack();
 	public List<CodeDAO> getSmoking();
 	public List<CodeDAO> getSoju();
-	public List<CodeDAO> getbeer();
-	public List<CodeDAO> getinterest();
+	public List<CodeDAO> getBeer();
+	public List<CodeDAO> getInterest();
 	public List<CodeDAO> getRole();
 	public List<CodeDAO> getServer();
 	public List<CodeDAO> getLanguage();

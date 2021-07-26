@@ -1,5 +1,8 @@
 package org.nderp2.domain;
 
+import lombok.Data;
+
+@Data
 public class CodeDAO {
 
 	//1. 개인정보

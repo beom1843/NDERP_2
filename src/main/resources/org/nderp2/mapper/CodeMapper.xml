@@ -7,5 +7,93 @@
 		select *
 			from CODE_RELIGION
 	</select>
+	<select id="getMilitary" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Military
+	</select>
+	<select id="getHotline" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Hotline
+	</select>
+	<select id="getBank" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Bank
+	</select>
+	<select id="getCollege" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_College
+	</select>
+	<select id="getFamily" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Family
+	</select>
+	<select id="getCareer" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Career
+	</select>
+	<select id="getDepartment" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Department
+	</select>
+	<select id="getPosition" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Position
+	</select>
+	<select id="getHired" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Hired
+	</select>
+	<select id="getCertification" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Certification
+	</select>
+	<select id="getForeignlang" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Foreignlang
+	</select>
+	<select id="getInstStack" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_inst_stack
+	</select>
+	<select id="getSmoking" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Smoking
+	</select>
+	<select id="getSoju" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Soju
+	</select>
+	<select id="getBeer" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Beer
+	</select>
+	<select id="getInterest" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Interest
+	</select>
+	<select id="getRole" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Role
+	</select>
+	<select id="getServer" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Server
+	</select>
+	<select id="getLanguage" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Language
+	</select>
+	<select id="getFramework" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Framework
+	</select>
+	<select id="getDbms" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Dbms
+	</select>
+	<select id="getDevetc" resultType="org.nderp2.domain.CodeDAO">
+		select *
+			from CODE_Devetc
+	</select>
 
 </mapper>
