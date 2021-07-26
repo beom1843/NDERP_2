@@ -2,7 +2,7 @@ package org.nderp2.mapper;
 
 import java.util.List;
 
-import org.nderp2.domain.CodeDAO;
+import org.nderp2.codeDomain.CodeDAO;
 
 public interface CodeMapper {
 
