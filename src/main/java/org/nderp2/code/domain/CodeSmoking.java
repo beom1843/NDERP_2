@@ -1,4 +1,4 @@
-package org.nderp2.codeDomain;
+package org.nderp2.code.domain;
 
 import lombok.Data;
 

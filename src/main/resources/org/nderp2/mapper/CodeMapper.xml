@@ -3,95 +3,118 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.nderp2.mapper.CodeMapper">
-	<select id="getReligion" resultType="org.nderp2.domain.CodeDAO">
+
+	<select id="getReligion" resultType="org.nderp2.code.domain.CodeReligion">
 		select *
 			from CODE_RELIGION
 	</select>
-	<select id="getMilitary" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getMilitary" resultType="org.nderp2.code.domain.CodeMilitary">
 		select *
 			from CODE_Military
 	</select>
-	<select id="getHotline" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getHotline" resultType="org.nderp2.code.domain.CodeHotline">
 		select *
 			from CODE_Hotline
 	</select>
-	<select id="getBank" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getBank" resultType="org.nderp2.code.domain.CodeBank">
 		select *
 			from CODE_Bank
 	</select>
-	<select id="getCollege" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getCollege" resultType="org.nderp2.code.domain.CodeCollege">
 		select *
 			from CODE_College
 	</select>
-	<select id="getFamily" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getFamily" resultType="org.nderp2.code.domain.CodeFamily">
 		select *
 			from CODE_Family
 	</select>
-	<select id="getCareer" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getCareer" resultType="org.nderp2.code.domain.CodeCareer">
 		select *
 			from CODE_Career
 	</select>
-	<select id="getDepartment" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getDepartment" resultType="org.nderp2.code.domain.CodeDepartment">
 		select *
 			from CODE_Department
 	</select>
-	<select id="getPosition" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getPosition" resultType="org.nderp2.code.domain.CodePosition">
 		select *
 			from CODE_Position
 	</select>
-	<select id="getHired" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getHired" resultType="org.nderp2.code.domain.CodeHired">
 		select *
 			from CODE_Hired
 	</select>
-	<select id="getCertification" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getCertification" resultType="org.nderp2.code.domain.CodeCertification">
 		select *
 			from CODE_Certification
 	</select>
-	<select id="getForeignlang" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getForeignlang" resultType="org.nderp2.code.domain.CodeForeignlang">
 		select *
 			from CODE_Foreignlang
 	</select>
-	<select id="getInstStack" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getInstStack" resultType="org.nderp2.code.domain.CodeInstStack">
 		select *
 			from CODE_inst_stack
 	</select>
-	<select id="getSmoking" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getSmoking" resultType="org.nderp2.code.domain.CodeSmoking">
 		select *
 			from CODE_Smoking
 	</select>
-	<select id="getSoju" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getSoju" resultType="org.nderp2.code.domain.CodeSoju">
 		select *
 			from CODE_Soju
 	</select>
-	<select id="getBeer" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getBeer" resultType="org.nderp2.code.domain.CodeBeer">
 		select *
 			from CODE_Beer
 	</select>
-	<select id="getInterest" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getInterest" resultType="org.nderp2.code.domain.CodeInterest">
 		select *
 			from CODE_Interest
 	</select>
-	<select id="getRole" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getRole" resultType="org.nderp2.code.domain.CodeRole">
 		select *
 			from CODE_Role
 	</select>
-	<select id="getServer" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getServer" resultType="org.nderp2.code.domain.CodeServer">
 		select *
 			from CODE_Server
 	</select>
-	<select id="getLanguage" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getLanguage" resultType="org.nderp2.code.domain.CodeLanguage">
 		select *
 			from CODE_Language
 	</select>
-	<select id="getFramework" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getFramework" resultType="org.nderp2.code.domain.CodeFramework">
 		select *
 			from CODE_Framework
 	</select>
-	<select id="getDbms" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getDbms" resultType="org.nderp2.code.domain.CodeDbms">
 		select *
 			from CODE_Dbms
 	</select>
-	<select id="getDevetc" resultType="org.nderp2.domain.CodeDAO">
+	
+	<select id="getDevetc" resultType="org.nderp2.code.domain.CodeDevetc">
 		select *
 			from CODE_Devetc
 	</select>

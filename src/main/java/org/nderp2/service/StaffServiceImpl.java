@@ -1,6 +1,6 @@
 package org.nderp2.service;
 
-public class StaffInfoServiceImpl {
+public class StaffServiceImpl {
 
 	
 	

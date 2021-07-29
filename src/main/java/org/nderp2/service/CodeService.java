@@ -1,4 +1,4 @@
-package org.nderp2.mapper;
+package org.nderp2.service;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import org.nderp2.code.domain.CodeServer;
 import org.nderp2.code.domain.CodeSmoking;
 import org.nderp2.code.domain.CodeSoju;
 
-public interface CodeMapper {
+public interface CodeService {
 
 	public List<CodeReligion> getReligion();
 	public List<CodeMilitary> getMilitary();
@@ -51,4 +51,5 @@ public interface CodeMapper {
 	public List<CodeFramework> getFramework();
 	public List<CodeDbms> getDbms();
 	public List<CodeDevetc> getDevetc();
+	
 }
