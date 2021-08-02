@@ -1,14 +1,81 @@
 @CHARSET "UTF-8";
 
-.style1, table, th, td {
+.page{
+	border-collapse:collapse;
+	border:#a4e1ff 5px solid; 
+	padding:10px;
+}
+
+[id*='row']{
+	display:inline-block;
+}
+
+[id*='edit']{
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+[id*='title']{
+	margin:15px auto 15px auto
+}
+
+.hobby{
+	display:inline-block;
+}
+
+
+table{
+	 vertical-align: middle;
+}
+
+/* style1 */
+
+#style1, #style1 th, #style1 td {
 		border-spacing: 5px;
 		border-collapse: separate;
 	}
 	
-.style1 ,	th, td {
+#style1 th, #style1 td {
 		padding: 5px;
 	}
-.style1 th{
+#style1 th{
+		text-align: center;
+		background-color:#1792d0;
+	}  
+	
+	
+/* style2 */	
+#style2, #style2 th,#style2 td {
+	border: black 1px solid;
+	border-collapse: collapse;
+	}
+	
+#style2 th,#style2 td {
+		padding: 5px;
+	}
+#style2 th{
 		text-align: center;
 		background-color:#1792d0;
 	}
+	
+.style3{
+	text-align: center;
+	display:inline-block;
+	border-style: solid;
+	border-width: 1px;
+	background-image: linear-gradient(#1792d0,white,#1792d0);
+}
+#project_basic .style3{
+	width:100px;
+}
+#project_relation .style3{
+	width:70px;
+}
+#project_env .style3::not(#os){
+	width: 110px;
+}
+
+#project_env #os{
+	width:50px;
+}
