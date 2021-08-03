@@ -99,6 +99,11 @@
 			from CODE_Server
 	</select>
 	
+	<select id="getOs" resultType="org.nderp2.code.domain.CodeOs">
+		select *
+			from CODE_Os
+	</select>
+	
 	<select id="getLanguage" resultType="org.nderp2.code.domain.CodeLanguage">
 		select *
 			from CODE_Language

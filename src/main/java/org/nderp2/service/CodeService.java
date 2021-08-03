@@ -19,6 +19,7 @@ import org.nderp2.code.domain.CodeInstStack;
 import org.nderp2.code.domain.CodeInterest;
 import org.nderp2.code.domain.CodeLanguage;
 import org.nderp2.code.domain.CodeMilitary;
+import org.nderp2.code.domain.CodeOs;
 import org.nderp2.code.domain.CodePosition;
 import org.nderp2.code.domain.CodeReligion;
 import org.nderp2.code.domain.CodeRole;
@@ -47,6 +48,7 @@ public interface CodeService {
 	public List<CodeInterest> getInterest();
 	public List<CodeRole> getRole();
 	public List<CodeServer> getServer();
+	public List<CodeOs> getOs();
 	public List<CodeLanguage> getLanguage();
 	public List<CodeFramework> getFramework();
 	public List<CodeDbms> getDbms();

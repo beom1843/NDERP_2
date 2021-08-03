@@ -1,11 +1,13 @@
 @CHARSET "UTF-8";
 
+/* 페이지 테두리 */
 .page{
 	border-collapse:collapse;
 	border:#a4e1ff 5px solid; 
 	padding:10px;
 }
 
+/* 행추가 행삭제 가운데정렬 */
 [id*='row']{
 	display:inline-block;
 }
@@ -16,18 +18,28 @@
 	transform: translateX(-50%);
 }
 
-[id*='title']{
-	margin:15px auto 15px auto
+/* 드롭다운 인라인 블록 */
+[id*='drp']{
+	display:inline-block;
+}
+[class*='drp']{
+	display:inline-block;
 }
 
+/* 9.취미 양옆으로 붙게 정렬 */
 .hobby{
 	display:inline-block;
 }
 
+/* 제목 당 마진 */
+[id*='title']{
+	margin:15px auto 15px auto
+}
 
 table{
 	 vertical-align: middle;
 }
+
 
 /* style1 */
 

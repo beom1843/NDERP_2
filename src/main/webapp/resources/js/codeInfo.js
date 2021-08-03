@@ -248,6 +248,19 @@ var codeInfoService = (function() {
 			}
 		});
 	}// getServer
+	
+	function getOs(callback, error) {
+		console.log("getOs...........");
+		$.getJSON("/codeOs", function(code) {
+			if (callback) {
+				callback(code);
+			}
+		}).fail(function(xhr, status, err) {
+			if (error) {
+				error();
+			}
+		});
+	}// getServer
 
 	function getLanguage(callback, error) {
 		console.log("geLanguage...........");
@@ -301,4 +314,31 @@ var codeInfoService = (function() {
 		});
 	}// getDevetc
 
+	return{
+		getReligion:getReligion,
+		getMilitary:getMilitary,
+		getHotline:getHotline,
+		getBank:getBank,
+		getCollege:getCollege,
+		getFamily:getFamily,
+		getCareer:getCareer,
+		getDepartment:getDepartment,
+		getPosition:getPosition,
+		getHired:getHired,
+		getCertification:getCertification,
+		getForeignlang:getForeignlang,
+		getInstStack:getInstStack,
+		getSmoking:getSmoking,
+		getSoju:getSoju,
+		getBeer:getBeer,
+		getInterest:getInterest,
+		getRole:getRole,
+		getServer:getServer,
+		getOs:getOs,
+		getLanguage:getLanguage,
+		getFramework:getFramework,
+		getDbms:getDbms,
+		getDevetc:getDevetc		
+	}
+	
 })();

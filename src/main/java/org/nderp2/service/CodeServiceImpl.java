@@ -19,6 +19,7 @@ import org.nderp2.code.domain.CodeInstStack;
 import org.nderp2.code.domain.CodeInterest;
 import org.nderp2.code.domain.CodeLanguage;
 import org.nderp2.code.domain.CodeMilitary;
+import org.nderp2.code.domain.CodeOs;
 import org.nderp2.code.domain.CodePosition;
 import org.nderp2.code.domain.CodeReligion;
 import org.nderp2.code.domain.CodeRole;
@@ -153,6 +154,12 @@ public class CodeServiceImpl implements CodeService {
 	public List<CodeServer> getServer() {
 
 		return mapper.getServer();
+	}
+	
+	@Override
+	public List<CodeOs> getOs() {
+		
+		return mapper.getOs();
 	}
 
 	@Override

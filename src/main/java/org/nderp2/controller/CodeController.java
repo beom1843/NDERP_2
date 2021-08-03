@@ -19,6 +19,7 @@ import org.nderp2.code.domain.CodeInstStack;
 import org.nderp2.code.domain.CodeInterest;
 import org.nderp2.code.domain.CodeLanguage;
 import org.nderp2.code.domain.CodeMilitary;
+import org.nderp2.code.domain.CodeOs;
 import org.nderp2.code.domain.CodePosition;
 import org.nderp2.code.domain.CodeReligion;
 import org.nderp2.code.domain.CodeRole;
@@ -165,6 +166,12 @@ public class CodeController {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<List<CodeServer>> getServer() {
 		return new ResponseEntity<List<CodeServer>>(service.getServer(), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/codeOs", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<List<CodeOs>> getOs() {
+		return new ResponseEntity<List<CodeOs>>(service.getOs(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/codeLanguage", produces = { MediaType.APPLICATION_XML_VALUE,
