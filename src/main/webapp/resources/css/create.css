@@ -20,9 +20,16 @@
 
 /* 드롭다운 인라인 블록 */
 [id*='drp']{
+	margin-top: 5px;
+	margin-bottom: 5px;
 	display:inline-block;
 }
 [class*='drp']{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	display:inline-block;
+}
+[id*='chk']{
 	display:inline-block;
 }
 

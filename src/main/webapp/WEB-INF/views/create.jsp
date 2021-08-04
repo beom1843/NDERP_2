@@ -94,16 +94,20 @@
 					<th>학교명</th>
 					<th>학부</th>
 					<th>전공과목</th>
-					<th>학교명</th>
+					<th>부전공과목</th>
 					<th>졸업일</th>
 				</tr>
 				
 				<tr>
-					<td><input type="text" id="education_1_name"> 고등학교 졸<div class="" ></div></td>
+					<td><input type="text" id="education_1_name"> 고등학교 졸</td>
 					<td>	</td>
 					<td>	</td>
 					<td>	</td>
-					<td><div class = "date_ym_drp" id="edu1"></div></td>
+					<td>
+						<input type="hidden" id="education_code" value="1">
+						<select class="year" id="edu_1_grad_y"></select>년
+						<select class="month" id="edu_1_grad_m"></select>월
+					</td>
 				</tr>
 				
 				<tr>
@@ -111,7 +115,11 @@
 					<td><div class = "college" id="edu2"></div></td>
 					<td><input type="text" id="education_2_major"></td>
 					<td><input type="text" id="education_2_sub"></td>
-					<td><div class = "date_ym_drp" id="edu2"></div></td>
+					<td>
+						<input type="hidden" id="education_code" value="2">
+						<select class="year" id="edu_2_grad_y"></select>년
+						<select class="month" id="edu_2_grad_m"></select>월
+					</td>
 				</tr>
 				
 				<tr>
@@ -119,7 +127,11 @@
 					<td><div class = "college" id="edu2"></div></td>
 					<td><input type="text" id="education_3_major"></td>
 					<td><input type="text" id="education_3_sub"></td>
-					<td><div class = "date_ym_drp" id="edu3"></div></td>
+					<td>
+						<input type="hidden" id="education_code" value="3">
+						<select class="year" id="edu_3_grad_y"></select>년
+						<select class="month" id="edu_3_grad_m"></select>월
+					</td>
 				</tr>
 				
 				<tr>
@@ -127,7 +139,11 @@
 					<td><div class = "college" id="edu2"></div></td>
 					<td><input type="text" id="education_4_major"></td>
 					<td><input type="text" id="education_4_sub"></td>
-					<td><div class = "date_ym_drp" id="edu4"></div></td>
+					<td>
+						<input type="hidden" id="education_code" value="4">
+						<select class="year" id="edu_4_grad_y"></select>년
+						<select class="month" id="edu_4_grad_m"></select>월
+					</td>
 				</tr>
 
 				<tr>
@@ -135,7 +151,11 @@
 					<td><div class = "college" id="edu2"></div></td>
 					<td><input type="text" id="education_5_major"></td>
 					<td><input type="text" id="education_5_sub"></td>
-					<td><div class = "date_ym_drp" id="edu5"></div></td>
+					<td>
+						<input type="hidden" id="education_code" value="5">
+						<select class="year" id="edu_5_grad_y"></select>년
+						<select class="month" id="edu_5_grad_m"></select>월
+					</td>
 				</tr>				
 			</table>
 		</div>	
@@ -154,7 +174,8 @@
 				</tr>
 				
 				<tr>
-					<td><div id="family_relat_drp"></div></td>
+					<td><div id="family_relat_drp"></div>
+					</td>
 					<td><input type="text" class="family_name"></td>
 					<td><input type="text" class="family_job"></td>
 					<td><select class="year" id="family_birthy"></select></td>
@@ -191,7 +212,7 @@
 					<td><div id="career_dept_drp"></div></td>
 					<td><div id="career_posit_drp"></div></td>
 					<td><div id="career_hired_drp"></div></td>
-					<td><div id="career_sal_drp"></div>만원</td>
+					<td><select id="career_salary"></select>만원</td>
 					
 					<td>
 					입사일: <select class="year" id="career_hireday_y"></select>년

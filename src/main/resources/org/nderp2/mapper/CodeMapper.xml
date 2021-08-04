@@ -123,5 +123,10 @@
 		select *
 			from CODE_Devetc
 	</select>
+	
+	<select id="getEducation" resultType="org.nderp2.code.domain.CodeEducation">
+		select *
+			from CODE_Education
+	</select>
 
 </mapper>

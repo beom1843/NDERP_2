@@ -10,6 +10,7 @@ import org.nderp2.code.domain.CodeCollege;
 import org.nderp2.code.domain.CodeDbms;
 import org.nderp2.code.domain.CodeDepartment;
 import org.nderp2.code.domain.CodeDevetc;
+import org.nderp2.code.domain.CodeEducation;
 import org.nderp2.code.domain.CodeFamily;
 import org.nderp2.code.domain.CodeForeignlang;
 import org.nderp2.code.domain.CodeFramework;
@@ -196,6 +197,12 @@ public class CodeController {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public ResponseEntity<List<CodeDevetc>> getDevetc() {
 		return new ResponseEntity<List<CodeDevetc>>(service.getDevetc(), HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/codeEducation", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<List<CodeEducation>> getEducation() {
+		return new ResponseEntity<List<CodeEducation>>(service.getEducation(), HttpStatus.OK);
 	}
 
 }

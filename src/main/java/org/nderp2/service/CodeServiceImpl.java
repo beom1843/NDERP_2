@@ -10,6 +10,7 @@ import org.nderp2.code.domain.CodeCollege;
 import org.nderp2.code.domain.CodeDbms;
 import org.nderp2.code.domain.CodeDepartment;
 import org.nderp2.code.domain.CodeDevetc;
+import org.nderp2.code.domain.CodeEducation;
 import org.nderp2.code.domain.CodeFamily;
 import org.nderp2.code.domain.CodeForeignlang;
 import org.nderp2.code.domain.CodeFramework;
@@ -184,6 +185,11 @@ public class CodeServiceImpl implements CodeService {
 	public List<CodeDevetc> getDevetc() {
 
 		return mapper.getDevetc();
+	}
+
+	@Override
+	public List<CodeEducation> getEducation() {
+		return mapper.getEducation();
 	}
 
 }

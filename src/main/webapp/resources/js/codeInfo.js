@@ -313,6 +313,19 @@ var codeInfoService = (function() {
 			}
 		});
 	}// getDevetc
+	
+	function getEducation(callback, error) {
+		console.log("getEducation...........");
+		$.getJSON("/codeEducation", function(code) {
+			if (callback) {
+				callback(code);
+			}
+		}).fail(function(xhr, status, err) {
+			if (error) {
+				error();
+			}
+		});
+	}// getEducation
 
 	return{
 		getReligion:getReligion,
@@ -338,7 +351,8 @@ var codeInfoService = (function() {
 		getLanguage:getLanguage,
 		getFramework:getFramework,
 		getDbms:getDbms,
-		getDevetc:getDevetc		
+		getDevetc:getDevetc,
+		getEducation:getEducation
 	}
 	
 })();

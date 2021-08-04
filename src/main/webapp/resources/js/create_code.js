@@ -404,8 +404,8 @@ $(document).ready(function(){
 		
 	}//getCode끝
 	
-	setDateBox();
-	function setDateBox() {
+	setNumBox();
+	function setNumBox() {
 		var dt = new Date();
 		var year = "";
 		var com_year = dt.getFullYear();
@@ -431,6 +431,11 @@ $(document).ready(function(){
 		for (var i = 1; i <= 31; i++) {
 			$(".day").append("<option value='" + i + "'>" + i + "</option>");
 		}
-	}//setDateBox 끝
+		
+		$("#career_salary").append("<option value=''>  </option>");
+		for(var i = 1800; i <=10000;i+=200){
+			$("#career_salary").append("<option value='"+i+"'>"+i + "</option>");
+		}
+	}//setNumBox 끝
 
 })
