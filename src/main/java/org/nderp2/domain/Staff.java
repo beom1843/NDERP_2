@@ -12,7 +12,17 @@ public class Staff {
 	private String id_no;
 	private String hp;
 	private String email;
-	private String religion;
-	private String military;
-	
+	private String religion_code;
+	private String military_code;
+	private Hotline hotline;
+	private Bank bank;
+	private School[] schoolArr;
+	private Family[] familyArr;
+	private Career[] careerArr;
+	private int[] certification_code;
+	private Foreignlang[] foreignlangArr;
+	private Institution institution;
+	private Taste taste;
+	private String[] hobby;
+	private Project[] projectArr;
 }
