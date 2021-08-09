@@ -47,20 +47,33 @@ table{
 	 vertical-align: middle;
 }
 
+/* 저장버튼 스타일 */
+#submit_btn{
+	margin: 10px auto 10px auto;
+	position: relative;
+
+}
+#submit{
+	width:120px;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+	background-image: linear-gradient(#1792d0,white,#1792d0);
+}
 
 /* style1 */
 
 #style1, #style1 th, #style1 td {
-		border-spacing: 5px;
-		border-collapse: separate;
+	border-spacing: 5px;
+	border-collapse: separate;
 	}
 	
 #style1 th, #style1 td {
-		padding: 5px;
+	padding: 5px;
 	}
 #style1 th{
-		text-align: center;
-		background-color:#1792d0;
+	text-align: center;
+	background-color:#1792d0;
 	}  
 	
 	
@@ -74,8 +87,8 @@ table{
 		padding: 5px;
 	}
 #style2 th{
-		text-align: center;
-		background-color:#1792d0;
+	text-align: center;
+	background-color:#1792d0;
 	}
 	
 .style3{

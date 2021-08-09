@@ -14,6 +14,7 @@
 	<!-- CodeInfo Module -->
 	<script src="/resources/js/codeInfo.js"></script>
 	<script src="/resources/js/create_code.js"></script>
+	<script src="/resources/js/create.js"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css"	href="/resources/css/create.css" />
@@ -367,7 +368,10 @@
 				<div id="project_row_add">[행추가]</div>
 			</div>	
 				
+			<div id="submit_btn"><button id="submit" value="저장">저장</button></div>
+				
 		</div>
+			
 	</div>
 	
 </body>
