@@ -49,6 +49,7 @@
 					<td><input type="text" id="hp"></td>
 				</tr>
 				
+
 				<tr>
 					<th>이메일</th>
 					<td><input type="text" id="email"></td>
@@ -61,13 +62,18 @@
 				</tr>
 				
 				<tr>
+					<th>주소</th>
+					<td colspan="5">[우편번호]: <input type="text" id="zipcode"> [주소]: <input type="text" id="address"></td>
+				</tr>
+				
+				<tr>
 					<th>
 						긴급연락처<br>
 						(사고 대비)
 					</th>
 					<td colspan="5">
-					[연락 받을 사람 이름]: <input type="text" id="hotline_name"><br>
-					[관계]: <div id="hotline_drp"></div><br>
+					[연락 받을 사람 이름]: <input type="text" id="hotline_name">
+					[관계]: <div id="hotline_drp"></div>
 					[전화번호]: <input type="text" id="hotline_hp"><br>
 					</td>
 				</tr>

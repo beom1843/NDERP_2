@@ -3,9 +3,74 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.nderp2.mapper.StaffMapper">
-	<select id="getDept" resultType="org.nderp.domain.CodeDAO">
-		select *
-			from CODE_DEPARTMENT
+	<select id="getCurrentNo" resultType="Integer">
+		select max(staff_no) from staff
 	</select>
+	
+	<insert id="createStaff">
+		insert into Staff values
+			(#{staff_no}, #{id}, #{pw}, #{name}, #{id_no}, #{hp}, #{email},#{religion},#{military},#{address},#{zipcode})
+	</insert>
+	
+	<insert id="insertHotline">
+		insert into staff_Hotline values
+			(staff_Hotline_seq.nextval,#{staff_no},#{hotline_code},#{name},#{hp} )
+	</insert>
+	
+	<insert id="insertBank">
+		insert into staff_Bank values
+			(staff_Bank_seq.nextval,#{staff_no}, #{bank_code})
+	</insert>
+	
+	<insert id="insertSchool">
+		insert into staff_School values
+			(staff_School_seq.nextval,#{staff_no}, #{college_code},#{name},#{major},#{sub},#{graduateday},#{education_code})
+	</insert>
+	
+	<insert id="insertFamily">
+		insert into staff_Family values
+			(staff_Family_seq.nextval,#{staff_no}, #{family_code}, #{name}, #{job}, #{birthy},#{livew})
+	</insert>
+	
+	<insert id="insertCareer">
+		insert into staff_Career values
+			(staff_Career_seq.nextval,#{staff_no},#{isHired},#{position},#{dept},#{career_code},#{name},#{desc},#{salary},#{hireday},#{retireday})
+	</insert>
+	
+	<insert id="insertCertification">
+		insert into staff_Certification values
+			(staff_Certification_seq.nextval,#{staff_no},#{certification_code})
+	</insert>
+	
+	<insert id="insertForeignlang">
+		insert into staff_Foreignlang values
+			(staff_Foreignlang_seq.nextval,#{staff_no},#{foreignlang_code},#{foreignlang_type} )
+	</insert>
+	
+	<insert id="insertInstitution">
+		insert into staff_Institution values
+			(staff_Institution_seq.nextval,#{staff_no},#{institution_name}, #{institution_period},#{institution_grad})
+	</insert>
+	<insert id="insertInstStack">
+		insert into institution_stack values
+			(staff)
+	</insert>
+	
+	<insert id="insertTaste">
+		insert into staff_Taste values
+			(staff_Taste_seq.nextval,#{staff_no})
+	</insert>
+	
+	<insert id="insertHobby">
+		insert into staff_Hobby values
+			(staff_Hobby_seq.nextval,#{staff_no})
+	</insert>
+	
+	<insert id="insertProject">
+		insert into staff_Project values
+			(staff_Project_seq.nextval,#{staff_no})
+	</insert>
+	
+
 
 </mapper>

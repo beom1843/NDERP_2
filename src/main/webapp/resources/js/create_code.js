@@ -87,7 +87,7 @@ $(document).ready(function(){
 			
 			if(list== null|| list.length ==0){}
 			str += "<select id='bank' name='bank_code' >";
-			str += "<option value = '' selected disabled hidden></option>";
+			str += "<option value = '' selected disabled hidden>--은행선택--</option>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				str += "<option value='"+list[i].bank_code+"'>"+list[i].bank_name+"</option>";
 			}

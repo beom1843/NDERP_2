@@ -4,14 +4,15 @@ import lombok.Data;
 
 @Data
 public class Career {
-	private String career_name;
-	private String career_desc;
+	private int staff_no;
+	private String name;
+	private String desc;
 	private int career_code;
-	private int career_department;
-	private int career_position;
-	private int career_hired;
-	private int career_salary;
-	private String career_hireday;
-	private String career_retireday;
+	private int dept;
+	private int position;
+	private int isHired;
+	private int salary;
+	private String hireday;
+	private String retireday;
 	
 }

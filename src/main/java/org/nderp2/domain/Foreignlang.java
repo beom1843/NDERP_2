@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class Foreignlang {
-	
+	private int staff_no;
 	private int foreignlang_code;
-	private String foreignlang_type;
+	private int foreignlang_type;
 
 }

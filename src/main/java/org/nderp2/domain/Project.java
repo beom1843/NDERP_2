@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Project {
 
+	private int staff_no;
 	private String project_name;
 	private String project_startday;
 	private String project_endday;
