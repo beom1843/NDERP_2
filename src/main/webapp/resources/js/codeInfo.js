@@ -327,6 +327,19 @@ var codeInfoService = (function() {
 		});
 	}// getEducation
 
+	function getForeignlangType(callback, error){
+		console.log("getForeignlangType.........");
+		$.getJSON("/codeForeignlangType",function(code){
+			if(callback){
+				callback(code);
+			}
+		}).fail(function(xhr, status,err){
+			if(error){
+				error();
+			}
+		});
+	}//getForeignlangType
+	
 	return{
 		getReligion:getReligion,
 		getMilitary:getMilitary,
@@ -352,7 +365,8 @@ var codeInfoService = (function() {
 		getFramework:getFramework,
 		getDbms:getDbms,
 		getDevetc:getDevetc,
-		getEducation:getEducation
+		getEducation:getEducation,
+		getForeignlangType:getForeignlangType
 	}
 	
 })();

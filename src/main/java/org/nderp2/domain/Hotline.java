@@ -6,6 +6,6 @@ import lombok.Data;
 public class Hotline {
 	private int staff_no;
 	private int hotline_code;
-	private String name;
-	private String hp;
+	private String hotline_name;
+	private String hotline_hp;
 }

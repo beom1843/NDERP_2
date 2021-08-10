@@ -13,6 +13,7 @@ import org.nderp2.code.domain.CodeDevetc;
 import org.nderp2.code.domain.CodeEducation;
 import org.nderp2.code.domain.CodeFamily;
 import org.nderp2.code.domain.CodeForeignlang;
+import org.nderp2.code.domain.CodeForeignlangType;
 import org.nderp2.code.domain.CodeFramework;
 import org.nderp2.code.domain.CodeHired;
 import org.nderp2.code.domain.CodeHotline;
@@ -55,4 +56,5 @@ public interface CodeMapper {
 	public List<CodeDbms> getDbms();
 	public List<CodeDevetc> getDevetc();
 	public List<CodeEducation> getEducation();
+	public List<CodeForeignlangType> getForeignlangType();
 }

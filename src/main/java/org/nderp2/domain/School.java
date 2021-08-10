@@ -7,9 +7,9 @@ public class School {
 
 	private int staff_no;
 	private int college_code;
-	private String name;
-	private String major;
-	private String sub;
-	private String graduateday;
+	private String school_name;
+	private String school_major;
+	private String school_sub;
+	private String school_graduateday;
 	private int education_code;
 }

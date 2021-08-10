@@ -35,22 +35,22 @@ public class MapperTests {
 	
 	@Test
 	public void testCode(){
-		log.info(mapper.getCurrentNo());
+		log.info(mapper.getCurrentStaffNo());
 	}
 	
 //	@Test
 //	public void testCreate(){
 //		Staff staff = new Staff();
-//		staff.setId("beom1843");
-//		staff.setPw("1234");
-//		staff.setName("조명범");
-//		staff.setId_no("9210152222222");
-//		staff.setHp("01067051843");
-//		staff.setEmail("beom1843@gmail.com");
-//		staff.setReligion("2");
-//		staff.setMilitary("6");
-//		staff.setAddress("서울 마포구 동교로 53 5층");
-//		staff.setZipcode("04018");
+//		staff.setStaff_id("beom1843");
+//		staff.setStaff_pw("1234");
+//		staff.setStaff_name("조명범");
+//		staff.setStaff_id_no("9210152222222");
+//		staff.setStaff_hp("01067051843");
+//		staff.setStaff_email("beom1843@gmail.com");
+//		staff.setStaff_religion("2");
+//		staff.setStaff_military("6");
+//		staff.setStaff_address("서울 마포구 동교로 53 5층");
+//		staff.setStaff_zipcode("04018");
 //		log.info(staff);
 //		int no = mapper.createStaff(staff);
 //		

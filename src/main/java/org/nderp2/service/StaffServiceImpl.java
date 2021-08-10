@@ -1,6 +1,168 @@
 package org.nderp2.service;
 
-public class StaffServiceImpl {
+import org.nderp2.domain.Bank;
+import org.nderp2.domain.Career;
+import org.nderp2.domain.Certification;
+import org.nderp2.domain.Family;
+import org.nderp2.domain.Foreignlang;
+import org.nderp2.domain.Hobby;
+import org.nderp2.domain.Hotline;
+import org.nderp2.domain.Institution;
+import org.nderp2.domain.InstitutionStack;
+import org.nderp2.domain.Project;
+import org.nderp2.domain.ProjectDbms;
+import org.nderp2.domain.ProjectDevetc;
+import org.nderp2.domain.ProjectFramework;
+import org.nderp2.domain.ProjectLanguage;
+import org.nderp2.domain.ProjectOs;
+import org.nderp2.domain.ProjectServer;
+import org.nderp2.domain.School;
+import org.nderp2.domain.Staff;
+import org.nderp2.domain.Taste;
+import org.nderp2.mapper.CodeMapper;
+import org.nderp2.mapper.StaffMapper;
+import org.springframework.stereotype.Service;
+
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+@AllArgsConstructor
+@Log4j
+@Service
+public class StaffServiceImpl implements StaffService {
+
+	private StaffMapper mapper;
+	
+	@Override
+	public int create(Staff staff) {
+		int re =0;
+		
+		re += mapper.createStaff(staff);
+		int staff_no=mapper.getCurrentStaffNo();
+			
+		Hotline hotline = staff.getHotline();
+		hotline.setStaff_no(staff_no);
+		re+= mapper.insertHotline(hotline);
+		
+		Bank bank = staff.getBank();
+		bank.setStaff_no(staff_no);
+		re+= mapper.insertBank(bank);
+		
+		School[] schoolArr = staff.getSchoolArr();
+		for(School school: schoolArr){
+			school.setStaff_no(staff_no);
+			re+=mapper.insertSchool(school);
+		}
+		
+		Family[] familyArr = staff.getFamilyArr();
+		for(Family family: familyArr){
+			family.setStaff_no(staff_no);
+			re+=mapper.insertFamily(family);
+		}
+		
+		Career[] careerArr = staff.getCareerArr();
+		for(Career career: careerArr){
+			career.setStaff_no(staff_no);
+			re+=mapper.insertCareer(career);
+		}
+		
+		int[] certiArr = staff.getCertificationArr();
+		for(int certifi_code: certiArr){
+			Certification certi = new Certification();
+			certi.setCertification_code(certifi_code);
+			certi.setStaff_no(staff_no);
+			re+=mapper.insertCertification(certi);
+		}
+		
+		Foreignlang[] foreignArr = staff.getForeignlangArr();
+		
+		for(Foreignlang lang: foreignArr){
+			lang.setStaff_no(staff_no);
+			re+= mapper.insertForeignlang(lang);
+			
+		}
+		
+		Institution institution = staff.getInstitution();
+		institution.setStaff_no(staff_no);
+		mapper.insertInstitution(institution);
+		int institution_no = mapper.getCurrentInstNo();
+		int[] instStackArr = institution.getInst_stack_code();
+		for(int instStack: instStackArr){
+			InstitutionStack stack = new InstitutionStack();
+			stack.setInstitution_stack_code(instStack);
+			stack.setInstitution_no(institution_no);
+			re+=mapper.insertInstStack(stack);
+		}
+		
+		Taste taste = staff.getTaste();
+		taste.setStaff_no(staff_no);
+		re+= mapper.insertTaste(taste);
+		
+		String[] hobbyArr = staff.getHobbyArr();
+		
+		for(String hobby_desc : hobbyArr){
+			Hobby hobby = new Hobby();
+			hobby.setHobby(hobby_desc);
+			hobby.setStaff_no(staff_no);
+			re+= mapper.insertHobby(hobby);
+		}
+		
+		
+		Project[] projectArr = staff.getProjectArr();
+		
+		for(Project project: projectArr){
+			project.setStaff_no(staff_no);
+			mapper.insertProject(project);
+			
+			int project_no=mapper.getCurrentProjectNo();	
+			
+			int[] dbmsArr = project.getProject_dbms();
+			for(int dbmsCode: dbmsArr){
+				ProjectDbms dbms = new ProjectDbms();
+				dbms.setProject_dbms(dbmsCode);
+				dbms.setStaff_project_no(project_no);
+				re+=mapper.insertDbms(dbms);
+			}
+			
+			int[] devetcArr = project.getProject_devetc();
+			for(int devetcCode: devetcArr){
+				ProjectDevetc devetc = new ProjectDevetc();
+				devetc.setProject_devetc(devetcCode);
+				devetc.setStaff_project_no(project_no);
+				re+= mapper.insertDevetc(devetc);
+			}
+			
+			int[] frameworkArr = project.getProject_framework();
+			for(int frameworkCode: frameworkArr){
+				ProjectFramework framework = new ProjectFramework();
+				framework.setProject_framework(frameworkCode);
+				framework.setStaff_project_no(project_no);
+				re+= mapper.insertFramework(framework);
+			}
+			
+			int[] languageArr = project.getProject_language();
+			for(int languageCode: languageArr){
+				ProjectLanguage language = new ProjectLanguage();
+				language.setProject_language(languageCode);
+				language.setStaff_project_no(project_no);
+				re+= mapper.insertLangugae(language);
+			}
+			
+			int osCode = project.getProject_os();
+			ProjectOs os = new ProjectOs();
+			os.setProject_os(osCode);
+			os.setStaff_project_no(project_no);
+			re+=mapper.insertOs(os);
+				
+			int serverCode= project.getProject_server();
+			ProjectServer server = new ProjectServer();
+			server.setProject_server(serverCode);
+			server.setStaff_project_no(project_no);
+			re+=mapper.insertServer(server);
+		}
+
+		return re;
+	}
 
 	
 	

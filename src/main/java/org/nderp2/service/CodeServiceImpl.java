@@ -12,6 +12,7 @@ import org.nderp2.code.domain.CodeDepartment;
 import org.nderp2.code.domain.CodeDevetc;
 import org.nderp2.code.domain.CodeEducation;
 import org.nderp2.code.domain.CodeFamily;
+import org.nderp2.code.domain.CodeForeignlangType;
 import org.nderp2.code.domain.CodeForeignlang;
 import org.nderp2.code.domain.CodeFramework;
 import org.nderp2.code.domain.CodeHired;
@@ -190,6 +191,11 @@ public class CodeServiceImpl implements CodeService {
 	@Override
 	public List<CodeEducation> getEducation() {
 		return mapper.getEducation();
+	}
+
+	@Override
+	public List<CodeForeignlangType> getForeignlangType() {
+		return mapper.getForeignlangType();
 	}
 
 }

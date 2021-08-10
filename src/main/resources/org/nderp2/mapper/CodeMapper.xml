@@ -128,5 +128,10 @@
 		select *
 			from CODE_Education
 	</select>
+	
+	<select id="getForeignlangType" resultType="org.nderp2.code.domain.CodeForeignlangType">
+		select *
+			from CODE_Foreignlang_type
+	</select>
 
 </mapper>

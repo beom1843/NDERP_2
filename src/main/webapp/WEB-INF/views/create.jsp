@@ -251,7 +251,7 @@
 			<table id ="style1">
 				<tr>
 				<th>독해 가능 외국어</th>
-				<td><div class="foreignlang"></div></td>
+				<td><div class="foreignlang"></div><input type="hidden" id="education_code" value="4"></td>
 				
 				<th>회화 가능 외국어</th>
 				<td><div class="foreignlang"></div></td>

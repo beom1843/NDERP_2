@@ -13,6 +13,7 @@ import org.nderp2.code.domain.CodeDevetc;
 import org.nderp2.code.domain.CodeEducation;
 import org.nderp2.code.domain.CodeFamily;
 import org.nderp2.code.domain.CodeForeignlang;
+import org.nderp2.code.domain.CodeForeignlangType;
 import org.nderp2.code.domain.CodeFramework;
 import org.nderp2.code.domain.CodeHired;
 import org.nderp2.code.domain.CodeHotline;
@@ -205,4 +206,9 @@ public class CodeController {
 		return new ResponseEntity<List<CodeEducation>>(service.getEducation(), HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/codeForeignlangType", produces = { MediaType.APPLICATION_XML_VALUE,
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public ResponseEntity<List<CodeForeignlangType>> getForeignlangType() {
+		return new ResponseEntity<List<CodeForeignlangType>>(service.getForeignlangType(), HttpStatus.OK);
+	}
 }
