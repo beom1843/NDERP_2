@@ -171,27 +171,32 @@
 			3. 가족
 		</div>
 		<div id = "title3">
-			<table id ="style2">
-				<tr>
-					<th>관계</th>
-					<th>이름</th>
-					<th>직업</th>
-					<th>출생년도</th>
-					<th>동거여부</th>
-				</tr>
+			<table id="style2 family">
+				<thead>
+					<tr>
+						<th>관계</th>
+						<th>이름</th>
+						<th>직업</th>
+						<th>출생년도</th>
+						<th>동거여부</th>
+					</tr>
+				</thead>	
 				
-				<tr>
-					<td><div id="family_relat_drp"></div>
-					</td>
-					<td><input type="text" class="family_name"></td>
-					<td><input type="text" class="family_job"></td>
-					<td><select class="year" id="family_birthy"></select></td>
-					<td><input type="checkbox" id="family_livew">동거</td>
-				</tr>
+				<tbody id="family_r">
+					<tr>
+						<td><div id="family_relat_drp"></div>
+						</td>
+						<td><input type="text" class="family_name"></td>
+						<td><input type="text" class="family_job"></td>
+						<td><select class="year" id="family_birthy"></select></td>
+						<td><input type="checkbox" id="family_livew">동거</td>
+					</tr>
+				</tbody>
+				<tbody id="family_R"></tbody>
 			</table>
 			<div id="family_edit">
-				<div id="family_row_delete">[행삭제]</div>
-				<div id="family_row_add">[행추가]</div>
+				<div id="family_row_delete"><a href="#">[행삭제]</a></div>
+				<div id="family_row_add"><a href="#">[행추가]</a></div>
 			</div>
 		</div>
 		
@@ -199,41 +204,46 @@
 			4. 회사 경력
 		</div>
 		<div id = "title4">
-			<table id ="style2">
-				<tr>
-					<th>회사명/업무</th>
-					<th>분야</th>
-					<th>부서</th>
-					<th>직위</th>
-					<th>고용형태</th>
-					<th>연봉</th>
-					<th>입사일/퇴사일</th>
-				</tr>
-				
-				<tr>
-					<td>
-					회사명: <input type="text" id="coreer_name"><br>
-					업무: <input type="text" id="coreer_desc">
-					</td>
-					<td><div id="career_drp"></div></td>
-					<td><div id="career_dept_drp"></div></td>
-					<td><div id="career_posit_drp"></div></td>
-					<td><div id="career_hired_drp"></div></td>
-					<td><select id="career_salary"></select>만원</td>
-					
-					<td>
-					입사일: <select class="year" id="career_hireday_y"></select>년
-					<select class="month" id="career_hireday_m"></select>월
-					<br>
-					퇴사일: <select class="year" id="career_retireday_y"></select>년
-					<select class="month" id="career_retireday_m"></select>월
-					</td>
-					
-				</tr>
+			<table id ="style2 career">
+				<thead>
+					<tr>
+						<th>회사명/업무</th>
+						<th>분야</th>
+						<th>부서</th>
+						<th>직위</th>
+						<th>고용형태</th>
+						<th>연봉</th>
+						<th>입사일/퇴사일</th>
+					</tr>
+				</thead>
+				<tbody id="career_r">	
+					<tr>
+						<td>
+						회사명: <input type="text" id="coreer_name"><br>
+						업무: <input type="text" id="coreer_desc">
+						</td>
+						<td><div id="career_drp"></div></td>
+						<td><div id="career_dept_drp"></div></td>
+						<td><div id="career_posit_drp"></div></td>
+						<td><div id="career_hired_drp"></div></td>
+						<td><select id="career_salary"></select>만원</td>
+						
+						<td>
+						입사일: <select class="year" id="career_hireday_y"></select>년
+						<select class="month" id="career_hireday_m"></select>월
+						<br>
+						퇴사일: <select class="year" id="career_retireday_y"></select>년
+						<select class="month" id="career_retireday_m"></select>월
+						</td>
+						
+					</tr>
+				</tbody>
+				<tbody id ="career_R"></tbody>
 			</table>
+			
 			<div id="career_edit">
-				<div id="career_row_delete">[행삭제]</div>
-				<div id="career_row_add">[행추가]</div>
+				<div id="career_row_delete"><a href="#">[행삭제]</a></div>
+				<div id="career_row_add"><a href="#">[행추가]</a></div>
 			</div>	
 		</div>
 		
@@ -311,67 +321,71 @@
 			10. 개발 경력
 		</div>
 		<div id="title10">
-			<table id ="style2" width="80%">
-				<tr>
-					<th rowspan="2">프로젝트명 / 기간</th>
-					<th rowspan="2">고객사 / 근무사 / 역할</th>
-					<th>개발 환경</th>
-				</tr>
-
-				<tr>
-					<th>기종/OS/언어/DBMS/TOOL/기타</th>
-				</tr>
-
-				<tr >
-					<td id="project_basic">
-						<div class="style3">프로젝트명</div><input type="text" id ="project_name"><br>
-						<div class="style3">시작일</div>
-							<select class="year" id="project_start_y" ></select>년 
-							<select class="month" id="project_start_m" ></select>월<br>
-						<div class="style3">종료일</div>
-							<select class="year" id="project_end_y" ></select>년 
-							<select class="month" id="project_end_m" ></select>월<br>
-					</td>
-					<td id="project_relation">
-						<div class="style3">고객사</div><input type="text" id ="project_customer"><br>
-						<div class="style3">근무사</div><input type="text" id ="project_company"><br>						
-						<div class="style3">역할</div><div id="project_role_chk"></div>
-					</td>
-					<td id="project_env">
-						<div class="style3">서버기종(H/W)</div><div class="project_server_drp"></div>
-						<div class="style3" id="os">OS</div><div class="project_os_drp"></div><br>
-						<div class="style3">언어</div>
-							<div class="project_language_drp" id="language1"></div>
-							<div class="project_language_drp" id="language2"></div>
-							<div class="project_language_drp" id="language3"></div>
-							<div class="project_language_drp" id="language4"></div>
-							<div class="project_language_drp" id="language5"></div>
-							<div class="project_language_drp" id="language6"></div>
-							<div class="project_language_drp" id="language7"></div>
-							<br>
-						<div class="style3">프레임워크</div>
-							<div class="project_framework_drp" id="framework1"></div>
-							<div class="project_framework_drp" id="framework2"></div>
-							<div class="project_framework_drp" id="framework3"></div>
-							<br>
-						<div class="style3">DBMS</div>
-							<div class="project_dbms_drp" id="dbms1"></div>
-							<div class="project_dbms_drp" id="dbms2"></div>
-							<div class="project_dbms_drp" id="dbms3"></div>
-							<br>
-						<div class="style3">기타</div>
-							<div class="project_devetc_drp" id="devetc1"></div>
-							<div class="project_devetc_drp" id="devetc2"></div>
-							<div class="project_devetc_drp" id="devetc3"></div>
-							<div class="project_devetc_drp" id="devetc4"></div>
-							<div class="project_devetc_drp" id="devetc5"></div>
-							<br>
-					</td>
-				</tr>
+			<table id ="style2 project" width="80%">
+				<thead>
+					<tr>
+						<th rowspan="2">프로젝트명 / 기간</th>
+						<th rowspan="2">고객사 / 근무사 / 역할</th>
+						<th>개발 환경</th>
+					</tr>
+	
+					<tr>
+						<th>기종/OS/언어/DBMS/TOOL/기타</th>
+					</tr>
+				</thead>
+				<tbody id="project_r">
+					<tr>
+						<td id="project_basic">
+							<div class="style3">프로젝트명</div><input type="text" id ="project_name"><br>
+							<div class="style3">시작일</div>
+								<select class="year" id="project_start_y" ></select>년 
+								<select class="month" id="project_start_m" ></select>월<br>
+							<div class="style3">종료일</div>
+								<select class="year" id="project_end_y" ></select>년 
+								<select class="month" id="project_end_m" ></select>월<br>
+						</td>
+						<td id="project_relation">
+							<div class="style3">고객사</div><input type="text" id ="project_customer"><br>
+							<div class="style3">근무사</div><input type="text" id ="project_company"><br>						
+							<div class="style3">역할</div><div id="project_role_chk"></div>
+						</td>
+						<td id="project_env">
+							<div class="style3">서버기종(H/W)</div><div class="project_server_drp"></div>
+							<div class="style3" id="os">OS</div><div class="project_os_drp"></div><br>
+							<div class="style3">언어</div>
+								<div class="project_language_drp" id="language1"></div>
+								<div class="project_language_drp" id="language2"></div>
+								<div class="project_language_drp" id="language3"></div>
+								<div class="project_language_drp" id="language4"></div>
+								<div class="project_language_drp" id="language5"></div>
+								<div class="project_language_drp" id="language6"></div>
+								<div class="project_language_drp" id="language7"></div>
+								<br>
+							<div class="style3">프레임워크</div>
+								<div class="project_framework_drp" id="framework1"></div>
+								<div class="project_framework_drp" id="framework2"></div>
+								<div class="project_framework_drp" id="framework3"></div>
+								<br>
+							<div class="style3">DBMS</div>
+								<div class="project_dbms_drp" id="dbms1"></div>
+								<div class="project_dbms_drp" id="dbms2"></div>
+								<div class="project_dbms_drp" id="dbms3"></div>
+								<br>
+							<div class="style3">기타</div>
+								<div class="project_devetc_drp" id="devetc1"></div>
+								<div class="project_devetc_drp" id="devetc2"></div>
+								<div class="project_devetc_drp" id="devetc3"></div>
+								<div class="project_devetc_drp" id="devetc4"></div>
+								<div class="project_devetc_drp" id="devetc5"></div>
+								<br>
+						</td>
+					</tr>
+				</tbody>
+				<tbody id="project_R"></tbody>
 			</table>
 			<div id="project_edit">
-				<div id="project_row_delete">[행삭제]</div>
-				<div id="project_row_add">[행추가]</div>
+				<div id="project_row_delete"><a href="#">[행삭제]</a></div>
+				<div id="project_row_add"><a href="#">[행추가]</a></div>
 			</div>	
 				
 			<div id="submit_btn"><button id="submit" value="저장">저장</button></div>

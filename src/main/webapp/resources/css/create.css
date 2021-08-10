@@ -78,15 +78,15 @@ table{
 	
 	
 /* style2 */	
-#style2, #style2 th,#style2 td {
+[id*='style2'], [id*='style2'] th,[id*='style2'] td {
 	border: black 1px solid;
 	border-collapse: collapse;
 	}
 	
-#style2 th,#style2 td {
+[id*='style2'] th,[id*='style2'] td {
 		padding: 5px;
 	}
-#style2 th{
+[id*='style2'] th{
 	text-align: center;
 	background-color:#1792d0;
 	}
