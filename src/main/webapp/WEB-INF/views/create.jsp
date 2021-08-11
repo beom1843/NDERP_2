@@ -112,8 +112,8 @@
 					<td>	</td>
 					<td>
 						<input type="hidden" id="education_code" value="1">
-						<select class="year" id="edu_1_grad_y"></select>년
-						<select class="month" id="edu_1_grad_m"></select>월
+						<select class="year" name="edu_1_grad_y"></select>년
+						<select class="month" name="edu_1_grad_m"></select>월
 					</td>
 				</tr>
 				
@@ -124,8 +124,8 @@
 					<td><input type="text" id="education_2_sub"></td>
 					<td>
 						<input type="hidden" id="education_code" value="2">
-						<select class="year" id="edu_2_grad_y"></select>년
-						<select class="month" id="edu_2_grad_m"></select>월
+						<select class="year" name="edu_2_grad_y"></select>년
+						<select class="month" name="edu_2_grad_m"></select>월
 					</td>
 				</tr>
 				
@@ -136,8 +136,8 @@
 					<td><input type="text" id="education_3_sub"></td>
 					<td>
 						<input type="hidden" id="education_code" value="3">
-						<select class="year" id="edu_3_grad_y"></select>년
-						<select class="month" id="edu_3_grad_m"></select>월
+						<select class="year" name="edu_3_grad_y"></select>년
+						<select class="month" name="edu_3_grad_m"></select>월
 					</td>
 				</tr>
 				
@@ -148,8 +148,8 @@
 					<td><input type="text" id="education_4_sub"></td>
 					<td>
 						<input type="hidden" id="education_code" value="4">
-						<select class="year" id="edu_4_grad_y"></select>년
-						<select class="month" id="edu_4_grad_m"></select>월
+						<select class="year" name="edu_4_grad_y"></select>년
+						<select class="month" name="edu_4_grad_m"></select>월
 					</td>
 				</tr>
 
@@ -160,8 +160,8 @@
 					<td><input type="text" id="education_5_sub"></td>
 					<td>
 						<input type="hidden" id="education_code" value="5">
-						<select class="year" id="edu_5_grad_y"></select>년
-						<select class="month" id="edu_5_grad_m"></select>월
+						<select class="year" name="edu_5_grad_y"></select>년
+						<select class="month" name="edu_5_grad_m"></select>월
 					</td>
 				</tr>				
 			</table>
@@ -186,8 +186,8 @@
 					<tr>
 						<td><div id="family_relat_drp"></div>
 						</td>
-						<td><input type="text" class="family_name"></td>
-						<td><input type="text" class="family_job"></td>
+						<td><input type="text" id="family_name"></td>
+						<td><input type="text" id="family_job"></td>
 						<td><select class="year" id="family_birthy"></select></td>
 						<td><input type="checkbox" id="family_livew">동거</td>
 					</tr>

@@ -1,5 +1,7 @@
 package org.nderp2.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -17,13 +19,13 @@ public class Staff {
 	private String staff_zipcode;
 	private Hotline hotline;
 	private Bank bank;
-	private School[] schoolArr;
-	private Family[] familyArr;
-	private Career[] careerArr;
+	private List<School> schoolArr;
+	private List<Family> familyArr;
+	private List<Career> careerArr;
 	private int[] certificationArr;
-	private Foreignlang[] foreignlangArr;
+	private List<Foreignlang> foreignlangArr;
 	private Institution institution;
 	private Taste taste;
 	private String[] hobbyArr;
-	private Project[] projectArr;
+	private List<Project> projectArr;
 }

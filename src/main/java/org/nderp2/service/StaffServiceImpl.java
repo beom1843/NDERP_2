@@ -1,5 +1,7 @@
 package org.nderp2.service;
 
+import java.util.List;
+
 import org.nderp2.domain.Bank;
 import org.nderp2.domain.Career;
 import org.nderp2.domain.Certification;
@@ -48,19 +50,19 @@ public class StaffServiceImpl implements StaffService {
 		bank.setStaff_no(staff_no);
 		re+= mapper.insertBank(bank);
 		
-		School[] schoolArr = staff.getSchoolArr();
+		List<School> schoolArr = staff.getSchoolArr();
 		for(School school: schoolArr){
 			school.setStaff_no(staff_no);
 			re+=mapper.insertSchool(school);
 		}
 		
-		Family[] familyArr = staff.getFamilyArr();
+		List<Family> familyArr = staff.getFamilyArr();
 		for(Family family: familyArr){
 			family.setStaff_no(staff_no);
 			re+=mapper.insertFamily(family);
 		}
 		
-		Career[] careerArr = staff.getCareerArr();
+		List<Career> careerArr = staff.getCareerArr();
 		for(Career career: careerArr){
 			career.setStaff_no(staff_no);
 			re+=mapper.insertCareer(career);
@@ -74,7 +76,7 @@ public class StaffServiceImpl implements StaffService {
 			re+=mapper.insertCertification(certi);
 		}
 		
-		Foreignlang[] foreignArr = staff.getForeignlangArr();
+		List<Foreignlang> foreignArr = staff.getForeignlangArr();
 		
 		for(Foreignlang lang: foreignArr){
 			lang.setStaff_no(staff_no);
@@ -108,7 +110,7 @@ public class StaffServiceImpl implements StaffService {
 		}
 		
 		
-		Project[] projectArr = staff.getProjectArr();
+		List<Project> projectArr = staff.getProjectArr();
 		
 		for(Project project: projectArr){
 			project.setStaff_no(staff_no);
