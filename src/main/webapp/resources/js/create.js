@@ -25,17 +25,20 @@ $(document).ready(function(){
 		var familyCnt = familyTb.tBodies[0].rows.length;
 		familyCnt += familyTb.tBodies[1].rows.length;
 		console.log("가족 인원수"+familyCnt);
+
 		
 		//추가할 행의 코드 가져오기
 		var family_row = document.getElementById("family_r").innerHTML;
 		
 		$("#family_R").append(family_row);
 		
-		$('#family_R #family_relat_drp').attr('id','family_relat_drp'+familyCnt);
+		$('#family_R [name="family_code"]').attr('name','family_code'+familyCnt);
 		$('#family_R #family_name').attr('id','family_name'+familyCnt);
 		$('#family_R #family_job').attr('id','family_job'+familyCnt);
-		$('#family_R #family_birthy').attr('id','family_birthy'+familyCnt);
+		$('#family_R [name="family_birthy"]').attr('name','family_birthy'+familyCnt);
 		$('#family_R #family_livew').attr('id','family_livew'+familyCnt);
+		
+	
 		
 	})
 	
@@ -198,12 +201,69 @@ $(document).ready(function(){
 		
 		console.log(schoolArr);
 		//3. 가족
-			//가족 갯수 구하기
+		var family_code= $("select[name='family_code']").val();
+		var family_name = $('#family_name').val();
+		var family_job = $('#family_job').val();
+		var family_code= $("select[name='family_birthy']").val();
+		
+		//family 객체 정의
+		var Family = function(family_code,family_name,family_job,family_birthy,family_livew){
+			this.family_code = family_code;
+			this.family_name = family_name;
+			this.family_job = family_job;
+			this.family_birthy = family_birthy;
+			this.family_livew = family_livew;
+		}
+		
+		//family를 넣을 리스트 정의
+		var familyArr = [];
+		
+		//가족 갯수 구하기
 		var familyTb = document.getElementById('style2 family')
 		var familyCnt = familyTb.tBodies[0].rows.length;
 		familyCnt += familyTb.tBodies[1].rows.length;
 		console.log("가족 인원수"+familyCnt);
 		
+		
+		var family_code= $("select[name='family_code']").val();
+		var family_name = $('#family_name').val();
+		var family_job = $('#family_job').val();
+		var family_year= $("select[name='family_birthy']").val();
+		var family_livew= $('input[id="family_livew"]:checked').val();
+		if(!family_livew){
+			family_livew = 0;
+		}
+		
+		if(family_code&&family_name&&family_job&&family_year){
+			var pamily = new Family(family_code, family_name, family_job, family_year,family_livew);
+			familyArr.push(pamily);
+			
+			for(var i =1; i<familyCnt; i++){
+				var f_code = $("select[name='family_code"+i+"']").val();
+				var f_name = $('#family_name'+i).val();
+				var f_job = $('#family_job'+i).val();
+				var f_year = $("select[name='family_birthy"+i+"']").val();
+				var livew = $('input[id="family_livew'+i+'"]:checked').val();
+				console.log("동거여부"+livew)
+				if(!livew){
+					livew =0;
+				}
+
+				if(f_code&&f_name&&f_job&&f_year){
+					var family = new Family(f_code,f_name,f_job,f_year,livew);
+					familyArr.push(family);
+				}else{
+					alert("가족 사항을 정확하게 입력해주세요 !");
+					break;
+				}
+			}
+			
+		}else{
+			alert("가족 사항을 정확하게 입력해주세요 !");
+		}
+		console.log(familyArr);
+		
+
 			
 		var careerTb = document.getElementById('style2 career')
 		var careerCnt = careerTb.tBodies[0].rows.length;
@@ -216,17 +276,7 @@ $(document).ready(function(){
 		console.log("플젝 수"+projectCnt);
 		
 		
-		//family 객체 정의
-		var Family = function(family_name,family_job,family_birthy,family_livew){
-			this.family_name = family_name;
-			this.family_job = family_job;
-			this.family_birthy = family_birthy;
-			this.family_livew = family_livew;
-		}
-		
-		//family를 넣을 리스트 정의
-		var familyArr = [];
-		
+
 		
 
 		

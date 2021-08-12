@@ -188,8 +188,8 @@
 						</td>
 						<td><input type="text" id="family_name"></td>
 						<td><input type="text" id="family_job"></td>
-						<td><select class="year" id="family_birthy"></select></td>
-						<td><input type="checkbox" id="family_livew">동거</td>
+						<td><select class="year" name="family_birthy"></select></td>
+						<td><input type="checkbox" id="family_livew" value="1" >동거</td>
 					</tr>
 				</tbody>
 				<tbody id="family_R"></tbody>
