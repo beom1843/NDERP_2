@@ -219,21 +219,21 @@
 				<tbody id="career_r">	
 					<tr>
 						<td>
-						회사명: <input type="text" id="coreer_name"><br>
-						업무: <input type="text" id="coreer_desc">
+						회사명: <input type="text" id="career_name"><br>
+						업무: <input type="text" id="career_desc">
 						</td>
 						<td><div id="career_drp"></div></td>
 						<td><div id="career_dept_drp"></div></td>
 						<td><div id="career_posit_drp"></div></td>
 						<td><div id="career_hired_drp"></div></td>
-						<td><select id="career_salary"></select>만원</td>
+						<td><select id="career_salary" name="career_salary"></select>만원</td>
 						
 						<td>
-						입사일: <select class="year" id="career_hireday_y"></select>년
-						<select class="month" id="career_hireday_m"></select>월
+						입사일: <select class="year" id="career_hireday_y" name="career_hireday_y" ></select>년
+						<select class="month" id="career_hireday_m" name="career_hireday_m"></select>월
 						<br>
-						퇴사일: <select class="year" id="career_retireday_y"></select>년
-						<select class="month" id="career_retireday_m"></select>월
+						퇴사일: <select class="year" id="career_retireday_y" name="career_retireday_y"></select>년
+						<select class="month" id="career_retireday_m" name="career_retireday_m"></select>월
 						</td>
 						
 					</tr>

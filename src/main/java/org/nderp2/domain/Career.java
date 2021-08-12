@@ -10,7 +10,7 @@ public class Career {
 	private int career_code;
 	private int career_department;
 	private int career_position;
-	private int career_Hired;
+	private int career_hired;
 	private int career_salary;
 	private String career_hireday;
 	private String career_retireday;
