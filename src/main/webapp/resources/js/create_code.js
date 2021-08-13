@@ -13,7 +13,7 @@ $(document).ready(function(){
 	var career_hired_Drp = $("#career_hired_drp");
 	var career_sal_Drp = $("#career_sal_drp");
 	var certification_Chk = $("#certification_chk");
-	var foreignlang_Chk = $(".foreignlang");
+	var foreignlang_Chk = $("[id*='foreignlang']");
 	var inst_m_Drp = $("#inst_m_drp");
 	var inst_ymd_Drp = $("#inst_ymd_drp");
 	var inst_stack_Chk = $("#inst_stack_chk");

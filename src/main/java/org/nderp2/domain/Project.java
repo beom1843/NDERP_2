@@ -11,7 +11,7 @@ public class Project {
 	private String project_endday;
 	private String project_customer;
 	private String project_company;
-	private int role_code;
+	private int[] project_role;
 	private int project_server;
 	private int project_os;
 	private int[] project_language;

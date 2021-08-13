@@ -14,6 +14,10 @@
 	<select id="getCurrentProjectNo" resultType="Integer">
 		select max(staff_project_no) from staff_project
 	</select>
+
+	<select id="getCurrentTasteNo" resultType="Integer">
+		select max(staff_taste_no) from staff_taste
+	</select>
 	
 	<insert id="createStaff">
 		insert into Staff values
@@ -70,6 +74,11 @@
 			(staff_Taste_seq.nextval,#{staff_no}, #{smoking_code},#{beer_code},#{soju_code},#{interest_code})
 	</insert>
 	
+	<insert id="insertTasteInterest">
+		insert into taste_interest values
+			(taste_interest_seq.nextval, #{taste_interest_code}, #{taste_no})
+	</insert>
+	
 	<insert id="insertHobby">
 		insert into staff_Hobby values
 			(staff_Hobby_seq.nextval,#{staff_no},#{hobby} )
@@ -78,6 +87,11 @@
 	<insert id="insertProject">
 		insert into staff_Project values
 			(staff_Project_seq.nextval,#{staff_no},#{role_code},#{project_startday},#{project_endday},#{project_customer},#{project_company},#{project_name})
+	</insert>
+	
+	<insert id="insertRole">
+		insert into project_role values
+		(project_role_seq.nextval,#{staff_project_no}, #{project_role})
 	</insert>
 	
 	<insert id="insertDbms">

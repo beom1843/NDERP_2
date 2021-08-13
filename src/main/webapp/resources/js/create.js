@@ -1,5 +1,33 @@
 $(document).ready(function(){
 
+	for(var i = 2 ; i<=6;i++){
+		$("#language"+i).on("click",function(e){
+			if(!($("#language"+(i-1)+" select[name'language_code'").val())){
+				alert("사용 언어를 순서대로 채우세요!")
+			}
+		})
+	}
+		$("#framework2").on("click",function(e){
+			if(!($("#framework1 select[name'framework_code'").val())){
+				alert("사용 프레임워크를 순서대로 채우세요!")
+			}
+		})
+	for(var i = 2 ; i<=3;i++){
+		$("#dbms"+i).on("click",function(e){
+			if(!($("#dbms"+(i-1)+" select[name'dbms_code'").val())){
+				alert("사용 DBMS를 순서대로 채우세요!")
+			}
+		})
+	}
+	for(var i = 2 ; i<=6;i++){
+		$("#devetc"+i).on("click",function(e){
+			if(!($("#devetc"+(i-1)+" select[name'devetc_code'").val())){
+				alert("사용한 기타 기술스택을 순서대로 채우세요!")
+			}
+		})
+	}
+	
+	
 	$("#project_row_add").on("click",function(e){
 		e.preventDefault();
 
@@ -125,7 +153,7 @@ $(document).ready(function(){
 		if(!(id&&pw&&pwchk&&name&&jumin&&hp&&email&&religion_code&&military_code&&zipcode&&address&&hotline&&bank)){
 			/*message +="1. 개인정보 \n"
 			message +=" - "*/
-			alert("개인정보를 정확하게 입력하세요!");
+			alert("[1] 개인정보를 정확하게 입력하세요!");
 			allIsOk+=1;
 		}
 		/*if(!id){
@@ -237,23 +265,23 @@ $(document).ready(function(){
 			}
 		}
 		else if(education_2_name&&edu_2_grad_y&&edu_2_grad_m){
-			school = new School('',education_2_name,'','',edu_2_grad_y+edu_2_grad_m,0)
+			school = new School('',education_2_name,'','',edu_2_grad_y+edu_2_grad_m,2)
 			schoolArr.push(school);
 		}
 		else if(education_3_name&&edu_3_grad_y&&edu_3_grad_m){
-			school = new School('',education_3_name,'','',edu_3_grad_y+edu_3_grad_m,0)
+			school = new School('',education_3_name,'','',edu_3_grad_y+edu_3_grad_m,3)
 			schoolArr.push(school);
 		}
 		else if(education_4_name&&edu_4_grad_y&&edu_4_grad_m){
-			school = new School('',education_4_name,'','',edu_4_grad_y+edu_4_grad_m,0)
+			school = new School('',education_4_name,'','',edu_4_grad_y+edu_4_grad_m,4)
 			schoolArr.push(school);
 		}
 		else if(education_5_name&&edu_5_grad_y&&edu_5_grad_m){
-			school = new School('',education_5_name,'','',edu_5_grad_y+edu_5_grad_m,0)
+			school = new School('',education_5_name,'','',edu_5_grad_y+edu_5_grad_m,5)
 			schoolArr.push(school);
 		}		
 		else{
-			alert("학력사항을 정확하게 입력하세요!");
+			alert("[2] 학력사항을 정확하게 입력하세요!");
 			allIsOk +=1;
 		}
 		
@@ -308,14 +336,14 @@ $(document).ready(function(){
 					family = new Family(f_code,f_name,f_job,f_year,livew);
 					familyArr.push(family);
 				}else{
-					alert("가족 사항을 정확하게 입력하세요 !");
+					alert("[3] 가족 사항을 정확하게 입력하세요 !");
 					allIsOk +=1;
 					break;
 				}
 			}
 			
 		}else{
-			alert("가족 사항을 정확하게 입력하세요 !");
+			alert("[3] 가족 사항을 정확하게 입력하세요 !");
 			allIsOk +=1;
 		}
 		console.log(familyArr);
@@ -396,28 +424,187 @@ $(document).ready(function(){
 					career = new Career(c_name,c_desc,c_code,c_department,c_position,c_hired,c_salary,c_hireday,c_retireday);
 					careerArr.push(career);
 				}else{
-					alert("경력사항을 정확하게 입력하세요!");
+					alert("[4] 경력사항을 정확하게 입력하세요!");
 					allIsOk +=1;
 					break;
 				}
 			}
 		}else{
-			alert("경력사항을 정확하게 입력하세요!");
+			alert("[4] 경력사항을 정확하게 입력하세요!");
 			allIsOk +=1;
 		}
 		
 		//5. 자격증
 		
+		var certificationArr=[];
+
+		
+		if(!($('input[name="certification"]:checked').val())){
+			alert("[5] 자격증 정보를 정확하게 입력하세요!");
+			allIsOk +=1;
+		}else{
+			$('input[name="certification"]:checked').each(function(i){
+				certificationArr.push($(this).val());
+			})
+		}
+		
+		//6. 외국어
+		var foreignlangArr = [];
+		var Foreignlang = function(foreignlang_code,foreignlang_type){
+			this.foreignlang_code = foreignlang_code;
+			this.foreignlang_type = foreignlang_type;
+		}
+		
+
+		
+		if(!($("#foreignlang_read input[name='foreignlang']:checked").val()&&$("#foreignlang_speak input[name='foreignlang']:checked").val())){
+			alert("[6] 외국어 능력을 정확하게 입력하세요!");
+			allIsOk +=1;}else{
+			$("#foreignlang_read input[name='foreignlang']:checked").each(function(i){
+				var foreignlang = new Foreignlang(1,$(this));
+				foreignlangArr.push(foreignlang);
+			})
+			
+			$("#foreignlang_speak input[name='foreignlang']:checked").each(function(i){
+				foreignlang = new Foreignlang(2,$(this));
+				foreignlangArr.push(foreignlang);
+			})
+		}
 		
 		
+		
+		//7. IT 교육센터
+		var Institution = function(institution_name, institution_period, institution_grad, inst_stack_code){
+			this.institution_name = institution_name;
+			this.institution_period = institution_period;
+			this.institution_grad = institution_grad;
+			this.inst_stack_code = inst_stack_code;
+		}
+	
+		
+		
+		var i_name = $("#institution_name").val();
+		var i_period = $("select[name='institution_period'").val();
+		var i_grad_y = $("select[name='institution_grad_y'").val();
+		var i_grad_m = $("select[name='institution_grad_m'").val();
+		var i_grad_d = $("select[name='institution_grad_d'").val();
+		var inst_stackArr = [];
+		
+		$("input[name='inst_stack']:checked").each(function(i){
+			inst_stackArr.push($(this));
+		})
+
+		
+		if(!(i_name&&i_period&&i_grad_y&&i_grad_m&&i_grad_d)||inst_stackArr.length==0){
+			alert("[7] IT 교육수료 내역을 정확하게 입력하세요!");
+			allIsOk +=1;
+		}else{
+			if(i_grad_m.length ==1){
+				i_grad_m="0"+i_grad_m;
+			}
+			if(i_grad_d.length ==1){
+				i_grad_d="0"+i_grad_d;
+			}
+			i_grad = i_grad_y+i_grad_m+i_grad_d;
+			
+			var institution = new Institution(i_name, i_period, i_grad, inst_stackArr);
+		}
+		
+		//8. 기호
+		var Taste = function(smoking_code, beer_code, soju_code, interest_code){
+		this.smoking_code = smoking_code;
+		this.beer_code = beer_code;
+		this.soju_code = soju_code;
+		this.interest_code = interest_code;
+		}
+		var t_smoking = $("select[name='smoking_code'").val();
+		var t_soju = $("select[name='soju_code'").val();
+		var t_beer = $("select[name='beer_code'").val();
+		var interestArr = [];
+		
+		if(!(t_smoking&&t_soju&&t_beer&&$("input[name='interest']:chekced").val())){
+			alert("[8] 기호 내용을 정확하게 입력하세요!");
+			allIsOk +=1;
+		}else{
+			
+			$("input[name='interest']:checked").each(function(i){
+				interestArr.push($(this));
+			})
+			
+			var taste = new Taste(t_smoking, t_beer, t_soju, interestArr);
+		}
+		
+		//9. 취미
+		var hobby1 = $("#hobby1").val();
+		var hobby2 = $("#hobby2").val();
+		var hobby3 = $("#hobby3").val();
+		var hobbyArr = [];
+		
+		if(hobby1){
+			hobbyArr.push(hobby1);
+		}else if(!hobby1){
+			alert("[9] 취미를 정확하게 입력하세요!");
+			allIsOk +=1;
+		}else if(hobby2){
+			hobbyArr.push(hobby2);
+		}else if(hobby3){
+			hobbyArr.push(hobby3);
+		}
+		
+		
+		
+		//10. 개발 경력
+		var Project = function(project_name, project_startday, project_endday, project_customer, project_company, role_code, project_server, project_os, project_language, project_framework_,project_dbms,project_devetc){
+			this.project_name = project_name;
+			this.project_startday = project_startday;
+			this.project_endday = project_endday;
+			this.project_customer = project_customer;
+			this.project_company = project_company;
+			this.role_code = role_code;
+			this.project_server = project_server;
+			this.project_os = project_os;
+			this.project_language = project_language;
+			this.project_framework = project_framework;
+			this.project_dbms = project_dbms;
+			this.project_devetc = project_devetc;
+		}
+		var projectArr = [];
 		
 		var projectTb = document.getElementById('style2 project')
 		var projectCnt = projectTb.tBodies[0].rows.length;
 		projectCnt += projectTb.tBodies[1].rows.length;
 		console.log("플젝 수"+projectCnt);
 		
+		var p_name = $("#project_name").val();
+		var p_s_y = $("select[name ='project_start_y']").val();
+		var p_s_m = $("select[name ='project_start_m']").val();
+		var p_e_y = $("select[name ='project_end_y']").val();
+		var p_e_m = $("select[name ='project_end_m']").val();
+		
+		var cust = $("#project_customer").val();
+		var comp = $("#project_company").val();
+		var roleArr =[];
+		
+		$("input[name='role']:checked").each(function(i){
+			roleArr.push($(this));
+		});
+		
+		var server = $("select[name ='server_code']").val();
+		var os = $("select[name ='os_code']").val();
+		
+		var langArr=[];
+		var frameworkArr=[];
+		var dbmsArr=[];
+		var devetcArr=[];
+		
+		
+		
+		
+		
 		
 		if(allIsOk==0){
+			
+			
 		}
 		
 			

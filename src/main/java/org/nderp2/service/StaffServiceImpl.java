@@ -11,12 +11,14 @@ import org.nderp2.domain.Hobby;
 import org.nderp2.domain.Hotline;
 import org.nderp2.domain.Institution;
 import org.nderp2.domain.InstitutionStack;
+import org.nderp2.domain.TasteInterest;
 import org.nderp2.domain.Project;
 import org.nderp2.domain.ProjectDbms;
 import org.nderp2.domain.ProjectDevetc;
 import org.nderp2.domain.ProjectFramework;
 import org.nderp2.domain.ProjectLanguage;
 import org.nderp2.domain.ProjectOs;
+import org.nderp2.domain.ProjectRole;
 import org.nderp2.domain.ProjectServer;
 import org.nderp2.domain.School;
 import org.nderp2.domain.Staff;
@@ -78,7 +80,7 @@ public class StaffServiceImpl implements StaffService {
 		
 		List<Foreignlang> foreignArr = staff.getForeignlangArr();
 		
-		for(Foreignlang lang: foreignArr){
+		for(Foreignlang lang: foreignArr){	
 			lang.setStaff_no(staff_no);
 			re+= mapper.insertForeignlang(lang);
 			
@@ -100,6 +102,16 @@ public class StaffServiceImpl implements StaffService {
 		taste.setStaff_no(staff_no);
 		re+= mapper.insertTaste(taste);
 		
+		int[] interestArr = taste.getInterest();
+		int taste_no = mapper.getCurrentTasteNo();
+		for(int interest_code : interestArr){
+			TasteInterest interest = new TasteInterest();
+			interest.setTaste_interest_code(interest_code);
+			interest.setTaste_no(taste_no);
+			re+= mapper.insertTasteInterest(interest);
+		}
+		
+		
 		String[] hobbyArr = staff.getHobbyArr();
 		
 		for(String hobby_desc : hobbyArr){
@@ -117,6 +129,15 @@ public class StaffServiceImpl implements StaffService {
 			mapper.insertProject(project);
 			
 			int project_no=mapper.getCurrentProjectNo();	
+			
+			int[] roleArr = project.getProject_role();
+			for(int roleCode : roleArr){
+				ProjectRole role = new ProjectRole();
+				role.setProject_role(roleCode);
+				role.setStaff_project_no(project_no);
+				re+=mapper.insertRole(role);
+			}
+			
 			
 			int[] dbmsArr = project.getProject_dbms();
 			for(int dbmsCode: dbmsArr){

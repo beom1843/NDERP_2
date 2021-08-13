@@ -8,5 +8,5 @@ public class Taste {
 	private int smoking_code;
 	private int beer_code;
 	private int soju_code;
-	private int[] interest_code;
+	private int[] interest;
 }

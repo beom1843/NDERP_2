@@ -111,7 +111,6 @@
 					<td>	</td>
 					<td>	</td>
 					<td>
-						<input type="hidden" id="education_code" value="1">
 						<select class="year" name="edu_1_grad_y"></select>년
 						<select class="month" name="edu_1_grad_m"></select>월
 					</td>
@@ -123,7 +122,6 @@
 					<td><input type="text" id="education_2_major"></td>
 					<td><input type="text" id="education_2_sub"></td>
 					<td>
-						<input type="hidden" id="education_code" value="2">
 						<select class="year" name="edu_2_grad_y"></select>년
 						<select class="month" name="edu_2_grad_m"></select>월
 					</td>
@@ -135,7 +133,6 @@
 					<td><input type="text" id="education_3_major"></td>
 					<td><input type="text" id="education_3_sub"></td>
 					<td>
-						<input type="hidden" id="education_code" value="3">
 						<select class="year" name="edu_3_grad_y"></select>년
 						<select class="month" name="edu_3_grad_m"></select>월
 					</td>
@@ -147,7 +144,6 @@
 					<td><input type="text" id="education_4_major"></td>
 					<td><input type="text" id="education_4_sub"></td>
 					<td>
-						<input type="hidden" id="education_code" value="4">
 						<select class="year" name="edu_4_grad_y"></select>년
 						<select class="month" name="edu_4_grad_m"></select>월
 					</td>
@@ -159,7 +155,6 @@
 					<td><input type="text" id="education_5_major"></td>
 					<td><input type="text" id="education_5_sub"></td>
 					<td>
-						<input type="hidden" id="education_code" value="5">
 						<select class="year" name="edu_5_grad_y"></select>년
 						<select class="month" name="edu_5_grad_m"></select>월
 					</td>
@@ -261,10 +256,10 @@
 			<table id ="style1">
 				<tr>
 				<th>독해 가능 외국어</th>
-				<td><div class="foreignlang"></div><input type="hidden" id="education_code" value="4"></td>
+				<td><div id="foreignlang_read"></div></td>
 				
 				<th>회화 가능 외국어</th>
-				<td><div class="foreignlang"></div></td>
+				<td><div id="foreignlang_speak"></div></td>
 				</tr>
 			</table>
 		</div>
@@ -338,11 +333,11 @@
 						<td id="project_basic">
 							<div class="style3">프로젝트명</div><input type="text" id ="project_name"><br>
 							<div class="style3">시작일</div>
-								<select class="year" id="project_start_y" ></select>년 
-								<select class="month" id="project_start_m" ></select>월<br>
+								<select class="year" name="project_start_y" ></select>년 
+								<select class="month" name="project_start_m" ></select>월<br>
 							<div class="style3">종료일</div>
-								<select class="year" id="project_end_y" ></select>년 
-								<select class="month" id="project_end_m" ></select>월<br>
+								<select class="year" name="project_end_y" ></select>년 
+								<select class="month" name="project_end_m" ></select>월<br>
 						</td>
 						<td id="project_relation">
 							<div class="style3">고객사</div><input type="text" id ="project_customer"><br>
@@ -359,12 +354,10 @@
 								<div class="project_language_drp" id="language4"></div>
 								<div class="project_language_drp" id="language5"></div>
 								<div class="project_language_drp" id="language6"></div>
-								<div class="project_language_drp" id="language7"></div>
 								<br>
 							<div class="style3">프레임워크</div>
 								<div class="project_framework_drp" id="framework1"></div>
 								<div class="project_framework_drp" id="framework2"></div>
-								<div class="project_framework_drp" id="framework3"></div>
 								<br>
 							<div class="style3">DBMS</div>
 								<div class="project_dbms_drp" id="dbms1"></div>
@@ -376,7 +369,6 @@
 								<div class="project_devetc_drp" id="devetc2"></div>
 								<div class="project_devetc_drp" id="devetc3"></div>
 								<div class="project_devetc_drp" id="devetc4"></div>
-								<div class="project_devetc_drp" id="devetc5"></div>
 								<br>
 						</td>
 					</tr>
