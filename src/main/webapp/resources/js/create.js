@@ -2,26 +2,26 @@ $(document).ready(function(){
 
 	for(var i = 2 ; i<=6;i++){
 		$("#language"+i).on("click",function(e){
-			if(!($("#language"+(i-1)+" select[name'language_code'").val())){
+			if(!($("select[name'language"+(i-1)+"']").val())){
 				alert("사용 언어를 순서대로 채우세요!")
 			}
 		})
 	}
 		$("#framework2").on("click",function(e){
-			if(!($("#framework1 select[name'framework_code'").val())){
+			if(!($("select[name'framework"+(i-1)+"']").val())){
 				alert("사용 프레임워크를 순서대로 채우세요!")
 			}
 		})
 	for(var i = 2 ; i<=3;i++){
 		$("#dbms"+i).on("click",function(e){
-			if(!($("#dbms"+(i-1)+" select[name'dbms_code'").val())){
+			if(!($("select[name'dbms"+(i-1)+"']").val())){
 				alert("사용 DBMS를 순서대로 채우세요!")
 			}
 		})
 	}
 	for(var i = 2 ; i<=6;i++){
 		$("#devetc"+i).on("click",function(e){
-			if(!($("#devetc"+(i-1)+" select[name'devetc_code'").val())){
+			if(!($("select[name'devetc"+(i-1)+"']").val())){
 				alert("사용한 기타 기술스택을 순서대로 채우세요!")
 			}
 		})
@@ -108,6 +108,11 @@ $(document).ready(function(){
 		var id = $('#id').val();
 		var pw = $('#pw').val();
 		var pwchk = $('#pwchk').val();
+		
+		if(!(pw==pwchk)){
+			allIsOk+=1;
+			alert("비밀번호와 비밀번호 확인이 일치하지 않습니다!")
+		}
 		
 		var name = $('#name').val();
 		var jumin = $('#jumin').val();
@@ -198,33 +203,32 @@ $(document).ready(function(){
 		var edu_1_grad_m= $("select[name='edu_1_grad_m']").val();
 	
 		var education_2_name = $('#education_2_name').val();
-		var college_2_code= $("#edu2 select[name='college_code']").val();
+		var college_2_code= $("select[name='edu2']").val();
 		var education_2_major = $('#education_2_major').val();
 		var education_2_sub = $('#education_2_sub').val();
 		var edu_2_grad_y= $("select[name='edu_2_grad_y']").val();
 		var edu_2_grad_m= $("select[name='edu_2_grad_m']").val();
 	
 		var education_3_name = $('#education_3_name').val();
-		var college_3_code= $("#edu3 select[name='college_code']").val();
+		var college_3_code= $("select[name='edu3']").val();
 		var education_3_major = $('#education_3_major').val();
 		var education_3_sub = $('#education_3_sub').val();
 		var edu_3_grad_y= $("select[name='edu_3_grad_y']").val();
 		var edu_3_grad_m= $("select[name='edu_3_grad_m']").val();
 	
 		var education_4_name = $('#education_4_name').val();
-		var college_4_code= $("#edu4 select[name='college_code']").val();
+		var college_4_code= $("select[name='edu4']").val();
 		var education_4_major = $('#education_4_major').val();
 		var education_4_sub = $('#education_4_sub').val();
 		var edu_4_grad_y= $("select[name='edu_4_grad_y']").val();
 		var edu_4_grad_m= $("select[name='edu_4_grad_m']").val();
 	
 		var education_5_name = $('#education_5_name').val();
-		var college_5_code= $("#edu5 select[name='college_code']").val();
+		var college_5_code= $("select[name='edu5']").val();
 		var education_5_major = $('#education_5_major').val();
 		var education_5_sub = $('#education_5_sub').val();
 		var edu_5_grad_y= $("select[name='edu_5_grad_y']").val();
 		var edu_5_grad_m= $("select[name='edu_5_grad_m']").val();
-		
 		
 		if(edu_1_grad_m.length ==1){
 			edu_1_grad_m = '0'+edu_1_grad_m;
@@ -242,6 +246,7 @@ $(document).ready(function(){
 			edu_5_grad_m = '0'+edu_5_grad_m;
 		}
 		
+		console.log("시험"+college_3_code)
 		
 			//School 객체 정의
 		var School = function(code,name,major,sub,graduateday,edu_code){
@@ -254,37 +259,43 @@ $(document).ready(function(){
 		}
 		
 		var schoolArr = [];
+		var schoolCount = 0;
 		
 		if(education_1_name&&edu_1_grad_y&&edu_1_grad_m){
 			if(education_1_name=='검정고시'){
 				var school = new School('',education_1_name,'','',edu_1_grad_y+edu_1_grad_m,0)
 				schoolArr.push(school);
+				schoolCount+=1;
 			}else{
 				school = new School('',education_1_name,'','',edu_1_grad_y+edu_1_grad_m,1)
 				schoolArr.push(school);
+				schoolCount+=1;
 			}
 		}
-		else if(education_2_name&&edu_2_grad_y&&edu_2_grad_m){
-			school = new School('',education_2_name,'','',edu_2_grad_y+edu_2_grad_m,2)
+		if(college_2_code&&education_2_name&&edu_2_grad_y&&edu_2_grad_m&&education_2_major&&education_2_sub){
+			school = new School(college_2_code,education_2_name,education_2_major,education_2_sub,edu_2_grad_y+edu_2_grad_m,2)
 			schoolArr.push(school);
+			schoolCount+=1;
 		}
-		else if(education_3_name&&edu_3_grad_y&&edu_3_grad_m){
-			school = new School('',education_3_name,'','',edu_3_grad_y+edu_3_grad_m,3)
+		if(college_3_code&&education_3_name&&edu_3_grad_y&&edu_3_grad_m&&education_3_major&&education_3_sub){
+			school = new School(college_3_code,education_3_name,education_3_major,education_3_sub,edu_3_grad_y+edu_3_grad_m,3)
 			schoolArr.push(school);
+			schoolCount+=1;
 		}
-		else if(education_4_name&&edu_4_grad_y&&edu_4_grad_m){
-			school = new School('',education_4_name,'','',edu_4_grad_y+edu_4_grad_m,4)
+		if(college_4_code&&education_4_name&&edu_4_grad_y&&edu_4_grad_m&&education_4_major&&education_4_sub){
+			school = new School(college_4_code,education_4_name,education_4_major,education_4_sub,edu_4_grad_y+edu_4_grad_m,4)
 			schoolArr.push(school);
+			schoolCount+=1;
 		}
-		else if(education_5_name&&edu_5_grad_y&&edu_5_grad_m){
-			school = new School('',education_5_name,'','',edu_5_grad_y+edu_5_grad_m,5)
+		if(college_5_code&&education_5_name&&edu_5_grad_y&&edu_5_grad_m&&education_5_major&&education_5_sub){
+			school = new School(college_5_code,education_5_name,education_5_major,education_5_sub,edu_5_grad_y+edu_5_grad_m,5)
 			schoolArr.push(school);
+			schoolCount+=1;
 		}		
-		else{
+		if(schoolCount==0){
 			alert("[2] 학력사항을 정확하게 입력하세요!");
 			allIsOk +=1;
 		}
-		
 		
 		
 		console.log(schoolArr);
@@ -360,7 +371,7 @@ $(document).ready(function(){
 			this.career_hired = career_hired;
 			this.career_salary = career_salary;
 			this.career_hireday = career_hireday;
-			this.career_retireday = career.retireday;
+			this.career_retireday = career_retireday;
 		}
 		
 			//career를 넣을 리스트 정의
@@ -376,7 +387,7 @@ $(document).ready(function(){
 		var c_name = $("#career_name").val();
 		var c_desc = $("#career_desc").val();
 		var c_code = $("select[name='career_code'").val();
-		var c_department = $("select[name='deapartment_code']").val();
+		var c_department = $("select[name='department_code']").val();
 		var c_position = $("select[name='position_code']").val();
 		var c_hired = $("select[name='hired_code']").val();
 		var c_salary = $("select[name='career_salary']").val();
@@ -394,6 +405,15 @@ $(document).ready(function(){
 		var c_retireday= c_r_y + c_r_m;
 		var c_hireday = c_h_y + c_h_m;
 		
+		console.log("c1"+c_name);
+		console.log("c2"+c_code);
+		console.log("c3"+c_department);
+		console.log("c4"+c_position);
+		console.log("c5"+c_hired);
+		console.log("c6"+c_salary);
+		console.log("c7"+c_hireday);
+		console.log("c8"+c_retireday);
+		
 		if(c_name&&c_desc&&c_code&&c_department&&c_position&&c_hired&&c_salary&&c_hireday&&c_retireday){
 			var career = new Career(c_name,c_desc,c_code,c_department,c_position,c_hired,c_salary,c_hireday,c_retireday);
 			careerArr.push(career);
@@ -402,7 +422,7 @@ $(document).ready(function(){
 				c_name = $("#career_name"+i).val();
 				c_desc = $("#career_desc"+i).val();
 				c_code = $("select[name='career_code"+i+"'").val();
-				c_department = $("select[name='deapartment_code"+i+"']").val();
+				c_department = $("select[name='department_code"+i+"']").val();
 				c_position = $("select[name='position_code"+i+"']").val();
 				c_hired = $("select[name='hired_code"+i+"']").val();
 				c_salary = $("select[name='career_salary"+i+"']").val();
@@ -418,7 +438,8 @@ $(document).ready(function(){
 					c_r_m="0"+c_r_m;
 				}
 				c_retireday= c_r_y + c_r_m;
-				c_hireday = c_h_y + c_y_m;
+				c_hireday = c_h_y + c_h_m;
+				
 				
 				if(c_name&&c_desc&&c_code&&c_department&&c_position&&c_hired&&c_salary&&c_hireday&&c_retireday){
 					career = new Career(c_name,c_desc,c_code,c_department,c_position,c_hired,c_salary,c_hireday,c_retireday);
@@ -457,19 +478,20 @@ $(document).ready(function(){
 		
 
 		
-		if(!($("#foreignlang_read input[name='foreignlang']:checked").val()&&$("#foreignlang_speak input[name='foreignlang']:checked").val())){
+		if(!($("input[name='foreignlangRead']:checked").val()&&$("input[name='foreignlangSpeak']:checked").val())){
 			alert("[6] 외국어 능력을 정확하게 입력하세요!");
 			allIsOk +=1;}else{
-			$("#foreignlang_read input[name='foreignlang']:checked").each(function(i){
-				var foreignlang = new Foreignlang(1,$(this));
+			$("input[name='foreignlangRead']:checked").each(function(i){
+				var foreignlang = new Foreignlang($(this).val(),1);
 				foreignlangArr.push(foreignlang);
 			})
 			
-			$("#foreignlang_speak input[name='foreignlang']:checked").each(function(i){
-				foreignlang = new Foreignlang(2,$(this));
+			$("input[name='foreignlangSpeak']:checked").each(function(i){
+				foreignlang = new Foreignlang($(this).val(),2);
 				foreignlangArr.push(foreignlang);
 			})
 		}
+		console.log(foreignlangArr);
 		
 		
 		
@@ -491,8 +513,15 @@ $(document).ready(function(){
 		var inst_stackArr = [];
 		
 		$("input[name='inst_stack']:checked").each(function(i){
-			inst_stackArr.push($(this));
+			inst_stackArr.push($(this).val());
 		})
+
+		console.log("i1"+i_name);
+		console.log("i2"+i_period);
+		console.log("i3"+i_grad_y);
+		console.log("i4"+i_grad_m);
+		console.log("i5"+i_grad_d);
+		console.log("i6"+i+inst_stackArr);
 
 		
 		if(!(i_name&&i_period&&i_grad_y&&i_grad_m&&i_grad_d)||inst_stackArr.length==0){
@@ -511,25 +540,26 @@ $(document).ready(function(){
 		}
 		
 		//8. 기호
-		var Taste = function(smoking_code, beer_code, soju_code, interest_code){
+		var Taste = function(smoking_code, beer_code, soju_code, interest){
 		this.smoking_code = smoking_code;
 		this.beer_code = beer_code;
 		this.soju_code = soju_code;
-		this.interest_code = interest_code;
+		this.interest = interest;
 		}
 		var t_smoking = $("select[name='smoking_code'").val();
 		var t_soju = $("select[name='soju_code'").val();
 		var t_beer = $("select[name='beer_code'").val();
 		var interestArr = [];
 		
-		if(!(t_smoking&&t_soju&&t_beer&&$("input[name='interest']:chekced").val())){
+		if(!(t_smoking&&t_soju&&t_beer&&$("input[name='interest']:checked").val())){
 			alert("[8] 기호 내용을 정확하게 입력하세요!");
 			allIsOk +=1;
 		}else{
 			
 			$("input[name='interest']:checked").each(function(i){
-				interestArr.push($(this));
+				interestArr.push($(this).val());
 			})
+			console.log(interestArr);
 			
 			var taste = new Taste(t_smoking, t_beer, t_soju, interestArr);
 		}
@@ -545,22 +575,24 @@ $(document).ready(function(){
 		}else if(!hobby1){
 			alert("[9] 취미를 정확하게 입력하세요!");
 			allIsOk +=1;
-		}else if(hobby2){
+		}
+		if(hobby2){
 			hobbyArr.push(hobby2);
-		}else if(hobby3){
+		}
+		if(hobby3){
 			hobbyArr.push(hobby3);
 		}
 		
 		
 		
 		//10. 개발 경력
-		var Project = function(project_name, project_startday, project_endday, project_customer, project_company, role_code, project_server, project_os, project_language, project_framework_,project_dbms,project_devetc){
+		var Project = function(project_name, project_startday, project_endday, project_customer, project_company, project_role, project_server, project_os, project_language, project_framework,project_dbms,project_devetc){
 			this.project_name = project_name;
 			this.project_startday = project_startday;
 			this.project_endday = project_endday;
 			this.project_customer = project_customer;
 			this.project_company = project_company;
-			this.role_code = role_code;
+			this.project_role = project_role;
 			this.project_server = project_server;
 			this.project_os = project_os;
 			this.project_language = project_language;
@@ -581,12 +613,26 @@ $(document).ready(function(){
 		var p_e_y = $("select[name ='project_end_y']").val();
 		var p_e_m = $("select[name ='project_end_m']").val();
 		
+		if(p_s_m&&p_s_y){
+			if(p_s_m.length ==1){
+				p_s_m="0"+p_s_m;
+			}
+			var p_start= p_s_y+p_s_m;
+		}
+
+		if(p_e_m&&p_e_y){
+			if(p_e_m.length ==1){
+				p_e_m="0"+p_e_m;
+			}
+			var p_end= p_e_y+p_e_m;
+		}
+		
 		var cust = $("#project_customer").val();
 		var comp = $("#project_company").val();
 		var roleArr =[];
 		
 		$("input[name='role']:checked").each(function(i){
-			roleArr.push($(this));
+			roleArr.push($(this).val());
 		});
 		
 		var server = $("select[name ='server_code']").val();
@@ -597,13 +643,66 @@ $(document).ready(function(){
 		var dbmsArr=[];
 		var devetcArr=[];
 		
+		for(var i = 1 ; i<=6;i++){
+			var lang=$("select[name='language"+i+"']").val()
+			if(lang){
+				langArr.push(lang);	
+			}
+		}
+		for(var i = 1 ; i<=2;i++){
+			var frmwrk = $("select[name='framework"+i+"']").val()
+			if(frmwrk){
+			frameworkArr.push(frmwrk);	
+			}
+		}
+		for(var i = 1 ; i<=3;i++){
+			var db = $("select[name='dbms"+i+"']").val()
+			if(db){
+			dbmsArr.push(db);	
+			}
+		}
+		for(var i = 1 ; i<=4;i++){
+			var dvtc = $("select[name='devetc"+i+"']").val()
+			if(dvtc){
+			devetcArr.push(dvtc);	
+			}
+		}
 		
-		
-		
+		if(p_name&&p_start&&p_end&&cust&&comp&&roleArr&&server&&os&&langArr&&frameworkArr&&dbmsArr&&devetcArr){
+			var project = new Project(p_name,p_start,p_end,cust,comp,roleArr,server,os,langArr,frameworkArr,dbmsArr,devetcArr);
+			projectArr.push(project);
+		}else{
+			allIsOk +=1;
+			alert("[10] 프로젝트 내역을 정확하게 입력하세요!");
+		}
 		
 		
 		if(allIsOk==0){
-			
+			staffInfoService.create({
+				staff_id:id,
+				staff_pw:pw,
+				staff_name:name,
+				staff_id_no:jumin,
+				staff_hp:hp,
+				staff_email:email,
+				staff_religion:religion_code,
+				staff_military:military_code,
+				staff_address:address,
+				staff_zipcode:zipcode,
+				hotline:hotline,
+				bank:bank,
+				schoolArr:schoolArr,
+				familyArr:familyArr,
+				careerArr:careerArr,
+				certificationArr:certificationArr,
+				foreignlangArr:foreignlangArr,
+				institution:institution,
+				taste:taste,
+				hobbyArr:hobbyArr,
+				projectArr:projectArr
+			}, function(result){
+				alert(result+"등록되었습니다!")
+			})
 			
 		}
 		

@@ -31,7 +31,7 @@
 	
 	<insert id="insertBank">
 		insert into staff_Bank values
-			(staff_Bank_seq.nextval,#{staff_no}, #{bank_code})
+			(staff_Bank_seq.nextval,#{staff_no}, #{bank_code}, #{bank_number})
 	</insert>
 	
 	<insert id="insertSchool">
@@ -46,7 +46,7 @@
 	
 	<insert id="insertCareer">
 		insert into staff_Career values
-			(staff_Career_seq.nextval,#{staff_no},#{career_Hired},#{career_position},#{career_department},#{career_code},#{career_name},#{career_desc},#{career_salary},#{career_hireday},#{career_retireday})
+			(staff_Career_seq.nextval,#{staff_no},#{career_hired},#{career_position},#{career_department},#{career_code},#{career_name},#{career_desc},#{career_salary},#{career_hireday},#{career_retireday})
 	</insert>
 	
 	<insert id="insertCertification">
@@ -71,7 +71,7 @@
 	
 	<insert id="insertTaste">
 		insert into staff_Taste values
-			(staff_Taste_seq.nextval,#{staff_no}, #{smoking_code},#{beer_code},#{soju_code},#{interest_code})
+			(staff_Taste_seq.nextval,#{staff_no}, #{smoking_code},#{beer_code},#{soju_code})
 	</insert>
 	
 	<insert id="insertTasteInterest">
@@ -86,7 +86,7 @@
 	
 	<insert id="insertProject">
 		insert into staff_Project values
-			(staff_Project_seq.nextval,#{staff_no},#{role_code},#{project_startday},#{project_endday},#{project_customer},#{project_company},#{project_name})
+			(staff_Project_seq.nextval,#{staff_no},#{project_startday},#{project_endday},#{project_customer},#{project_company},#{project_name})
 	</insert>
 	
 	<insert id="insertRole">
@@ -96,32 +96,32 @@
 	
 	<insert id="insertDbms">
 		insert into project_Dbms values
-			(project_Dbms_seq.nextval, #{staff_project_no},#{project_Dbms})
+			(project_Dbms_seq.nextval, #{staff_project_no},#{project_dbms})
 	</insert>
 	
 	<insert id="insertDevetc">
 		insert into project_Devetc values
-			(project_Devetc_seq.nextval, #{staff_project_no},#{project_Devetc})
+			(project_Devetc_seq.nextval, #{staff_project_no},#{project_devetc})
 	</insert>
 		
 	<insert id="insertFramework">
 		insert into project_Framework values
-			(project_Framework_seq.nextval, #{staff_project_no},#{project_Framework})
+			(project_Framework_seq.nextval, #{staff_project_no},#{project_framework})
 	</insert>
 		
 	<insert id="insertLanguage">
 		insert into project_Language values
-			(project_Language_seq.nextval, #{staff_project_no},#{project_Language})
+			(project_Language_seq.nextval, #{staff_project_no},#{project_language})
 	</insert>
 		
 	<insert id="insertOs">
 		insert into project_Os values
-			(project_Os_seq.nextval, #{staff_project_no},#{project_Os})
+			(project_Os_seq.nextval, #{staff_project_no},#{project_os})
 	</insert>
 		
 	<insert id="insertServer">
 		insert into project_Server values
-			(project_Server_seq.nextval, #{staff_project_no},#{project_Server})
+			(project_Server_seq.nextval, #{staff_project_no},#{project_server})
 	</insert>
 
 </mapper>

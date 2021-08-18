@@ -46,7 +46,7 @@ public interface StaffMapper {
 	public int insertDbms(ProjectDbms dbms);
 	public int insertDevetc(ProjectDevetc devetc);
 	public int insertFramework(ProjectFramework framework);
-	public int insertLangugae(ProjectLanguage language);
+	public int insertLanguage(ProjectLanguage language);
 	public int insertOs(ProjectOs os);
 	public int insertServer(ProjectServer server);
 

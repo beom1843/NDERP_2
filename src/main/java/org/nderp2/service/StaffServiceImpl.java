@@ -26,6 +26,7 @@ import org.nderp2.domain.Taste;
 import org.nderp2.mapper.CodeMapper;
 import org.nderp2.mapper.StaffMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -54,6 +55,11 @@ public class StaffServiceImpl implements StaffService {
 		
 		List<School> schoolArr = staff.getSchoolArr();
 		for(School school: schoolArr){
+			if(school.getEducation_code()==1||school.getEducation_code()==0){
+				school.setCollege_code(0);
+				school.setSchool_major("null");
+				school.setSchool_sub("null");
+			}
 			school.setStaff_no(staff_no);
 			re+=mapper.insertSchool(school);
 		}
@@ -109,6 +115,7 @@ public class StaffServiceImpl implements StaffService {
 			interest.setTaste_interest_code(interest_code);
 			interest.setTaste_no(taste_no);
 			re+= mapper.insertTasteInterest(interest);
+			log.info(interest);
 		}
 		
 		
@@ -132,6 +139,8 @@ public class StaffServiceImpl implements StaffService {
 			
 			int[] roleArr = project.getProject_role();
 			for(int roleCode : roleArr){
+				System.out.println("ServiceImpl!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				System.out.println("roleCode"+roleCode);
 				ProjectRole role = new ProjectRole();
 				role.setProject_role(roleCode);
 				role.setStaff_project_no(project_no);
@@ -168,7 +177,7 @@ public class StaffServiceImpl implements StaffService {
 				ProjectLanguage language = new ProjectLanguage();
 				language.setProject_language(languageCode);
 				language.setStaff_project_no(project_no);
-				re+= mapper.insertLangugae(language);
+				re+= mapper.insertLanguage(language);
 			}
 			
 			int osCode = project.getProject_os();

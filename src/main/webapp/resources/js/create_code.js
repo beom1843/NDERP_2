@@ -13,7 +13,8 @@ $(document).ready(function(){
 	var career_hired_Drp = $("#career_hired_drp");
 	var career_sal_Drp = $("#career_sal_drp");
 	var certification_Chk = $("#certification_chk");
-	var foreignlang_Chk = $("[id*='foreignlang']");
+	var foreignlang_read = $("#foreignlang_read");
+	var foreignlang_speak = $("#foreignlang_speak");
 	var inst_m_Drp = $("#inst_m_drp");
 	var inst_ymd_Drp = $("#inst_ymd_drp");
 	var inst_stack_Chk = $("#inst_stack_chk");
@@ -102,12 +103,10 @@ $(document).ready(function(){
 			var str ="";
 			
 			if(list== null|| list.length ==0){}
-			str += "<select id='college' name='college_code' >";
 			str += "<option value = '' selected disabled hidden></option>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				str += "<option value='"+list[i].college_code+"'>"+list[i].college_name+"</option>";
 			}
-			str +="</select>";
 			
 			college_Drp.html(str);
 		})
@@ -279,12 +278,10 @@ $(document).ready(function(){
 			var str ="";
 			
 			if(list== null|| list.length ==0){}
-			str += "<select id='language' name='language_code' >";
 			str += "<option value = '' selected disabled hidden></option>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				str += "<option value='"+list[i].language_code+"'>"+list[i].language_name+"</option>";
 			}
-			str +="</select>";
 			
 			project_language_Drp.html(str);
 		})
@@ -295,12 +292,10 @@ $(document).ready(function(){
 			var str ="";
 			
 			if(list== null|| list.length ==0){}
-			str += "<select id='framework' name='framework_code' >";
 			str += "<option value = '' selected disabled hidden></option>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				str += "<option value='"+list[i].framework_code+"'>"+list[i].framework_name+"</option>";
 			}
-			str +="</select>";
 			
 			project_framework_Drp.html(str);
 		})
@@ -311,12 +306,10 @@ $(document).ready(function(){
 			var str ="";
 			
 			if(list== null|| list.length ==0){}
-			str += "<select id='dbms' name='dbms_code' >";
 			str += "<option value = '' selected disabled hidden></option>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				str += "<option value='"+list[i].dbms_code+"'>"+list[i].dbms_name+"</option>";
 			}
-			str +="</select>";
 			
 			project_dbms_Drp.html(str);
 		})		
@@ -327,12 +320,10 @@ $(document).ready(function(){
 			var str ="";
 			
 			if(list== null|| list.length ==0){}
-			str += "<select id='devetc' name='devetc_code' >";
 			str += "<option value = '' selected disabled hidden></option>";
 			for(var i=0, len=list.length||0;i<len;i++){
 				str += "<option value='"+list[i].devetc_code+"'>"+list[i].devetc_name+"</option>";
 			}
-			str +="</select>";
 			
 			project_devetc_Drp.html(str);
 		})
@@ -352,12 +343,19 @@ $(document).ready(function(){
 		codeInfoService.getForeignlang(
 		function(list){
 			var str = "";
+			var str1="";
 			if(list == null || list.length ==0){ }
 			for(var i=0, len=list.length||0;i<len;i++){
-			str +="<input type='checkbox' id='foreignlang' name='foreignlang' value='"+list[i].foreignlang_code+"' />";
+			str +="<input type='checkbox' id='foreignlang' name='foreignlangRead' value='"+list[i].foreignlang_code+"' />";
 			str += list[i].foreignlang_name;
 			}
-			foreignlang_Chk.html(str);
+			foreignlang_read.html(str);
+			for(var i=0, len=list.length||0;i<len;i++){
+			str1 +="<input type='checkbox' id='foreignlang' name='foreignlangSpeak' value='"+list[i].foreignlang_code+"' />";
+			str1 += list[i].foreignlang_name;
+			}
+			foreignlang_speak.html(str1);
+			
 				
 		})	
 		

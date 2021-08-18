@@ -15,6 +15,7 @@
 	<script src="/resources/js/codeInfo.js"></script>
 	<script src="/resources/js/create_code.js"></script>
 	<script src="/resources/js/create.js"></script>
+	<script src="/resources/js/staffInfo.js"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css"	href="/resources/css/create.css" />
@@ -118,7 +119,7 @@
 				
 				<tr>
 					<td><input type="text" id="education_2_name"> 전문대 졸 (대학 졸)</td>
-					<td><div class = "college" id="edu2"></div></td>
+					<td><select class = "college" name="edu2"></select></td>
 					<td><input type="text" id="education_2_major"></td>
 					<td><input type="text" id="education_2_sub"></td>
 					<td>
@@ -129,7 +130,7 @@
 				
 				<tr>
 					<td><input type="text" id="education_3_name"> 대학교 학사 졸</td>
-					<td><div class = "college" id="edu2"></div></td>
+					<td><select class = "college" name="edu3"></select></td>
 					<td><input type="text" id="education_3_major"></td>
 					<td><input type="text" id="education_3_sub"></td>
 					<td>
@@ -140,7 +141,7 @@
 				
 				<tr>
 					<td><input type="text" id="education_4_name"> 전문대 졸</td>
-					<td><div class = "college" id="edu2"></div></td>
+					<td><select class = "college" name="edu4"></select></td>
 					<td><input type="text" id="education_4_major"></td>
 					<td><input type="text" id="education_4_sub"></td>
 					<td>
@@ -151,7 +152,7 @@
 
 				<tr>
 					<td><input type="text" id="education_5"> 전문대 졸</td>
-					<td><div class = "college" id="edu2"></div></td>
+					<td><select class = "college" name="edu5"></select></td>
 					<td><input type="text" id="education_5_major"></td>
 					<td><input type="text" id="education_5_sub"></td>
 					<td>
@@ -278,11 +279,11 @@
 				
 				<tr>
 					<td><input type="text" id="institution_name"></td>
-					<td><select class="month" id="institution_period"></select>개월</td>
+					<td><select class="month" name="institution_period"></select>개월</td>
 					<td>
-						<select class="year" id="institution_grad_y"></select>년
-						<select class="month" id="institution_grad_m"></select>월
-						<select class="day" id="institution_grad_d"></select>일
+						<select class="year" name="institution_grad_y"></select>년
+						<select class="month" name="institution_grad_m"></select>월
+						<select class="day" name="institution_grad_d"></select>일
 					</td>
 					<td><div id="inst_stack_chk"></div></td>
 				</tr>
@@ -348,27 +349,27 @@
 							<div class="style3">서버기종(H/W)</div><div class="project_server_drp"></div>
 							<div class="style3" id="os">OS</div><div class="project_os_drp"></div><br>
 							<div class="style3">언어</div>
-								<div class="project_language_drp" id="language1"></div>
-								<div class="project_language_drp" id="language2"></div>
-								<div class="project_language_drp" id="language3"></div>
-								<div class="project_language_drp" id="language4"></div>
-								<div class="project_language_drp" id="language5"></div>
-								<div class="project_language_drp" id="language6"></div>
+								<select class="project_language_drp" name="language1"></select>
+								<select class="project_language_drp" name="language2"></select>
+								<select class="project_language_drp" name="language3"></select>
+								<select class="project_language_drp" name="language4"></select>
+								<select class="project_language_drp" name="language5"></select>
+								<select class="project_language_drp" name="language6"></select>
 								<br>
 							<div class="style3">프레임워크</div>
-								<div class="project_framework_drp" id="framework1"></div>
-								<div class="project_framework_drp" id="framework2"></div>
+								<select class = "project_framework_drp" name="framework1"></select>
+								<select class = "project_framework_drp" name="framework2"></select>
 								<br>
 							<div class="style3">DBMS</div>
-								<div class="project_dbms_drp" id="dbms1"></div>
-								<div class="project_dbms_drp" id="dbms2"></div>
-								<div class="project_dbms_drp" id="dbms3"></div>
+								<select class = "project_dbms_drp" name="dbms1"></select>
+								<select class = "project_dbms_drp" name="dbms2"></select>
+								<select class = "project_dbms_drp" name="dbms3"></select>
 								<br>
 							<div class="style3">기타</div>
-								<div class="project_devetc_drp" id="devetc1"></div>
-								<div class="project_devetc_drp" id="devetc2"></div>
-								<div class="project_devetc_drp" id="devetc3"></div>
-								<div class="project_devetc_drp" id="devetc4"></div>
+								<select class = "project_devetc_drp" name="devetc1"></select>
+								<select class = "project_devetc_drp" name="devetc2"></select>
+								<select class = "project_devetc_drp" name="devetc3"></select>
+								<select class = "project_devetc_drp" name="devetc4"></select>
 								<br>
 						</td>
 					</tr>
