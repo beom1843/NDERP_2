@@ -1,2 +1,57 @@
 @CHARSET "UTF-8";
 
+[id*='delete']{
+	display:inline-block;
+}
+[id*='today']{
+	display:inline-block;
+}
+
+[id*='Chk']{
+	display:inline-block;
+}
+
+table{
+	width:80%;
+	vertical-align: middle;
+}
+
+input{
+	margin:4px;
+	display:inline-block;
+}
+
+/* style1 */	
+[id*='style1'], [id*='style1'] th,[id*='style1'] td {
+	border: black 1px solid;
+	border-collapse: collapse;
+	}
+	
+[id*='style1'] th,[id*='style1'] td {
+		padding: 5px;
+	}
+[id*='style1'] th{
+	width:150px;
+	text-align: center;
+	background-color:#81b8d5;
+	}
+	
+/* style2 */	
+[id*='style2'], [id*='style2'] th,[id*='style2'] td {
+	border: black 1px solid;
+	border-collapse: collapse;
+	}
+	
+[id*='style2'] th,[id*='style2'] td {
+		padding: 5px;
+	}
+[id*='style2'] th{
+	width:150px;
+	text-align: center;
+	background-color:#1792d0;
+	}
+	
+[id*='part']{
+	margin:10px;
+}
+
