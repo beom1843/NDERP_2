@@ -12,12 +12,12 @@
 }
 
 table{
-	width:80%;
+	width:90%;
 	vertical-align: middle;
 }
 
 input{
-	margin:4px;
+	margin:5px;
 	display:inline-block;
 }
 
@@ -53,5 +53,20 @@ input{
 	
 [id*='part']{
 	margin:10px;
+}
+
+/* 저장버튼 스타일 */
+[id*='btn']{
+	display:inline-block;
+	margin: 10px auto 10px auto;
+	position: relative;
+}
+
+[id*='button']{
+	text-size:20px;
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+	background-color:#1792d0;
 }
 

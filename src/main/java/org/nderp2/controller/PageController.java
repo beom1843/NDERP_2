@@ -25,4 +25,9 @@ public class PageController {
 	
 	}
 	
+	@GetMapping("/blank")
+	public void blank(){
+		
+	}
+	
 }

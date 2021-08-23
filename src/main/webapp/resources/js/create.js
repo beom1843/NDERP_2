@@ -43,6 +43,15 @@ $(document).ready(function(){
 		
 	})
 	
+	$("#project_row_delete").on("click",function(e){
+		e.preventDefault();
+		var projectTb = document.getElementById('style2 project')
+		if(projectTb.rows.length<2) return;
+		projectTb.deleteRow(projectTb.rows.length-1);
+		
+		
+	})
+	
 	$("#family_row_add").on("click",function(e){
 		
 		e.preventDefault();
@@ -65,6 +74,14 @@ $(document).ready(function(){
 		$('#family_R #family_job').attr('id','family_job'+familyCnt);
 		$('#family_R [name="family_birthy"]').attr('name','family_birthy'+familyCnt);
 		$('#family_R #family_livew').attr('id','family_livew'+familyCnt);
+		
+	})
+	
+	$("#family_row_delete").on("click",function(e){
+		e.preventDefault();
+		var familyTb = document.getElementById('style2 family')
+		if(familyTb.rows.length<2) return;
+		familyTb.deleteRow(familyTb.rows.length-1);
 		
 	})
 	
@@ -96,6 +113,13 @@ $(document).ready(function(){
 
 	})
 	
+	$("#career_row_delete").on("click",function(e){
+		e.preventDefault();
+		var careerTb = document.getElementById('style2 career')
+		if(careerTb.rows.length<2) return;
+		careerTb.deleteRow(careerTb.rows.length-1);
+		
+	})
 	
 	$("#submit").on("click",function(e){
 		e.preventDefault();
@@ -158,44 +182,47 @@ $(document).ready(function(){
 		if(!(id&&pw&&pwchk&&name&&jumin&&hp&&email&&religion_code&&military_code&&zipcode&&address&&hotline&&bank)){
 			/*message +="1. 개인정보 \n"
 			message +=" - "*/
-			alert("[1] 개인정보를 정확하게 입력하세요!");
+			var message="[1] 개인정보를 정확하게 입력하세요!";
 			allIsOk+=1;
+			
+			var j_OK= (/\d{6}\[1-4]\d{6}/g).test(jumin);
+			var hp_OK=(/^\d{3}-\d{3,4}-\d{4}$/).test(hp);
+			
+			if(!id){
+				message+="아이디, ";
+			} if(!pw){
+				message+="암호, ";
+			} if(!pwchk){
+				message+="암호확인, ";
+			} if(!name){
+				message+="이름, ";
+			} if(!jumin||!j_OK){
+				message+="주민번호, "
+			} if(!hp||!hp_OK){
+				message+="핸드폰 번호, "
+			} if(!email){
+				message +="이메일, "
+			} if(!religion_code){
+				message +="종교, "
+			} if(!military_code){
+				message +="병역, "
+			} if(!zipcode){
+				message += "우편번호, "
+			} if(!address){
+				message += "주소, "
+			} if(!hotline_name){
+				message += "긴급 연락처 이름, "; 
+			} if(!hotline_code){
+				message +="긴급 연락처 관계, "
+			} if(!hotline_hp){
+				message+="긴급 연락처 전화번호, "
+			} if(!bank_code){
+				message += "월급통장 은행, ";
+			} if(!bank_no){
+				message +="월급통장 번호, "
+			}
+			
 		}
-		/*if(!id){
-			message+="아이디, ";
-		} if(!pw){
-			message+="암호, ";
-		} if(!pwchk){
-			message+="암호확인, ";
-		} if(!name){
-			message+="이름, ";
-		} if(!jumin){
-			message+="주민번호, "
-		} if(!hp){
-			message+="핸드폰 번호, "
-		} if(!email){
-			message +="이메일, "
-		} if(!religion_code){
-			message +="종교, "
-		} if(!military_code){
-			message +="병역, "
-		} if(!zipcode){
-			message += "우편번호, "
-		} if(!address){
-			message += "주소, "
-		} if(!hotline_name){
-			message += "긴급 연락처 이름, "; 
-		} if(!hotline_code){
-			message +="긴급 연락처 관계, "
-		} if(!hotline_hp){
-			message+="긴급 연락처 전화번호, "
-		} if(!bank_code){
-			message += "월급통장 은행, ";
-		} if(!bank_no){
-			message +="월급통장 번호, "
-		}*/
-		
-		
 		
 		//2.학력
 		var education_1_name = $('#education_1_name').val();
@@ -675,6 +702,7 @@ $(document).ready(function(){
 			allIsOk +=1;
 			alert("[10] 프로젝트 내역을 정확하게 입력하세요!");
 		}
+
 		
 		
 		if(allIsOk==0){

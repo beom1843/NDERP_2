@@ -14,7 +14,7 @@ var staffInfoService = (function() {
 				}
 			},
 			error : function(xhr, status, er) {
-				console.log("========add_if_error========")
+				console.log("========add_if_error========"+status)
 				if (error) {
 					error(er);
 				}

@@ -12,6 +12,7 @@
 	<script src="/resources/js/codeInfo.js"></script>
 	<script src="/resources/js/search_code.js"></script>
 	<script src="/resources/js/staffInfo.js"></script>
+	<script src="/resources/js/search.js"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css"	href="/resources/css/search.css" />
@@ -153,9 +154,9 @@
 			</tr>
 			<tr>
 				<th>독해 외국어</th>
-				<td><div id="foreignlangRead"></div></td>
+				<td><div id="foreignlangReadChk"></div></td>
 				<th>회화 외국어</th>
-				<td><div id="foreignlangSpeak"></div></td>
+				<td><div id="foreignlangSpeakChk"></div></td>
 			</tr>
 			<tr>
 				<th>소주 주량</th>
@@ -173,6 +174,19 @@
 			</tr>
 		</table>
 	</div>	
+	
+	
+	<div>
+		<div id="search_btn"><button type="button" id="search_button">검색</button></div>
+		<div id="reset_btn"><button type="button" id="reset_button">초기화 후 전부 검색</button></div>
+		<div id="create_btn"><button type="button" id="create_button">[정규직] 입력</button></div>
+	</div>
+	
+	<div>
+		<div id="pagination"></div>
+		<div id="criteria"></div>
+		<div id="result"></div>
+	</div>
 	
 </body>
 </html>

@@ -7,6 +7,8 @@ $(document).ready(function(){
 	tdTag.append(codeDelete);
 	
 	
+	
+	/*양식입력*/
 	getCode();
 	function getCode(){
 		/*숫자 드롭다운*/
@@ -112,8 +114,8 @@ $(document).ready(function(){
 					careerChk.html(str);
 				})	
 			
-		var	foreignlangRead = $("#foreignlangRead")
-		var	foreignlangSpeak = $("#foreignlangSpeak")
+		var	foreignlangRead = $("#foreignlangReadChk")
+		var	foreignlangSpeak = $("#foreignlangSpeakChk")
 			
 		codeInfoService.getForeignlang(
 				function(list){
