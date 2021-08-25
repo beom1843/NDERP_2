@@ -20,9 +20,30 @@ var staffInfoService = (function() {
 				}
 			}
 		})
+	}//create
+	
+	function search(list, callback, error) {
+		$.ajax({
+			type : 'post',
+			url : '/searchResult',
+			data : JSON.stringify(list),
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr) {
+				if (callback) {
+					callback(result);
+				}
+			},
+			error : function(xhr, status, er) {
+				console.log("========search_error========"+status)
+				if (error) {
+					error(er);
+				}
+			}
+		})
 	}
 
 	return {
-		create:create
+		create:create,
+		search:search
 	}
 })();

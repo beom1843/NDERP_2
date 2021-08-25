@@ -1,9 +1,13 @@
 package org.nderp2.service;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.nderp2.domain.Criteria;
 import org.nderp2.domain.Hobby;
 import org.nderp2.domain.Hotline;
+import org.nderp2.domain.ResultDAO;
 import org.nderp2.domain.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,7 +26,7 @@ public class ServiceTests {
 	@Setter(onMethod_={@Autowired})
 	private StaffService service;
 
-	@Test
+	/*@Test
 	public void createTest(){
 
 		Staff staff = new Staff();
@@ -48,5 +52,12 @@ public class ServiceTests {
 		staff.setHotline(hotline);
 		
 		service.create(staff);
+	}*/
+	
+	@Test
+	public void searchTest(){
+		Criteria cri = new Criteria(0, 0);
+		List<ResultDAO> list = service.search(cri);
+		log.info(list);
 	}
 }

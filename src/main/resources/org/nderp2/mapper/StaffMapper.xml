@@ -123,5 +123,105 @@
 		insert into project_Server values
 			(project_Server_seq.nextval, #{staff_project_no},#{project_server})
 	</insert>
+	
+	<select id="search" resultType="org.nderp2.domain.ResultDAO">
+	select rownum, A.staff_name, A.sex,A.birthy, A.age,A.staff_hp,A.staff_email, A.staff_id_no, A.staff_address,
+		B.education_name as staff_education, B.grad_year as staff_grad_y,
+		C.dev_year as staff_dev_year, C.total_skill as staff_total_skill,
+		D.certification as staff_certification
+	from 
+		(select rownum,staff_no, staff_name,
+			case substr(staff_id_no, 7,1) 
+			when '1' then '남'
+			when '2' then '여'
+			when '3' then '남'
+			when '4' then '여' end as sex,
+	
+			case substr(staff_id_no, 7,1) 
+			when '1' then to_number(to_char(sysdate,'yyyy'))-1899-substr(staff_id_no, 1, 2)||'세'
+			when '2' then  to_number(to_char(sysdate,'yyyy'))-1899-substr(staff_id_no, 1, 2)||'세'
+			when '3' then  to_number(to_char(sysdate,'yyyy'))-1999-substr(staff_id_no, 1, 2)||'세'
+			when '4' then  to_number(to_char(sysdate,'yyyy'))-1999-substr(staff_id_no, 1, 2)||'세' end as age,
+			
+			case substr(staff_id_no, 7,1)
+			when '1' then 1900+substr(staff_id_no, 1, 2)||'년생'
+			when '2' then  1900+substr(staff_id_no, 1, 2)||'년생'
+			when '3' then  2000+substr(staff_id_no, 1, 2)||'년생'
+			when '4' then  2000+substr(staff_id_no, 1, 2)||'년생' end as birthy,
+
+			substr(staff_hp,1,3)||'-'||substr(staff_hp,4,4)||'-'||substr(staff_hp,8,4) as staff_hp, staff_email, 
+			substr(staff_id_no,1,6)||'-'|| substr(staff_id_no, 7,7) as staff_id_no ,
+			staff_address
+		from staff) A,
+		
+		
+		(select b.staff_no, a.education_name, b.grad_year||'년' as grad_year
+		from code_education a, 
+			(select a.staff_no, b.education_code,substr(a.school_graduateday,1,4) as grad_year
+			from staff_school a,(select staff_no, max(education_code) as education_code
+			from staff_school
+			group by staff_no) b
+		where a.staff_no=b.staff_no
+			and a.education_code = b.education_code) b
+			where a.education_code=b.education_code) B,
+	
+	
+	(select a.staff_no,
+		b.project_language||','|| c.project_framework||','|| d.project_dbms||','|| e.project_devetc as total_skill, 
+		f.dev_year||'년차' as dev_year
+	from staff_project a,
+		(select a.staff_project_no, regexp_replace(listagg(a.PROJECT_language,',')
+		  within group(order by a.PROJECT_language_NO),'([^,]+)(,\1)*(,|$)', '\1\3') as project_language
+		  from (select L.Project_language_No as project_language_no,l.staff_project_no as staff_project_no, Code_L.language_Name as project_language
+		 from code_language code_l, project_language l
+		 where l.project_language = code_l.language_code)a, STAFF_PROJECT b
+		 group by a.staff_project_no
+		 order by a.STAFF_PROJECT_NO desc) b,
+	    (select a.staff_project_no, regexp_replace(listagg(a.PROJECT_framework,',')
+		  within group(order by a.PROJECT_framework_NO),'([^,]+)(,\1)*(,|$)', '\1\3') as project_framework
+		  from (select F.Project_framework_No as project_framework_no,f.staff_project_no as staff_project_no, Code_F.framework_Name as project_framework
+		 from code_framework code_f, project_framework f
+		 where f.project_framework = code_f.framework_code)a, STAFF_PROJECT b
+		 group by a.staff_project_no
+		 order by a.STAFF_PROJECT_NO desc) c,
+		(select a.staff_project_no, regexp_replace(listagg(a.PROJECT_dbms,',')
+		  within group(order by a.PROJECT_dbms_NO),'([^,]+)(,\1)*(,|$)', '\1\3') as project_dbms
+		  from (select D.Project_dbms_No as project_dbms_no,d.staff_project_no as staff_project_no, Code_D.dbms_Name as project_dbms
+		 from code_dbms code_d, project_dbms d
+		 where d.project_dbms = code_d.dbms_code)a, STAFF_PROJECT b
+		 group by a.staff_project_no
+		 order by a.STAFF_PROJECT_NO desc) d,
+		(select a.staff_project_no, regexp_replace(listagg(a.PROJECT_devetc,',')
+		  within group(order by a.PROJECT_devetc_NO),'([^,]+)(,\1)*(,|$)', '\1\3') as project_devetc
+		  from (select C.Project_devetc_No as project_devetc_no,c.staff_project_no as staff_project_no, Code_C.devetc_Name as project_devetc
+		 from code_devetc code_c, project_devetc c
+		 where c.project_devetc = code_c.devetc_code)a, STAFF_PROJECT b
+		 group by a.staff_project_no
+		 order by a.STAFF_PROJECT_NO desc) e,
+		(select staff_no, to_number(to_char(sysdate,'yyyy'))-substr(min(project_startday),1,4)+1 as dev_year
+		from staff_project
+		group by staff_no) f
+	  where a.staff_project_no = b.staff_project_no
+		  and A.Staff_Project_No = C.Staff_Project_No
+		  and A.Staff_Project_No = D.Staff_Project_No
+		  and A.Staff_Project_No = E.Staff_Project_No
+		  and a.staff_no =f.staff_no) C,
+	  
+	  
+	  (select c.staff_no,
+	  	regexp_replace(listagg(C.Staff_Certification, ',')within group(order by C.Staff_Certification),'([^,]+)(,\1)*(,|$)', '\1\3')
+			as certification
+		from
+			(select a.staff_certification_no, a.staff_no, b.certification_name as staff_certification
+			from staff_certification a, code_certification b
+			where a.certification_code = b.certification_code) c,
+			staff d
+		group by C.Staff_No) D
+	where A.staff_no = B.staff_no
+		and A.staff_no = C.staff_no
+		and A.staff_no = D.staff_no
+		
+		
+	</select>
 
 </mapper>

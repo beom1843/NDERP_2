@@ -5,6 +5,7 @@ import java.util.List;
 import org.nderp2.domain.Bank;
 import org.nderp2.domain.Career;
 import org.nderp2.domain.Certification;
+import org.nderp2.domain.Criteria;
 import org.nderp2.domain.Family;
 import org.nderp2.domain.Foreignlang;
 import org.nderp2.domain.Hobby;
@@ -20,6 +21,7 @@ import org.nderp2.domain.ProjectLanguage;
 import org.nderp2.domain.ProjectOs;
 import org.nderp2.domain.ProjectRole;
 import org.nderp2.domain.ProjectServer;
+import org.nderp2.domain.ResultDAO;
 import org.nderp2.domain.School;
 import org.nderp2.domain.Staff;
 import org.nderp2.domain.Taste;
@@ -194,6 +196,12 @@ public class StaffServiceImpl implements StaffService {
 		}
 
 		return re;
+	}
+
+	@Override
+	public List<ResultDAO> search(Criteria cri) {
+		
+		return mapper.search(cri);
 	}
 
 	

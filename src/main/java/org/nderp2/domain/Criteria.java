@@ -83,5 +83,12 @@ public class Criteria {
 		return military == null? new String[] {}:military.split("");
 	}
 	
+	public Criteria(){}
+	
+	public Criteria(int pageNum, int amount){
+		this.pageNum = pageNum;
+		this.amount = amount;
+	}
+	
 	
 }
