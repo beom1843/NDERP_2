@@ -14,8 +14,16 @@ public class Criteria {
 	
 	private String type;
 	
-	private String dev_y1;
-	private String dev_y2;
+	public String[] getTypeArr(){
+		System.out.println(".................................");
+		System.out.println("getTypeArr....................");
+		System.out.println(dev1);
+		System.out.println(dev2);
+		return type == null? new String[] {}: type.split("");
+	}
+	
+	private String dev1;
+	private String dev2;
 	
 	private String keyword1;
 	private String keyword2;
@@ -82,6 +90,7 @@ public class Criteria {
 	private String beer2;
 	
 	private String military;
+	
 	public String[] getMilitaryArr(){
 		return military == null? new String[] {}:military.split("");
 	}

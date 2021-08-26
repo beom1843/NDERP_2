@@ -200,8 +200,10 @@ public class StaffServiceImpl implements StaffService {
 
 	@Override
 	public List<ResultDAO> search(Criteria cri) {
+		System.out.println(cri.getDev1());
+		List<ResultDAO> list=mapper.search(cri);
 		
-		return mapper.search(cri);
+		return list;
 	}
 
 	

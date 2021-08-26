@@ -31,11 +31,11 @@ $(document).ready(function(){
 	})
 	$("#search_btn").on("click",function(e){
 		e.preventDefault(e);
-
+		var type="";
 		var keyword1=$("#keyword1").val();
 		var keyword2=$("#keyword2").val();
-		var dev1=$("select[name='devCareer1']");
-		var dev2=$("select[name='devCareer2']");
+		var dev_y1=$("select[name='devCareer1']").val();
+		var dev_y2=$("select[name='devCareer2']").val();
 		var project_language;
 		var project_framework;
 		var project_dbms;
@@ -65,18 +65,23 @@ $(document).ready(function(){
 		var beer1;
 		var beer2;
 		
+		if(dev_y1&dev_y2){
+			type +="a"
+		}
+		console.log(dev_y1);
+		console.log(type);
 		console.log("클릭");
 		staffInfoService.search({
 			pageNum:0,
 			amount:0,
 			
-			type:0,
+			type:type,
 
 			keyword1:0,
 			keyword2:0,
 			
-			dev1:0,
-			dev2:0,
+			dev1:dev_y1,
+			dev2:dev_y2,
 			
 			project_language:0,
 			project_framework:0,
