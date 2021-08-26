@@ -56,7 +56,47 @@ $(document).ready(function(){
 		
 		
 		/*기술 드롭다운*/
-		
+		$(".project_language").append("<option value=''>개발 언어</option>");
+		codeInfoService.getLanguage(
+			function(list){
+				var str="";
+				if(list== null|| list.length ==0){}
+					for(var i=0, len=list.length||0;i<len;i++){
+						str += "<option value='"+list[i].language_code+"'>"+list[i].language_name+"</option>";
+					}
+					$(".project_language").append(str);
+			})
+		$(".project_framework").append("<option value=''>개발 프레임워크</option>");
+		codeInfoService.getFramework(
+			function(list){
+				var str="";
+				if(list== null|| list.length ==0){}
+					for(var i=0, len=list.length||0;i<len;i++){
+						str += "<option value='"+list[i].framework_code+"'>"+list[i].framework_name+"</option>";
+					}
+					$(".project_framework").append(str);
+			})
+		$(".project_dbms").append("<option value=''>개발 DBMS</option>");
+		codeInfoService.getDbms(
+			function(list){
+				var str="";
+				if(list== null|| list.length ==0){}
+					for(var i=0, len=list.length||0;i<len;i++){
+						str += "<option value='"+list[i].dbms_code+"'>"+list[i].dbms_name+"</option>";
+					}
+					$(".project_dbms").append(str);
+			})
+			
+		$(".project_devetc").append("<option value=''>개발 기타 스택</option>");
+		codeInfoService.getDevetc(
+			function(list){
+				var str="";
+				if(list== null|| list.length ==0){}
+					for(var i=0, len=list.length||0;i<len;i++){
+						str += "<option value='"+list[i].devetc_code+"'>"+list[i].devetc_name+"</option>";
+					}
+					$(".project_devetc").append(str);
+			})
 		/*자격증 체크박스*/
 		var certiChk = $("#certiChk");
 		

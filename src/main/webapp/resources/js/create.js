@@ -41,6 +41,32 @@ $(document).ready(function(){
 		
 		$("#project_R").append(project_row);
 		
+		$('#project_R #project_name').attr('id','project_name'+projectCnt);
+		$('#project_R [name="project_start_y"]').attr('name','project_start_y'+projectCnt);
+		$('#project_R [name="project_start_m"]').attr('name','project_start_m'+projectCnt);
+		$('#project_R [name="project_end_y"]').attr('name','project_end_y'+projectCnt);
+		$('#project_R [name="project_end_m"]').attr('name','project_end_m'+projectCnt);
+		$('#project_R #project_customer').attr('id','project_customer'+projectCnt);
+		$('#project_R #project_company').attr('id','project_company'+projectCnt);
+		$('#project_R #role').attr('id','role'+projectCnt);
+		$('#project_R [name="server_code"]').attr('name','server_code'+projectCnt);
+		$('#project_R [name="os_code"]').attr('name','os_code'+projectCnt);
+		$('#project_R [name="language1"]').attr('name','language1'+projectCnt);
+		$('#project_R [name="language2"]').attr('name','language2'+projectCnt);
+		$('#project_R [name="language3"]').attr('name','language3'+projectCnt);
+		$('#project_R [name="language4"]').attr('name','language4'+projectCnt);
+		$('#project_R [name="language5"]').attr('name','language5'+projectCnt);
+		$('#project_R [name="language6"]').attr('name','language6'+projectCnt);
+		$('#project_R [name="framework1"]').attr('name','framework1'+projectCnt);
+		$('#project_R [name="framework2"]').attr('name','framework2'+projectCnt);
+		$('#project_R [name="dbms1"]').attr('name','dbms1'+projectCnt);
+		$('#project_R [name="dbms2"]').attr('name','dbms2'+projectCnt);
+		$('#project_R [name="dbms3"]').attr('name','dbms3'+projectCnt);
+		$('#project_R [name="devetc1"]').attr('name','devetc1'+projectCnt);
+		$('#project_R [name="devetc2"]').attr('name','devetc2'+projectCnt);
+		$('#project_R [name="devetc3"]').attr('name','devetc3'+projectCnt);
+		$('#project_R [name="devetc4"]').attr('name','devetc4'+projectCnt);
+		
 	})
 	
 	$("#project_row_delete").on("click",function(e){
@@ -627,6 +653,7 @@ $(document).ready(function(){
 			this.project_dbms = project_dbms;
 			this.project_devetc = project_devetc;
 		}
+		
 		var projectArr = [];
 		
 		var projectTb = document.getElementById('style2 project')
@@ -698,12 +725,87 @@ $(document).ready(function(){
 		if(p_name&&p_start&&p_end&&cust&&comp&&roleArr&&server&&os&&langArr&&frameworkArr&&dbmsArr&&devetcArr){
 			var project = new Project(p_name,p_start,p_end,cust,comp,roleArr,server,os,langArr,frameworkArr,dbmsArr,devetcArr);
 			projectArr.push(project);
+			
+			for(var m = 1;m<projectCnt;m++){
+				p_name = $("#project_name"+m).val();
+				p_s_y = $("select[name ='project_start_y"+m+"']").val();
+				p_s_m = $("select[name ='project_start_m"+m+"']").val();
+				p_e_y = $("select[name ='project_end_y"+m+"']").val();
+				p_e_m = $("select[name ='project_end_m"+m+"']").val();
+				
+				console.log("m출력"+m);
+				
+				if(p_s_m&&p_s_y){
+					if(p_s_m.length ==1){
+						p_s_m="0"+p_s_m;
+					}
+					var p_start= p_s_y+p_s_m;
+				}
+
+				if(p_e_m&&p_e_y){
+					if(p_e_m.length ==1){
+						p_e_m="0"+p_e_m;
+					}
+					var p_end= p_e_y+p_e_m;
+				}
+				
+				var cust = $("#project_customer"+m).val();
+				var comp = $("#project_company"+m).val();
+				var roleArr =[];
+				
+				$("input[name='role"+m+"']:checked").each(function(i){
+					roleArr.push($(this).val());
+				});
+				
+				var server = $("select[name ='server_code"+m+"']").val();
+				var os = $("select[name ='os_code"+m+"']").val();
+				
+				var langArr=[];
+				var frameworkArr=[];
+				var dbmsArr=[];
+				var devetcArr=[];
+				
+				for(var i = 1 ; i<=6;i++){
+					var lang=$("select[name='language"+i+""+m+"']").val()
+					console.log("i"+i+"m"+m+"개발언어"+lang);
+					if(lang){
+						langArr.push(lang);	
+					}
+				}
+				for(var i = 1 ; i<=2;i++){
+					var frmwrk = $("select[name='framework"+i+""+m+"']").val()
+					if(frmwrk){
+					frameworkArr.push(frmwrk);	
+					}
+				}
+				for(var i = 1 ; i<=3;i++){
+					var db = $("select[name='dbms"+i+""+m+"']").val()
+					if(db){
+					dbmsArr.push(db);	
+					}
+				}
+				for(var i = 1 ; i<=4;i++){
+					var dvtc = $("select[name='devetc"+i+""+m+"']").val()
+					if(dvtc){
+					devetcArr.push(dvtc);	
+					}
+				}
+				if(p_name&&p_start&&p_end&&cust&&comp&&roleArr&&server&&os&&langArr&&frameworkArr&&dbmsArr&&devetcArr){
+					var project = new Project(p_name,p_start,p_end,cust,comp,roleArr,server,os,langArr,frameworkArr,dbmsArr,devetcArr);
+					console.log("프로젝트"+project);
+					projectArr.push(project);
+				}else{			
+				allIsOk +=1;
+				alert("[10] 프로젝트 내역을 정확하게 입력하세요!");
+				}
+				
+				
+			}
 		}else{
 			allIsOk +=1;
 			alert("[10] 프로젝트 내역을 정확하게 입력하세요!");
 		}
 
-		
 		
 		if(allIsOk==0){
 			staffInfoService.create({

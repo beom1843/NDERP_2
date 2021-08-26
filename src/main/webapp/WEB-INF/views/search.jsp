@@ -45,7 +45,12 @@
 			<tr>
 				<th>종합 소유 기술</th>
 				<td>
-						<input type="radio" name="skillMethod" value="or">or <input type="radio"name="skillMethod" value="and">and
+					<input type="radio" name="skillMethod" value="or">or <input type="radio"name="skillMethod" value="and">and
+					<select class="project_language" name="project_language"></select>
+					<select class="project_framework" name="project_framework"></select>
+					<select class="project_dbms" name="project_dbms"></select>
+					<select class="project_devetc" name="project_devetc"></select>
+				
 				</td>
 			</tr>
 			<tr>

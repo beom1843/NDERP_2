@@ -14,6 +14,9 @@ public class Criteria {
 	
 	private String type;
 	
+	private String dev_y1;
+	private String dev_y2;
+	
 	private String keyword1;
 	private String keyword2;
 	

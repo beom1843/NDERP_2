@@ -13,11 +13,10 @@ $(document).ready(function(){
 	
 	$("#reset_btn").on("click",function(e){
 		e.preventDefault(e);
-		console.log("클릭");
 		staffInfoService.search({
 		},
 			function(list){
-			var str="<table id='style2'><tr> <th>번호</th><th>이름</th><th>성별</th><th>출생년도</th><th>나이</th><th>핸드폰</th>";
+			var str="<table id='style3'><tr> <th>번호</th><th>이름</th><th>성별</th><th>출생년도</th><th>나이</th><th>핸드폰</th>";
 			str+="<th>이메일</th><th>주민번호</th><th>거주지</th><th>최종학력</th><th>최종학력 졸업일</th><th>개발년차</th><th>종합 소유 기술</th><th>자격증</th></tr>"
 			if(list==null || list.length ==0){}
 			for(var i =0, len=list.length||0 ;i<len;i++){
@@ -32,15 +31,52 @@ $(document).ready(function(){
 	})
 	$("#search_btn").on("click",function(e){
 		e.preventDefault(e);
+
+		var keyword1=$("#keyword1").val();
+		var keyword2=$("#keyword2").val();
+		var dev1=$("select[name='devCareer1']");
+		var dev2=$("select[name='devCareer2']");
+		var project_language;
+		var project_framework;
+		var project_dbms;
+		var project_devetc;
+		var edu;
+		var certi;
+		var role;
+		var projectStartDay1;
+		var projectStartDay2;
+		var projectEndDay1;
+		var projectEndDay2;
+		var college;
+		var graduateDay1;
+		var graduateDay2;
+		var sex;
+		var birthDay1;
+		var birthDay2;
+		var age1;
+		var age2;
+		var career;
+		var career1;
+		var career2;
+		var foreignRead;
+		var foreignSpeak;
+		var soju1;
+		var soju2;
+		var beer1;
+		var beer2;
+		
 		console.log("클릭");
 		staffInfoService.search({
 			pageNum:0,
 			amount:0,
 			
 			type:0,
-			
+
 			keyword1:0,
 			keyword2:0,
+			
+			dev1:0,
+			dev2:0,
 			
 			project_language:0,
 			project_framework:0,
@@ -80,8 +116,8 @@ $(document).ready(function(){
 			military:0
 		},
 			function(list){
-			var str="<table id='style2'><tr> <th>번호</th><th>이름</th><th>성별</th><th>출생년도</th><th>나이</th><th>핸드폰</th>";
-			str+="<th>이메일</th><th>주민번호</th><th>거주지</th><th>최종학력</th><th>최종학력 졸업일</th><th>개발년차</th><th>종합 소유 기술</th><th>자격증</th></tr>"
+			var str="<table id='style3'><tr> <th>번호</th><th>이름</th><th>성별</th><th>출생년도</th><th>나이</th><th>핸드폰</th>";
+			str+="<th>이메일</th><th>주민번호</th><th>거주지</th><th>최종학력</th><th>최종학력 졸업일</th><th>개발년차</th><th style='width:300px'>종합 소유 기술</th><th>자격증</th></tr>"
 			if(list==null || list.length ==0){}
 			for(var i =0, len=list.length||0 ;i<len;i++){
 			str +="<tr><td>"+list[i].rownum+"</td><td>"+list[i].staff_name+"</td><td>"+list[i].sex+"</td><td>"+list[i].birthy+"</td><td>"+list[i].age;

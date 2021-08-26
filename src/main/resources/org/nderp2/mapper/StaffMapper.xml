@@ -219,8 +219,7 @@
 		group by C.Staff_No) D
 	where A.staff_no = B.staff_no
 		and A.staff_no = C.staff_no
-		and A.staff_no = D.staff_no
-		
+		and A.staff_no = D.staff_no	
 		
 	</select>
 

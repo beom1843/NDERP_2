@@ -51,6 +51,21 @@ input{
 	background-color:#1792d0;
 	}
 	
+/* style3 */	
+[id*='style3'], [id*='style3'] th,[id*='style3'] td {
+	border: black 1px solid;
+	border-collapse: collapse;
+	}
+	
+[id*='style3'] th,[id*='style3'] td {
+		padding: 5px;
+	}
+[id*='style3'] th{
+	width:auto;
+	text-align: center;
+	background-color:#1792d0;
+	}	
+	
 [id*='part']{
 	margin:10px;
 }
