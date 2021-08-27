@@ -140,7 +140,7 @@
 				</tr>
 				
 				<tr>
-					<td><input type="text" id="education_4_name"> 전문대 졸</td>
+					<td><input type="text" id="education_4_name"> 대학교 석사 졸</td>
 					<td><select class = "college" name="edu4"></select></td>
 					<td><input type="text" id="education_4_major"></td>
 					<td><input type="text" id="education_4_sub"></td>
@@ -151,7 +151,7 @@
 				</tr>
 
 				<tr>
-					<td><input type="text" id="education_5"> 전문대 졸</td>
+					<td><input type="text" id="education_5_name"> 대학교 박사 졸</td>
 					<td><select class = "college" name="edu5"></select></td>
 					<td><input type="text" id="education_5_major"></td>
 					<td><input type="text" id="education_5_sub"></td>

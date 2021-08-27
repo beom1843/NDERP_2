@@ -350,7 +350,26 @@ $(document).ready(function(){
 			allIsOk +=1;
 		}
 		
+		if(!(college_5_code)){
+			console.log("college_5_code")
+		}
+		if(!(education_5_name)){
+			console.log("education_5_name")
+		}
+		if(!(edu_5_grad_y)){
+			console.log("edu_5_grad_y")
+		}
+		if(!(edu_5_grad_m)){
+			console.log("edu_5_grad_m")
+		}
+		if(!(education_5_major)){
+			console.log("education_5_major")
+		}
+		if(!(education_5_sub)){
+			console.log("education_5_sub")
+		}
 		
+		console.log("학교수"+schoolCount)
 		console.log(schoolArr);
 		//3. 가족
 			//family 객체 정의

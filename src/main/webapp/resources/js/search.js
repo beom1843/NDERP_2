@@ -32,17 +32,34 @@ $(document).ready(function(){
 	$("#search_btn").on("click",function(e){
 		e.preventDefault(e);
 		var type="";
+		var sType="";
 		var keyword1=$("#keyword1").val();
 		var keyword2=$("#keyword2").val();
 		var dev_y1=$("select[name='devCareer1']").val();
 		var dev_y2=$("select[name='devCareer2']").val();
-		var project_language;
-		var project_framework;
-		var project_dbms;
-		var project_devetc;
-		var edu;
-		var certi;
+		
+		var skillRadio=$("input[name='skillMethod']:checked").val();
+		
+		var project_language=$("select[name='project_language']").val();
+		var project_framework=$("select[name='project_framework']").val();
+		var project_dbms=$("select[name='project_dbms']").val();
+		var project_devetc=$("select[name='project_devetc']").val();
+		
+		var edu="";
+		$("input[name='education']:checked").each(function(i){
+			edu += $(this).val();
+		})
+		var certi="";
+		$("input[name='certification']:checked").each(function(i){
+			certi += $(this).val();
+		})
 		var role;
+		$("input[name='role']:checked").each(function(i){
+			role += $(this).val();
+		})
+		
+		
+		
 		var projectStartDay1;
 		var projectStartDay2;
 		var projectEndDay1;
@@ -68,9 +85,38 @@ $(document).ready(function(){
 		if(dev_y1&dev_y2){
 			type +="a"
 		}
-		console.log(dev_y1);
-		console.log(type);
-		console.log("클릭");
+		if(edu){
+			type +="c"
+		}
+		if(certi){
+			type+="d"
+		}
+		if(role){
+			type+="e"
+		}
+		if(project_language||project_framework||project_dbms||project_devetc){
+			type+="b"
+			if(project_language){
+				console.log("언어"+project_language)
+				sType+="a"
+			}
+			if(project_framework){
+				console.log("프워"+project_framework)
+				sType+="b"
+			}
+			if(project_dbms){
+				console.log("dbms"+project_dmbs)
+				sType+="c"
+			}
+			if(project_devetc){
+				console.loge("devetc"+project_devetc)
+				sType+="d"
+			}
+		
+		}
+		console.log("자격증"+certi);
+		console.log("sType!"+sType);
+		
 		staffInfoService.search({
 			pageNum:0,
 			amount:0,
@@ -83,14 +129,17 @@ $(document).ready(function(){
 			dev1:dev_y1,
 			dev2:dev_y2,
 			
-			project_language:0,
-			project_framework:0,
-			project_dbms:0,
-			project_devetc:0,
+			skillRadio:skillRadio,
+			skill:sType,
 			
-			edu:0,
-			certi:0,
-			role:0,
+			project_language:project_language,
+			project_framework:project_framework,
+			project_dbms:project_dbms,
+			project_devetc:project_devetc,
+			
+			edu:edu,
+			certi:certi,
+			role:role,
 			
 			projectStartDay1:0,
 			projectStartDay2:0,

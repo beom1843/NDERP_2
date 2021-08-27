@@ -45,7 +45,8 @@ public class StaffController {
 							MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<ResultDAO>> search(@RequestBody Criteria cri) {
 		System.out.println("@Controller:type");
-		System.out.println("@Controller:type"+cri.getType());
+		System.out.println("@Controller:stype"+cri.getSkill());
+		System.out.println("@Controller:skillRdaio"+cri.getSkillRadio());
 		
 		return new ResponseEntity<List<ResultDAO>>(service.search(cri), HttpStatus.OK);
 	}

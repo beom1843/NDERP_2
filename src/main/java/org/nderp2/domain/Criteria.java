@@ -15,11 +15,17 @@ public class Criteria {
 	private String type;
 	
 	public String[] getTypeArr(){
-		System.out.println(".................................");
-		System.out.println("getTypeArr....................");
 		System.out.println(dev1);
 		System.out.println(dev2);
 		return type == null? new String[] {}: type.split("");
+	}
+	
+	private String skillRadio;
+	
+	private String skill;
+	public String[] getSkillArr(){
+		System.out.println("getSTYPEARR");
+		return skill ==null? new String[] {}: skill.split("");
 	}
 	
 	private String dev1;
@@ -45,6 +51,7 @@ public class Criteria {
 	public String[] getCertiArr(){
 		return certi == null? new String[] {}: certi.split("");
 	}
+	
 	public String[] getRoleArr(){
 		return role == null? new String[] {}: role.split("");
 	}
