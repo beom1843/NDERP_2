@@ -56,10 +56,10 @@ public class Criteria {
 		return role == null? new String[] {}: role.split("");
 	}
 	
-	private String projecStartDay1;
-	private String projecStartDay2;
-	private String projecEndDay1;
-	private String projecEndDay2;
+	private String projectStartDay1;
+	private String projectStartDay2;
+	private String projectEndDay1;
+	private String projectEndDay2;
 	
 	private String college;
 	
@@ -89,8 +89,14 @@ public class Criteria {
 	
 	private String career1;
 	private String career2;
-	private String foreignRead;
-	private String foreignSpeak;
+	private String foreignread;
+	public String[] getForeignreadArr(){
+		return foreignread == null? new String[] {}:foreignread.split("");
+	}
+	private String foreignspeak;
+	public String[] getForeignspeakArr(){
+		return foreignspeak == null? new String[] {}:foreignspeak.split("");
+	}
 	private String soju1;
 	private String soju2;
 	private String beer1;

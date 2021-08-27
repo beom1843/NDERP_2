@@ -136,7 +136,7 @@ $(document).ready(function(){
 				var str ="";
 				if(list== null|| list.length ==0){}
 				for(var i=0, len=list.length-1||0;i<len;i++){
-					str += "<input type='checkbox' id='role' name='role' value='"+list[i].college_code+"'/>";
+					str += "<input type='checkbox' id='college' name='college' value='"+list[i].college_code+"'/>";
 					str += list[i].college_name;
 				}
 				collegeChk.html(str);
@@ -148,7 +148,7 @@ $(document).ready(function(){
 					var str ="";
 					if(list== null|| list.length ==0){}
 					for(var i=0, len=list.length-1||0;i<len;i++){
-						str += "<input type='checkbox' id='role' name='role' value='"+list[i].career_code+"'/>";
+						str += "<input type='checkbox' id='career' name='career' value='"+list[i].career_code+"'/>";
 						str += list[i].career_name;
 					}
 					careerChk.html(str);
@@ -180,7 +180,7 @@ $(document).ready(function(){
 					var str ="";
 					if(list== null|| list.length ==0){}
 					for(var i=0, len=list.length-1||0;i<len;i++){
-						str += "<input type='checkbox' id='role' name='role' value='"+list[i].military_code+"'/>";
+						str += "<input type='checkbox' id='military' name='military' value='"+list[i].military_code+"'/>";
 						str += list[i].military_name;
 					}
 					militaryChk.html(str);

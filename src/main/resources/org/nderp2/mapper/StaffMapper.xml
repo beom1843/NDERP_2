@@ -129,8 +129,9 @@
 		B.education_name as staff_education, B.grad_year as staff_grad_y,
 		C.dev_year as staff_dev_year, C.total_skill as staff_total_skill,
 		D.certification as staff_certification,
-		A.birthd, E.career_year, E.career_code, A.STAFF_MILITARY, G.soju_code, G.beer_code,C.start_Day,C.end_Day,
-		C.dev_y,B.education_code,D.certification_code,C.role_code,c.language_code, c.framework_code, c.dbms_code, c.devetc_code
+		E.career_year, E.career_code, A.STAFF_MILITARY, G.soju_code, G.beer_code,C.start_Day,C.end_Day,
+		C.dev_y,B.education_code,D.certification_code,C.role_code,c.language_code, c.framework_code, c.dbms_code, c.devetc_code,B.college_code,B.graduate_y,
+		h.foreignlangread, h.foreignlangspeak
 	from 
 		(select rownum,staff_no, staff_name,substr(staff_id_no,1,4) as birthd,
 			case substr(staff_id_no, 7,1) 
@@ -157,7 +158,7 @@
 		from staff) A,
 		
 		
-		(select b.staff_no, b.College_Code,a.education_name, b.grad_year||'년' as grad_year, b.education_code
+		(select b.staff_no, b.College_Code,a.education_name, b.grad_year||'년' as grad_year, b.education_code, b.grad_year as graduate_y
 		from code_education a, 
 			(select a.college_code, a.staff_no, b.education_code,substr(a.school_graduateday,1,4) as grad_year
 			from staff_school a,(select staff_no, max(education_code) as education_code
@@ -235,10 +236,8 @@
 			 order by a.STAFF_NO desc) e,
 			 
 	(select staff_no, to_number(to_char(sysdate,'yyyy'))-substr(min(project_startday),1,4)+1 as dev_year,
-		regexp_replace(listagg(PROJECT_startday,',')
-			within group(order by staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as start_day,
-		regexp_replace(listagg(PROJECT_endday,',')
-		  within group(order by staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as end_day
+		max(project_startday) as start_day,
+		max(project_endday) as end_day
 	from staff_project
 	group by staff_no) f,
 			
@@ -281,36 +280,34 @@
 			regexp_replace(listagg(a.career_code,',') within group(order by a.staff_career_no), '([^,]+)(,\1)*(,|$)', '\1\3') as career_code
 		from staff_career a
 		group by a.staff_no) E,
-		staff_taste G
+		staff_taste G,
+		(select a.staff_no, a.foreignlangread, b.foreignlangspeak
+		from
+			(select staff_no, listagg(foreignlang_code,',')
+			within group(order by foreignlang_code) as foreignlangRead, FOREIGNLANG_TYPE_CODE
+			from staff_foreignlang
+			group by staff_no, FOREIGNLANG_TYPE_CODE
+			having FOREIGNLANG_TYPE_CODE='1') a,
+			
+			(select staff_no, listagg(foreignlang_code,',')
+			within group(order by foreignlang_code) as foreignlangSpeak, FOREIGNLANG_TYPE_CODE
+			from staff_foreignlang
+			group by staff_no, FOREIGNLANG_TYPE_CODE
+			having FOREIGNLANG_TYPE_CODE='2')b
+		where a.staff_no=b.staff_no) H
 		
 	where A.staff_no = B.staff_no
 		and A.staff_no = C.staff_no
 		and A.staff_no = D.staff_no
 		and A.staff_no = E.staff_no
 		and a.staff_no = g.staff_no
+		and a.staff_no = h.staff_no
 		<foreach collection="typeArr" item="type">
 			<trim prefix=" AND(" suffix=")">
 				<if test="type=='a'.toString()">
 				dev_y between #{dev1} and #{dev2}
 				</if>
-				<if test="type=='b'.toString()">
-					<if test="skillRadio=='a'.toString()">
-						<foreach collection="skillArr" item="skill" open="(" separator =",and" close=")" >
-								<if test="skill=='a'.toString()">
-									language_code like '%'||#{project_language}||'%'
-								</if>
-								<if test="skill=='b'.toString()">
-									framework_code like '%'||#{project_framework}||'%'
-								</if>
-								<if test="skill=='c'.toString()">
-									dbms_code like '%'||#{project_dbms}||'%'
-								</if>
-								<if test="skill=='d'.toString()">
-									devetc_code like '%'||#{project_devetc}||'%'
-								</if>
-						</foreach>
-					</if>	
-				</if>
+				
 				<if test="type=='c'.toString()">
 				education_code in
 					<foreach collection="eduArr" item="edu" open="(" separator ="," close=")">
@@ -329,34 +326,105 @@
 				
 				</if>
 				<if test="type=='f'.toString()">
+					start_day between #{projectStartDay1} and #{projectStartDay2}
 				</if>
 				<if test="type=='g'.toString()">
+					end_day between #{projectEndDay1} and #{projectEndDay2}
 				</if>
 				<if test="type=='h'.toString()">
+					college_code in
+					<foreach collection="collegeArr" item="college" open="(" separator ="," close=")">
+					#{college}
+					</foreach>
 				</if>
 				<if test="type=='i'.toString()">
+					graduate_y between #{graduateDay1} and #{graduateDay2}
 				</if>
 				<if test="type=='j'.toString()">
+					sex in
+					<foreach collection="sexArr" item="sex" open="(" separator ="," close=")">
+						<if test="sex=='F'.toString()">
+						'여'
+						</if>
+						<if test="sex=='M'.toString()">
+						'남'
+						</if>
+					</foreach>
 				</if>
 				<if test="type=='k'.toString()">
+					substr(birthy,1,4)||substr(staff_id_no,3,2) between #{birthDay1} and #{birthDay2}
 				</if>
 				<if test="type=='l'.toString()">
+					substr(age,1,length(age)-1) between #{age1} and #{age2}
 				</if>
 				<if test="type=='m'.toString()">
+					career_code in
+					<foreach collection="careerArr" item="career" open="(" separator ="," close=")">
+					#{career}
+					</foreach>
 				</if>
 				<if test="type=='n'.toString()">
+					career_year between #{career1} and #{career2}
 				</if>
 				<if test="type=='o'.toString()">
+					foreignlangread in
+					<foreach collection="foreignreadArr" item="foreignread" open="(" separator ="," close=")">
+					#{foreignread}
+					</foreach>
 				</if>
 				<if test="type=='p'.toString()">
+					foreignlangspeak in
+					<foreach collection="foreignspeakArr" item="foreignspeak" open="(" separator ="," close=")">
+					#{foreignspeak}
+					</foreach>
 				</if>
 				<if test="type=='q'.toString()">
+					soju_code between #{soju1] and #{soju2}
 				</if>
 				<if test="type=='r'.toString()">
+					beer_code between #{beer1} and #{beer2}
 				</if>
 				<if test="type=='s'.toString()">
+					staff_military in
+					<foreach collection="militaryArr" item="military" open="(" separator ="," close=")">
+					#{military}
+					</foreach>
 				</if>
 			</trim>
+			<if test="type=='b'.toString()">
+					<if test="skillRadio=='a'.toString()">
+						<foreach collection="skillArr" item="skill" open="and (" separator=")and(" close=")" >
+								<if test="skill=='a'.toString()">
+									language_code like '%'||#{project_language}||'%'
+								</if>
+								<if test="skill=='b'.toString()">
+									framework_code like '%'||#{project_framework}||'%'
+								</if>
+								<if test="skill=='c'.toString()">
+									dbms_code like '%'||#{project_dbms}||'%'
+								</if>
+								<if test="skill=='d'.toString()">
+									devetc_code like '%'||#{project_devetc}||'%'
+								</if>
+						</foreach>
+					</if>
+					<if test="skillRadio=='o'.toString()">
+						<foreach collection="skillArr" item="skill" open="and (" separator=" or " close=")" >
+								<if test="skill=='a'.toString()">
+									language_code like '%'||#{project_language}||'%'
+								</if>
+								<if test="skill=='b'.toString()">
+									framework_code like '%'||#{project_framework}||'%'
+								</if>
+								<if test="skill=='c'.toString()">
+									dbms_code like '%'||#{project_dbms}||'%'
+								</if>
+								<if test="skill=='d'.toString()">
+									devetc_code like '%'||#{project_devetc}||'%'
+								</if>
+						</foreach>
+					</if>	
+				</if>
 		</foreach>
 		
 	</select>

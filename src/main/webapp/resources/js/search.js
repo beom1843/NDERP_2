@@ -53,34 +53,89 @@ $(document).ready(function(){
 		$("input[name='certification']:checked").each(function(i){
 			certi += $(this).val();
 		})
-		var role;
+		var role="";
 		$("input[name='role']:checked").each(function(i){
 			role += $(this).val();
 		})
 		
+		var s1_y=$("select[name='project_start1_y']").val();
+		var s1_m=$("select[name='project_start1_m']").val();
+		var s2_y=$("select[name='project_start2_y']").val();
+		var s2_m=$("select[name='project_start2_m']").val();
 		
+		var e1_y=$("select[name='project_end1_y']").val();
+		var e1_m=$("select[name='project_end1_m']").val();
+		var e2_y=$("select[name='project_end2_y']").val();
+		var e2_m=$("select[name='project_end2_m']").val();
+		if(s1_m.length==1){
+			s1_m="0"+s1_m
+		}
+		if(s2_m.length==1){
+			s2_m="0"+s2_m
+		}
+		if(e1_m.length==1){
+			e1_m="0"+e1_m
+		}
+		if(e2_m.length==1){
+			e2_m="0"+e2_m
+		}
 		
-		var projectStartDay1;
-		var projectStartDay2;
-		var projectEndDay1;
-		var projectEndDay2;
-		var college;
-		var graduateDay1;
-		var graduateDay2;
-		var sex;
-		var birthDay1;
-		var birthDay2;
-		var age1;
-		var age2;
-		var career;
-		var career1;
-		var career2;
-		var foreignRead;
-		var foreignSpeak;
-		var soju1;
-		var soju2;
-		var beer1;
-		var beer2;
+		var projectStartDay1=s1_y+s1_m;
+		var projectStartDay2=s2_y+s2_m;;
+		var projectEndDay1=e1_y+e1_m;
+		var projectEndDay2=e2_y+e2_m;
+		
+		var college="";
+		$("input[name='college']:checked").each(function(i){
+			college+= $(this).val();
+		})
+		var graduateDay1=$("select[name='graduate1_y']").val();
+		var graduateDay2=$("select[name='graduate2_y']").val();
+		var sex="";
+		$("input[name='sex']:checked").each(function(i){
+			sex+= $(this).val();
+		})
+		
+		var b1_y=$("select[name='birth1_y']").val();
+		var b1_m=$("select[name='birth1_m']").val();
+		var b2_y=$("select[name='birth2_y']").val();
+		var b2_m=$("select[name='birth2_m']").val();
+		if(b1_m.length==1){
+			b1_m="0"+b1_m;
+		}
+		if(b2_m.length==1){
+			b2_m="0"+b2_m;
+		}
+		var birthDay1=b1_y+b1_m;
+		var birthDay2=b2_y+b2_m;
+		var age1=$("select[name='age1']").val();
+		var age2=$("select[name='age2']").val();
+		
+		var career="";
+		$("input[name='career']:checked").each(function(i){
+			career+= $(this).val();
+		})
+		
+		var career1=$("select[name='career1_y']").val()
+		var career2=$("select[name='career2_y']").val()
+		
+		var foreignRead="";
+		$("input[name='foreignlangRead']:checked").each(function(i){
+			foreignRead+= $(this).val();
+		})
+		var foreignSpeak="";
+		$("input[name='foreignlangSpeak']:checked").each(function(i){
+			foreignSpeak+= $(this).val();
+		})
+		var soju1=$("select[name='soju1']").val()
+		var soju2=$("select[name='soju2']").val()
+		var beer1=$("select[name='beer1']").val()
+		var beer2=$("select[name='beer2']").val()
+		
+		var military="";
+		$("input[name='military']:checked").each(function(i){
+			military+= $(this).val();
+		})
 		
 		if(dev_y1&dev_y2){
 			type +="a"
@@ -105,18 +160,57 @@ $(document).ready(function(){
 				sType+="b"
 			}
 			if(project_dbms){
-				console.log("dbms"+project_dmbs)
+				console.log("dbms"+project_dbms)
 				sType+="c"
 			}
 			if(project_devetc){
-				console.loge("devetc"+project_devetc)
+				console.log("devetc"+project_devetc)
 				sType+="d"
 			}
-		
 		}
-		console.log("자격증"+certi);
-		console.log("sType!"+sType);
-		
+		if(projectStartDay1&&projectStartDay2){
+			type+="f"
+		}
+		if(projectEndDay1&&projectEndDay2){
+			type+="g"
+		}
+		if(college){
+			type+="h"
+		}
+		if(graduateDay1&&graduateDay2){
+			type+="i";
+		}
+		if(sex){
+			type+="j";
+		}
+		if(birthDay1&&birthDay2){
+			type+="k";
+		}
+		if(age1&&age2){
+			type+="l";
+		}
+		if(career){
+			type+="m";
+		}
+		if(career1&&career2){
+			type +="n";
+		}
+		if(foreignRead){
+			type+="o";
+		}
+		if(foreignSpeak){
+			type+="p";
+		}
+		if(soju1&&soju2){
+			type+="q"
+		}
+		if(beer1&&beer2){
+			type+="r"
+		}
+		if(military){
+			type+="s"
+		}
+		console.log("회화"+foreignSpeak)
 		staffInfoService.search({
 			pageNum:0,
 			amount:0,
@@ -141,33 +235,33 @@ $(document).ready(function(){
 			certi:certi,
 			role:role,
 			
-			projectStartDay1:0,
-			projectStartDay2:0,
-			projectEndDay1:0,
-			projectEndDay2:0,
+			projectStartDay1:projectStartDay1,
+			projectStartDay2:projectStartDay2,
+			projectEndDay1:projectEndDay1,
+			projectEndDay2:projectEndDay2,
 			
-			college:0,
+			college:college,
 			
-			graduateDay1:0,
-			graduateDay2:0,
+			graduateDay1:graduateDay1,
+			graduateDay2:graduateDay2,
 			
-			sex:0,
+			sex:sex,
 			
-			birthDay1:0,
-			birthDay2:0,
-			age1:0,
-			age2:0,
-			career:0,
-			career1:0,
-			career2:0,
-			foreignRead:0,
-			foreignSpeak:0,
-			soju1:0,
-			soju2:0,
-			beer1:0,
-			beer2:0,
+			birthDay1:birthDay1,
+			birthDay2:birthDay2,
+			age1:age1,
+			age2:age2,
+			career:career,
+			career1:career1,
+			career2:career2,
+			foreignread:foreignRead,
+			foreignspeak:foreignSpeak,
+			soju1:soju1,
+			soju2:soju2,
+			beer1:beer1,
+			beer2:beer2,
 			
-			military:0
+			military:military
 		},
 			function(list){
 			var str="<table id='style3'><tr> <th>번호</th><th>이름</th><th>성별</th><th>출생년도</th><th>나이</th><th>핸드폰</th>";

@@ -122,8 +122,8 @@
 			<tr>
 				<th>성별</th>
 				<td>
-					<input type="checkbox" name="sex" value="1">남
-					<input type="checkbox" name="sex" value="2">여
+					<input type="checkbox" name="sex" value="M">남
+					<input type="checkbox" name="sex" value="F">여
 				</td>
 			</tr>
 			<tr>
@@ -166,11 +166,11 @@
 			<tr>
 				<th>소주 주량</th>
 				<td>
-					<select class="soju"></select>병 ~ <select name="soju"></select>병
+					<select class="soju" name="soju1"></select>병 ~ <select class="soju" name="soju2"></select>병
 				</td>
 				<th>맥주 주량</th>
 				<td>
-					<select class="beer"></select>잔 ~ <select name="beer"></select>잔   (500cc 기준)
+					<select class="beer" name="beer1"></select>잔 ~ <select class="beer" name="beer2"></select>잔   (500cc 기준)
 				</td>
 			</tr>
 			<tr>
