@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nderp2.code.domain.CodeBank;
+import org.nderp2.domain.Criteria;
 import org.nderp2.domain.Staff;
 import org.nderp2.mapper.CodeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,10 @@ public class MapperTests {
 //	
 //	}
 	
-	@Test
-	public void testCode(){
-		log.info(mapper.getCurrentStaffNo());
-	}
+//	@Test
+//	public void testCode(){
+//		log.info(mapper.getCurrentStaffNo());
+//	}
 	
 //	@Test
 //	public void testCreate(){
@@ -55,5 +56,14 @@ public class MapperTests {
 //		int no = mapper.createStaff(staff);
 //		
 //	}
+
 	
+	@Test
+	public void testSearch(){
+		Criteria cri = new Criteria();
+		cri.setPageNum(1);
+		cri.setAmount(3);
+		cri.setFilterCol("staff_name desc");
+		mapper.search(cri);
+	}
 }

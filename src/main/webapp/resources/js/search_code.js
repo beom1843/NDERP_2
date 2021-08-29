@@ -1,10 +1,17 @@
 $(document).ready(function(){
+	/*검색갯수, n행 보기*/
+	var criteriaCode="[검색갯수]: "
+		criteriaCode+="<select name='rowCount'>"
+		criteriaCode+="<option value='1'>1행보기</option>"
+		criteriaCode+="<option value='2'>2행보기</option>"
+		criteriaCode+="<option value='3'>3행보기</option>"
+		criteriaCode+="</select>"	
+	$("#criteria").append(criteriaCode);
+	
 	
 	/*비움*/
-	var tdTag=$("td");
-	var codeDelete="<div id='delete' style='display: inline-block;'><a href='#'>[비움]</a></div>";
-	
-	tdTag.append(codeDelete);
+	var codeDelete="<a href='#'>[비움]</a>";
+	$(".delete").append(codeDelete);
 	
 	
 	
@@ -147,7 +154,7 @@ $(document).ready(function(){
 				function(list){
 					var str ="";
 					if(list== null|| list.length ==0){}
-					for(var i=0, len=list.length-1||0;i<len;i++){
+					for(var i=0, len=list.length||0;i<len;i++){
 						str += "<input type='checkbox' id='career' name='career' value='"+list[i].career_code+"'/>";
 						str += list[i].career_name;
 					}
@@ -179,7 +186,7 @@ $(document).ready(function(){
 				function(list){
 					var str ="";
 					if(list== null|| list.length ==0){}
-					for(var i=0, len=list.length-1||0;i<len;i++){
+					for(var i=0, len=list.length||0;i<len;i++){
 						str += "<input type='checkbox' id='military' name='military' value='"+list[i].military_code+"'/>";
 						str += list[i].military_name;
 					}

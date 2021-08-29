@@ -6,6 +6,23 @@
 [id*='today']{
 	display:inline-block;
 }
+.delete{
+	display:inline-block;
+}
+
+#pageNcriteria{
+	position:relative;
+}
+
+#pagination{
+	position:relative;
+
+}
+
+#criteria{
+	position:relative;
+	left:80%;
+}
 
 [id*='Chk']{
 	display:inline-block;

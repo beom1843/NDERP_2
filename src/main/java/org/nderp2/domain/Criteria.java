@@ -8,9 +8,18 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Criteria {
-
+	
+	public Criteria(){}
+	
 	private int pageNum;
 	private int amount;
+	private String filterCol;
+	private String method;
+	
+	public Criteria(int pageNum, int amount){
+		this.pageNum = pageNum;
+		this.amount = amount;
+	}
 	
 	private String type;
 	
@@ -106,13 +115,6 @@ public class Criteria {
 	
 	public String[] getMilitaryArr(){
 		return military == null? new String[] {}:military.split("");
-	}
-	
-	public Criteria(){}
-	
-	public Criteria(int pageNum, int amount){
-		this.pageNum = pageNum;
-		this.amount = amount;
 	}
 	
 	

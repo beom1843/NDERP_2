@@ -125,183 +125,201 @@
 	</insert>
 	
 	<select id="search" resultType="org.nderp2.domain.ResultDAO">
-	select rownum, A.staff_name, A.sex,A.birthy, A.age,A.staff_hp,A.staff_email, A.staff_id_no, A.staff_address,
-		B.education_name as staff_education, B.grad_year as staff_grad_y,
-		C.dev_year as staff_dev_year, C.total_skill as staff_total_skill,
-		D.certification as staff_certification,
-		E.career_year, E.career_code, A.STAFF_MILITARY, G.soju_code, G.beer_code,C.start_Day,C.end_Day,
-		C.dev_y,B.education_code,D.certification_code,C.role_code,c.language_code, c.framework_code, c.dbms_code, c.devetc_code,B.college_code,B.graduate_y,
-		h.foreignlangread, h.foreignlangspeak
-	from 
-		(select rownum,staff_no, staff_name,substr(staff_id_no,1,4) as birthd,
-			case substr(staff_id_no, 7,1) 
-			when '1' then '남'
-			when '2' then '여'
-			when '3' then '남'
-			when '4' then '여' end as sex,
-	
-			case substr(staff_id_no, 7,1) 
-			when '1' then to_number(to_char(sysdate,'yyyy'))-1899-substr(staff_id_no, 1, 2)||'세'
-			when '2' then  to_number(to_char(sysdate,'yyyy'))-1899-substr(staff_id_no, 1, 2)||'세'
-			when '3' then  to_number(to_char(sysdate,'yyyy'))-1999-substr(staff_id_no, 1, 2)||'세'
-			when '4' then  to_number(to_char(sysdate,'yyyy'))-1999-substr(staff_id_no, 1, 2)||'세' end as age,
-			
-			case substr(staff_id_no, 7,1)
-			when '1' then 1900+substr(staff_id_no, 1, 2)||'년생'
-			when '2' then  1900+substr(staff_id_no, 1, 2)||'년생'
-			when '3' then  2000+substr(staff_id_no, 1, 2)||'년생'
-			when '4' then  2000+substr(staff_id_no, 1, 2)||'년생' end as birthy,
-
-			substr(staff_hp,1,3)||'-'||substr(staff_hp,4,4)||'-'||substr(staff_hp,8,4) as staff_hp, staff_email, 
-			substr(staff_id_no,1,6)||'-'|| substr(staff_id_no, 7,7) as staff_id_no ,
-			staff_address, staff_military
-		from staff) A,
-		
-		
-		(select b.staff_no, b.College_Code,a.education_name, b.grad_year||'년' as grad_year, b.education_code, b.grad_year as graduate_y
-		from code_education a, 
-			(select a.college_code, a.staff_no, b.education_code,substr(a.school_graduateday,1,4) as grad_year
-			from staff_school a,(select staff_no, max(education_code) as education_code
-			from staff_school
-			group by staff_no) b
-		where a.staff_no=b.staff_no
-			and a.education_code = b.education_code) b
-			where a.education_code=b.education_code) B,
-	
-	
-	(select b.staff_no,
-		b.project_language||','|| c.project_framework||','|| d.project_dbms||','|| e.project_devetc as total_skill, 
-		f.dev_year||'년차' as dev_year, f.dev_year as dev_y,
-    b.language_code, c.framework_code, d.dbms_code,e.devetc_code,
-    g.role_code,f.start_day, f.end_day
+	select *
 	from
-	(select a.staff_no, regexp_replace(listagg(a.PROJECT_language,',')
-			  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_language,
-	      regexp_replace(listagg(a.language_code,',')
-			  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as language_code
-			  from (select L.Project_language_No as project_language_no,
-	  l.staff_project_no as staff_project_no, 
-	  Code_L.language_Name as project_language,
-	  L.Project_language as language_code,
-	  S.Staff_No
-			 from code_language code_l, project_language l, staff_project s
-			 where l.project_language = code_l.language_code
-	     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
-			 group by a.staff_no
-			 order by a.STAFF_NO desc) b,
-
-	(select a.staff_no, regexp_replace(listagg(a.PROJECT_framework,',')
-			  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_framework,
-	      regexp_replace(listagg(a.framework_code,',')
-			  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as framework_code
-			  from (select L.Project_framework_No as project_framework_no,
-	  l.staff_project_no as staff_project_no, 
-	  Code_L.framework_Name as project_framework,
-	  L.Project_framework as framework_code,
-	  S.Staff_No
-			 from code_framework code_l, project_framework l, staff_project s
-			 where l.project_framework = code_l.framework_code
-	     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
-			 group by a.staff_no
-			 order by a.STAFF_NO desc) c,
-
-	(select a.staff_no, regexp_replace(listagg(a.PROJECT_dbms,',')
-			  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_dbms,
-	      regexp_replace(listagg(a.dbms_code,',')
-			  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as dbms_code
-			  from (select L.Project_dbms_No as project_dbms_no,
-	  l.staff_project_no as staff_project_no, 
-	  Code_L.dbms_Name as project_dbms,
-	  L.Project_dbms as dbms_code,
-	  S.Staff_No
-			 from code_dbms code_l, project_dbms l, staff_project s
-			 where l.project_dbms = code_l.dbms_code
-	     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
-			 group by a.staff_no
-			 order by a.STAFF_NO desc) d,
-
-	(select a.staff_no, regexp_replace(listagg(a.PROJECT_devetc,',')
-			  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_devetc,
-	      regexp_replace(listagg(a.devetc_code,',')
-			  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as devetc_code
-			  from (select L.Project_devetc_No as project_devetc_no,
-	  l.staff_project_no as staff_project_no, 
-	  Code_L.devetc_Name as project_devetc,
-	  L.Project_devetc as devetc_code,
-	  S.Staff_No
-			 from code_devetc code_l, project_devetc l, staff_project s
-			 where l.project_devetc = code_l.devetc_code
-	     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
-			 group by a.staff_no
-			 order by a.STAFF_NO desc) e,
-			 
-	(select staff_no, to_number(to_char(sysdate,'yyyy'))-substr(min(project_startday),1,4)+1 as dev_year,
-		max(project_startday) as start_day,
-		max(project_endday) as end_day
-	from staff_project
-	group by staff_no) f,
-			
-    (select a.staff_no,
-      regexp_replace(listagg(a.role_code,',')
-		  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as role_code
-		  from (select L.Project_role_No as project_role_no,
-				  l.staff_project_no as staff_project_no, 
-				  Code_L.role_Name as project_role,
-				  L.Project_role as role_code,
-				  S.Staff_No
-				 from code_role code_l, project_role l, staff_project s
-					 where l.project_role = code_l.role_code
-			     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
-	 group by a.staff_no
-	 order by a.STAFF_NO desc) g
-     
-	  where b.Staff_No = c.Staff_No
-		  and b.Staff_No = d.Staff_No
-		  and b.Staff_No = e.Staff_No
-		  and b.staff_no =f.staff_no
-		  and b.staff_no = g.staff_no) C,
-	  
-		(select c.staff_no,
-	  	regexp_replace(listagg(C.Staff_Certification, ',')within group(order by C.Staff_Certification),'([^,]+)(,\1)*(,|$)', '\1\3')
-			as certification,
-		regexp_replace(listagg(C.certification_code, ',')within group(order by C.Staff_Certification),'([^,]+)(,\1)*(,|$)', '\1\3')
-			as certification_code
+		(select rownum as rn, staff_name, sex,birthy, age,staff_hp,staff_email, staff_id_no, staff_address,
+			staff_education,staff_grad_y,
+			staff_dev_year, staff_total_skill,
+			staff_certification,
+			career_year, career_code, STAFF_MILITARY, soju_code, beer_code, start_Day,end_Day,
+			dev_y, education_code,certification_code,role_code, language_code, framework_code, dbms_code, devetc_code,college_code,graduate_y,
+			foreignlangread, foreignlangspeak 
 		from
-			(select a.staff_certification_no, a.staff_no, b.certification_name as staff_certification, a.certification_code
-			from staff_certification a, code_certification b
-			where a.certification_code = b.certification_code) c,
-			staff d
-		group by C.Staff_No) D,
-		
-		
-		(select a.staff_no ,
-			round(sum((to_number(substr(a.career_retireday,1,4))-to_number(substr(a.career_hireday,1,4)))*12+
-				to_number(substr(a.career_retireday,5,2))-to_number(substr(a.career_hireday,5,2)))/12,1) as career_year,
-			regexp_replace(listagg(a.career_code,',') within group(order by a.staff_career_no), '([^,]+)(,\1)*(,|$)', '\1\3') as career_code
-		from staff_career a
-		group by a.staff_no) E,
-		staff_taste G,
-		(select a.staff_no, a.foreignlangread, b.foreignlangspeak
-		from
-			(select staff_no, listagg(foreignlang_code,',')
-			within group(order by foreignlang_code) as foreignlangRead, FOREIGNLANG_TYPE_CODE
-			from staff_foreignlang
-			group by staff_no, FOREIGNLANG_TYPE_CODE
-			having FOREIGNLANG_TYPE_CODE='1') a,
+			(select rownum as rn, A.staff_name, A.sex,A.birthy, A.age,A.staff_hp,A.staff_email, A.staff_id_no, A.staff_address,
+				B.education_name as staff_education, B.grad_year as staff_grad_y,
+				C.dev_year as staff_dev_year, C.total_skill as staff_total_skill,
+				D.certification as staff_certification,
+				E.career_year, E.career_code, A.STAFF_MILITARY, G.soju_code, G.beer_code,C.start_Day,C.end_Day,
+				C.dev_y,B.education_code,D.certification_code,C.role_code,c.language_code, c.framework_code, c.dbms_code, c.devetc_code,B.college_code,B.graduate_y,
+				h.foreignlangread, h.foreignlangspeak
+			from 
+				(select rownum,staff_no, staff_name,substr(staff_id_no,1,4) as birthd,
+					case substr(staff_id_no, 7,1) 
+					when '1' then '남'
+					when '2' then '여'
+					when '3' then '남'
+					when '4' then '여' end as sex,
 			
-			(select staff_no, listagg(foreignlang_code,',')
-			within group(order by foreignlang_code) as foreignlangSpeak, FOREIGNLANG_TYPE_CODE
-			from staff_foreignlang
-			group by staff_no, FOREIGNLANG_TYPE_CODE
-			having FOREIGNLANG_TYPE_CODE='2')b
-		where a.staff_no=b.staff_no) H
+					case substr(staff_id_no, 7,1) 
+					when '1' then to_number(to_char(sysdate,'yyyy'))-1899-substr(staff_id_no, 1, 2)||'세'
+					when '2' then  to_number(to_char(sysdate,'yyyy'))-1899-substr(staff_id_no, 1, 2)||'세'
+					when '3' then  to_number(to_char(sysdate,'yyyy'))-1999-substr(staff_id_no, 1, 2)||'세'
+					when '4' then  to_number(to_char(sysdate,'yyyy'))-1999-substr(staff_id_no, 1, 2)||'세' end as age,
+					
+					case substr(staff_id_no, 7,1)
+					when '1' then 1900+substr(staff_id_no, 1, 2)||'년생'
+					when '2' then  1900+substr(staff_id_no, 1, 2)||'년생'
+					when '3' then  2000+substr(staff_id_no, 1, 2)||'년생'
+					when '4' then  2000+substr(staff_id_no, 1, 2)||'년생' end as birthy,
 		
-	where A.staff_no = B.staff_no
-		and A.staff_no = C.staff_no
-		and A.staff_no = D.staff_no
-		and A.staff_no = E.staff_no
-		and a.staff_no = g.staff_no
-		and a.staff_no = h.staff_no
+					substr(staff_hp,1,3)||'-'||substr(staff_hp,4,4)||'-'||substr(staff_hp,8,4) as staff_hp, staff_email, 
+					substr(staff_id_no,1,6)||'-'|| substr(staff_id_no, 7,7) as staff_id_no ,
+					staff_address, staff_military
+				from staff) A,
+				
+				
+				(select b.staff_no, b.College_Code,a.education_name, b.grad_year||'년' as grad_year, b.education_code, b.grad_year as graduate_y
+				from code_education a, 
+					(select a.college_code, a.staff_no, b.education_code,substr(a.school_graduateday,1,4) as grad_year
+					from staff_school a,(select staff_no, max(education_code) as education_code
+					from staff_school
+					group by staff_no) b
+				where a.staff_no=b.staff_no
+					and a.education_code = b.education_code) b
+					where a.education_code=b.education_code) B,
+			
+			
+				(select b.staff_no,
+					b.project_language||','|| c.project_framework||','|| d.project_dbms||','|| e.project_devetc as total_skill, 
+					f.dev_year||'년차' as dev_year, f.dev_year as dev_y,
+			    b.language_code, c.framework_code, d.dbms_code,e.devetc_code,
+			    g.role_code,f.start_day, f.end_day
+				from
+					(select a.staff_no, regexp_replace(listagg(a.PROJECT_language,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_language,
+					      regexp_replace(listagg(a.language_code,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as language_code
+							  from (select L.Project_language_No as project_language_no,
+					  l.staff_project_no as staff_project_no, 
+					  Code_L.language_Name as project_language,
+					  L.Project_language as language_code,
+					  S.Staff_No
+							 from code_language code_l, project_language l, staff_project s
+							 where l.project_language = code_l.language_code
+					     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+							 group by a.staff_no
+							 order by a.STAFF_NO desc) b,
+				
+					(select a.staff_no, regexp_replace(listagg(a.PROJECT_framework,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_framework,
+					      regexp_replace(listagg(a.framework_code,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as framework_code
+							  from (select L.Project_framework_No as project_framework_no,
+					  l.staff_project_no as staff_project_no, 
+					  Code_L.framework_Name as project_framework,
+					  L.Project_framework as framework_code,
+					  S.Staff_No
+							 from code_framework code_l, project_framework l, staff_project s
+							 where l.project_framework = code_l.framework_code
+					     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+							 group by a.staff_no
+							 order by a.STAFF_NO desc) c,
+				
+					(select a.staff_no, regexp_replace(listagg(a.PROJECT_dbms,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_dbms,
+					      regexp_replace(listagg(a.dbms_code,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as dbms_code
+							  from (select L.Project_dbms_No as project_dbms_no,
+					  l.staff_project_no as staff_project_no, 
+					  Code_L.dbms_Name as project_dbms,
+					  L.Project_dbms as dbms_code,
+					  S.Staff_No
+							 from code_dbms code_l, project_dbms l, staff_project s
+							 where l.project_dbms = code_l.dbms_code
+					     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+							 group by a.staff_no
+							 order by a.STAFF_NO desc) d,
+				
+					(select a.staff_no, regexp_replace(listagg(a.PROJECT_devetc,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_devetc,
+					      regexp_replace(listagg(a.devetc_code,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as devetc_code
+							  from (select L.Project_devetc_No as project_devetc_no,
+					  l.staff_project_no as staff_project_no, 
+					  Code_L.devetc_Name as project_devetc,
+					  L.Project_devetc as devetc_code,
+					  S.Staff_No
+							 from code_devetc code_l, project_devetc l, staff_project s
+							 where l.project_devetc = code_l.devetc_code
+					     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+							 group by a.staff_no
+							 order by a.STAFF_NO desc) e,
+							 
+					(select staff_no, to_number(to_char(sysdate,'yyyy'))-substr(min(project_startday),1,4)+1 as dev_year,
+						max(project_startday) as start_day,
+						max(project_endday) as end_day
+					from staff_project
+					group by staff_no) f,
+							
+				    (select a.staff_no,
+				      regexp_replace(listagg(a.role_code,',')
+						  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as role_code
+						  from (select L.Project_role_No as project_role_no,
+								  l.staff_project_no as staff_project_no, 
+								  Code_L.role_Name as project_role,
+								  L.Project_role as role_code,
+								  S.Staff_No
+								 from code_role code_l, project_role l, staff_project s
+									 where l.project_role = code_l.role_code
+							     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+					 group by a.staff_no
+					 order by a.STAFF_NO desc) g
+			     
+				  where b.Staff_No = c.Staff_No
+					  and b.Staff_No = d.Staff_No
+					  and b.Staff_No = e.Staff_No
+					  and b.staff_no =f.staff_no
+					  and b.staff_no = g.staff_no) C,
+			  
+				(select c.staff_no,
+			  	regexp_replace(listagg(C.Staff_Certification, ',')within group(order by C.Staff_Certification),'([^,]+)(,\1)*(,|$)', '\1\3')
+					as certification,
+				regexp_replace(listagg(C.certification_code, ',')within group(order by C.Staff_Certification),'([^,]+)(,\1)*(,|$)', '\1\3')
+					as certification_code
+				from
+					(select a.staff_certification_no, a.staff_no, b.certification_name as staff_certification, a.certification_code
+					from staff_certification a, code_certification b
+					where a.certification_code = b.certification_code) c,
+					staff d
+				group by C.Staff_No) D,
+				
+				
+				(select a.staff_no ,
+					round(sum((to_number(substr(a.career_retireday,1,4))-to_number(substr(a.career_hireday,1,4)))*12+
+						to_number(substr(a.career_retireday,5,2))-to_number(substr(a.career_hireday,5,2)))/12,1) as career_year,
+					regexp_replace(listagg(a.career_code,',') within group(order by a.staff_career_no), '([^,]+)(,\1)*(,|$)', '\1\3') as career_code
+				from staff_career a
+				group by a.staff_no) E,
+				
+				staff_taste G,
+				
+				(select a.staff_no, a.foreignlangread, b.foreignlangspeak
+				from
+					(select staff_no, listagg(foreignlang_code,',')
+					within group(order by foreignlang_code) as foreignlangRead, FOREIGNLANG_TYPE_CODE
+					from staff_foreignlang
+					group by staff_no, FOREIGNLANG_TYPE_CODE
+					having FOREIGNLANG_TYPE_CODE='1') a,
+					
+					(select staff_no, listagg(foreignlang_code,',')
+					within group(order by foreignlang_code) as foreignlangSpeak, FOREIGNLANG_TYPE_CODE
+					from staff_foreignlang
+					group by staff_no, FOREIGNLANG_TYPE_CODE
+					having FOREIGNLANG_TYPE_CODE='2')b
+				where a.staff_no=b.staff_no) H
+				
+			where A.staff_no = B.staff_no
+				and A.staff_no = C.staff_no
+				and A.staff_no = D.staff_no
+				and A.staff_no = E.staff_no
+				and a.staff_no = g.staff_no
+				and a.staff_no = h.staff_no
+			order by #{filterCol})
+		where rownum>0)
+		<![CDATA[
+		where rn<=#{pageNum} * #{amount}
+		and rn>(#{pageNum}-1) * #{amount}
+		]]>
 		<foreach collection="typeArr" item="type">
 			<trim prefix=" AND(" suffix=")">
 				<if test="type=='a'.toString()">
@@ -426,7 +444,7 @@
 					</if>	
 				</if>
 		</foreach>
-		
+
 	</select>
 
 </mapper>

@@ -1,5 +1,86 @@
 $(document).ready(function(){
-	
+	/*비움*/
+	$("#d_keyword").on("click",function(e){
+		document.getElementById('keyword1').value="";
+		document.getElementById('keyword2').value="";
+	})
+	$("#d_devyear").on("click",function(e){
+		$("select[name='devCareer1'] option:eq(0)").prop("selected",true);
+		$("select[name='devCareer2'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_skill").on("click",function(e){
+		$("input[name='skillMethod']").prop('checked',false);
+		$("select[name='project_language'] option:eq(0)").prop("selected",true);
+		$("select[name='project_framework'] option:eq(0)").prop("selected",true);
+		$("select[name='project_dbms'] option:eq(0)").prop("selected",true);
+		$("select[name='project_devetc'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_edu").on("click",function(e){
+		$("input[name='education']").prop('checked',false);
+	})
+	$("#d_certi").on("click",function(e){
+		$("input[name='certification']").prop('checked',false);
+	})
+	$("#d_role").on("click",function(e){
+		$("input[name='role']").prop('checked',false);
+	})
+	$("#d_start").on("click",function(e){
+		$("select[name='project_start1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_start1_m'] option:eq(0)").prop("selected",true);
+		$("select[name='project_start2_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_start2_m'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_end").on("click",function(e){
+		$("select[name='project_end1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end1_m'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end2_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end2_m'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_college").on("click",function(e){
+		$("input[name='college']").prop('checked',false);
+	})	
+	$("#d_grad").on("click",function(e){
+		$("select[name='graduate1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='graduate2_y'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_sex").on("click",function(e){
+		$("input[name='sex'] option:eq(0)").prop("selected",true);
+		$("input[name='sex'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_birthy").on("click",function(e){
+		$("select[name='birth1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='birth1_m'] option:eq(0)").prop("selected",true);
+		$("select[name='birth2_y'] option:eq(0)").prop("selected",true);
+		$("select[name='birth2_m'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_age").on("click",function(e){
+		$("select[name='age1'] option:eq(0)").prop("selected",true);
+		$("select[name='age2'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_career").on("click",function(e){
+		$("input[name='career']").prop('checked',false);
+	})
+	$("#d_career_y").on("click",function(e){
+		$("select[name='career1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='career2_y'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_langread").on("click",function(e){
+		$("input[name='foreignlangRead']").prop('checked',false);
+	})
+	$("#d_langspeak").on("click",function(e){
+		$("input[name='foreignlangSpeak']").prop('checked',false);
+	})
+	$("#d_soju").on("click",function(e){
+		$("select[name='soju1'] option:eq(0)").prop("selected",true);
+		$("select[name='soju2'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_beer").on("click",function(e){
+		$("select[name='beer1'] option:eq(0)").prop("selected",true);
+		$("select[name='beer2'] option:eq(0)").prop("selected",true);
+	})
+	$("#d_military").on("click",function(e){
+		$("input[name='military']").prop('checked',false);
+	})
 	
 	$("#create_btn").on("click",function(e){
 		e.preventDefault(e);
@@ -13,6 +94,73 @@ $(document).ready(function(){
 	
 	$("#reset_btn").on("click",function(e){
 		e.preventDefault(e);
+		document.getElementById('keyword1').value="";
+		document.getElementById('keyword2').value="";
+		$("select[name='devCareer1'] option:eq(0)").prop("selected",true);
+		$("select[name='devCareer2'] option:eq(0)").prop("selected",true);
+		$("input[name='skillMethod']").prop('checked',false);
+		$("select[name='project_language'] option:eq(0)").prop("selected",true);
+		$("select[name='project_framework'] option:eq(0)").prop("selected",true);
+		$("select[name='project_dbms'] option:eq(0)").prop("selected",true);
+		$("select[name='project_devetc'] option:eq(0)").prop("selected",true);
+		$("input[name='education']").prop('checked',false);
+		$("input[name='certification']").prop('checked',false);
+		$("input[name='role']").prop('checked',false);
+		$("select[name='project_start1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_start1_m'] option:eq(0)").prop("selected",true);
+		$("select[name='project_start2_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_start2_m'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end1_m'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end2_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end2_m'] option:eq(0)").prop("selected",true);
+		$("input[name='college']").prop('checked',false);
+		$("select[name='graduate1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='graduate2_y'] option:eq(0)").prop("selected",true);
+		$("input[name='sex'] option:eq(0)").prop("selected",true);
+		$("input[name='sex'] option:eq(0)").prop("selected",true);
+		$("select[name='birth1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='birth1_m'] option:eq(0)").prop("selected",true);
+		$("select[name='birth2_y'] option:eq(0)").prop("selected",true);
+		$("select[name='birth2_m'] option:eq(0)").prop("selected",true);
+		$("select[name='age1'] option:eq(0)").prop("selected",true);
+		$("select[name='age2'] option:eq(0)").prop("selected",true);
+		$("input[name='career']").prop('checked',false);
+		$("select[name='career1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='career2_y'] option:eq(0)").prop("selected",true);
+		$("input[name='foreignlangRead']").prop('checked',false);
+		$("input[name='foreignlangSpeak']").prop('checked',false);
+		$("select[name='soju1'] option:eq(0)").prop("selected",true);
+		$("select[name='soju2'] option:eq(0)").prop("selected",true);
+		$("select[name='beer1'] option:eq(0)").prop("selected",true);
+		$("select[name='beer2'] option:eq(0)").prop("selected",true);
+		$("input[name='military']").prop('checked',false);	
+		
+		var str1="";
+		
+		staffInfoService.getPage({
+			pageNum:1,
+			amount:5,
+		},
+		function(pageMaker){
+			if(pageMaker.prev){
+				str1+="<li class='paginate_button previous' onclick ='movePage("+(pageMaker.startPage-1)+")' >이전</a></li>"
+			}
+			for(var i = pageMaker.startPage; i<pageMaker.endPage+1;i++ ){
+				if(i==page){ 
+				str1+="<li class='paginate_button' onclick ='movePage("+i+")'>["+i+"]</a></li>";
+			}else{
+					str1+="<li class='paginate_button' onclick ='movePage("+i+")'>"+i+"</a></li>";
+				}
+			}
+			if(pageMaker.next){
+				str1+="<li class='paginate_button next' onclick ='movePage("+((pageMaker.endPage*1)+1)+")'>다음</a></li>"
+			}
+			pagination.html(str1);
+			total.html("총 "+pageMaker.total+"건");
+			
+		})
+		
 		staffInfoService.search({
 		},
 			function(list){
