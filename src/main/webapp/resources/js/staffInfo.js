@@ -42,8 +42,28 @@ var staffInfoService = (function() {
 		})
 	}
 
+	function getPage(number, callback, error) {
+		$.ajax({
+			type : 'post',
+			url : '/page',
+			data : JSON.stringify(number),
+			contentType : "application/json; charset=utf-8",
+			success : function(result, status, xhr) {
+				if (callback) {
+					callback(result);
+				}
+			},
+			error : function(xhr, status, er) {
+				console.log("========getTotal_error========"+status)
+				if (error) {
+					error(er);
+				}
+			}
+		})
+	}
 	return {
 		create:create,
-		search:search
+		search:search,
+		getPage,getPage
 	}
 })();

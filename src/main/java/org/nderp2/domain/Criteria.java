@@ -13,7 +13,7 @@ public class Criteria {
 	
 	private int pageNum;
 	private int amount;
-	private String filterCol;
+	private String sortCondition;
 	private String method;
 	
 	public Criteria(int pageNum, int amount){

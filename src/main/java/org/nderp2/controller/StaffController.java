@@ -6,6 +6,7 @@ import org.nderp2.code.domain.CodeReligion;
 import org.nderp2.domain.Criteria;
 import org.nderp2.domain.ResultDAO;
 import org.nderp2.domain.Staff;
+import org.nderp2.dto.PageDTO;
 import org.nderp2.service.CodeService;
 import org.nderp2.service.StaffService;
 import org.springframework.http.HttpStatus;
@@ -51,5 +52,17 @@ public class StaffController {
 		return new ResponseEntity<List<ResultDAO>>(service.search(cri), HttpStatus.OK);
 	}
 	
+	@PostMapping(value="/page",
+			consumes = "application/json",
+			produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
+					MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<PageDTO> getPage(@RequestBody Criteria cri){
+		cri.setAmount(5);
+		
+		int size = service.getTotal(cri);
+		PageDTO pageMaker = new PageDTO(cri,size);
+		
+		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);
+	}
 	
 }

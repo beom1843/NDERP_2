@@ -92,93 +92,224 @@ $(document).ready(function(){
 	
 	var resultPlace=$("#result");
 	
-	$("#reset_btn").on("click",function(e){
-		e.preventDefault(e);
-		document.getElementById('keyword1').value="";
-		document.getElementById('keyword2').value="";
-		$("select[name='devCareer1'] option:eq(0)").prop("selected",true);
-		$("select[name='devCareer2'] option:eq(0)").prop("selected",true);
-		$("input[name='skillMethod']").prop('checked',false);
-		$("select[name='project_language'] option:eq(0)").prop("selected",true);
-		$("select[name='project_framework'] option:eq(0)").prop("selected",true);
-		$("select[name='project_dbms'] option:eq(0)").prop("selected",true);
-		$("select[name='project_devetc'] option:eq(0)").prop("selected",true);
-		$("input[name='education']").prop('checked',false);
-		$("input[name='certification']").prop('checked',false);
-		$("input[name='role']").prop('checked',false);
-		$("select[name='project_start1_y'] option:eq(0)").prop("selected",true);
-		$("select[name='project_start1_m'] option:eq(0)").prop("selected",true);
-		$("select[name='project_start2_y'] option:eq(0)").prop("selected",true);
-		$("select[name='project_start2_m'] option:eq(0)").prop("selected",true);
-		$("select[name='project_end1_y'] option:eq(0)").prop("selected",true);
-		$("select[name='project_end1_m'] option:eq(0)").prop("selected",true);
-		$("select[name='project_end2_y'] option:eq(0)").prop("selected",true);
-		$("select[name='project_end2_m'] option:eq(0)").prop("selected",true);
-		$("input[name='college']").prop('checked',false);
-		$("select[name='graduate1_y'] option:eq(0)").prop("selected",true);
-		$("select[name='graduate2_y'] option:eq(0)").prop("selected",true);
-		$("input[name='sex'] option:eq(0)").prop("selected",true);
-		$("input[name='sex'] option:eq(0)").prop("selected",true);
-		$("select[name='birth1_y'] option:eq(0)").prop("selected",true);
-		$("select[name='birth1_m'] option:eq(0)").prop("selected",true);
-		$("select[name='birth2_y'] option:eq(0)").prop("selected",true);
-		$("select[name='birth2_m'] option:eq(0)").prop("selected",true);
-		$("select[name='age1'] option:eq(0)").prop("selected",true);
-		$("select[name='age2'] option:eq(0)").prop("selected",true);
-		$("input[name='career']").prop('checked',false);
-		$("select[name='career1_y'] option:eq(0)").prop("selected",true);
-		$("select[name='career2_y'] option:eq(0)").prop("selected",true);
-		$("input[name='foreignlangRead']").prop('checked',false);
-		$("input[name='foreignlangSpeak']").prop('checked',false);
-		$("select[name='soju1'] option:eq(0)").prop("selected",true);
-		$("select[name='soju2'] option:eq(0)").prop("selected",true);
-		$("select[name='beer1'] option:eq(0)").prop("selected",true);
-		$("select[name='beer2'] option:eq(0)").prop("selected",true);
-		$("input[name='military']").prop('checked',false);	
-		
-		var str1="";
-		
-		staffInfoService.getPage({
-			pageNum:1,
-			amount:5,
-		},
-		function(pageMaker){
-			if(pageMaker.prev){
-				str1+="<li class='paginate_button previous' onclick ='movePage("+(pageMaker.startPage-1)+")' >이전</a></li>"
-			}
-			for(var i = pageMaker.startPage; i<pageMaker.endPage+1;i++ ){
-				if(i==page){ 
-				str1+="<li class='paginate_button' onclick ='movePage("+i+")'>["+i+"]</a></li>";
-			}else{
-					str1+="<li class='paginate_button' onclick ='movePage("+i+")'>"+i+"</a></li>";
+	var m1 = 0;
+	var m2 = 0;
+	var m3 = 0;
+	var m4 = 0;
+	var m5 = 0;
+	var m6 = 0;
+	var m7 = 0;
+	var m8 = 0;
+	var m9 = 0;
+	var m10 = 0;
+	var m11 = 0;
+	var m12 = 0;
+	var m13 = 0;
+	var m14 = 0;
+	var m =0;
+	var c="";
+	var counts = [m1, m2, m3, m4, m5,m6,m7,m8,m9,m10,m11,m12,m13,m14 ]
+	
+	var sortCondition={
+			c:"",
+			m:"",
+			page:""
+		}
+
+	window.sortCount=function(element){
+		console.log($(element).val());
+		//element++
+		var value = $(element).val();
+
+
+		function check(x){
+			for(var i = 0 ; i<14 ; i++){
+				if(!i==x&&!(counts[i]==0)){
+					counts[i]=0
 				}
 			}
-			if(pageMaker.next){
-				str1+="<li class='paginate_button next' onclick ='movePage("+((pageMaker.endPage*1)+1)+")'>다음</a></li>"
-			}
-			pagination.html(str1);
-			total.html("총 "+pageMaker.total+"건");
-			
-		})
+		}//sortCount안의 check 함수 
+	
 		
-		staffInfoService.search({
-		},
-			function(list){
-			var str="<table id='style3'><tr> <th>번호</th><th>이름</th><th>성별</th><th>출생년도</th><th>나이</th><th>핸드폰</th>";
-			str+="<th>이메일</th><th>주민번호</th><th>거주지</th><th>최종학력</th><th>최종학력 졸업일</th><th>개발년차</th><th>종합 소유 기술</th><th>자격증</th></tr>"
-			if(list==null || list.length ==0){}
-			for(var i =0, len=list.length||0 ;i<len;i++){
-			str +="<tr><td>"+list[i].rownum+"</td><td>"+list[i].staff_name+"</td><td>"+list[i].sex+"</td><td>"+list[i].birthy+"</td><td>"+list[i].age;
-			str +="</td><td>"+list[i].staff_hp+"</td><td>"+list[i].staff_email+"</td><td>"+list[i].staff_id_no+"</td><td>"+list[i].staff_address+"</td><td>"+list[i].staff_education;
-			str +="</td><td>"+list[i].staff_grad_y+"</td><td>"+list[i].staff_dev_year+"</td><td>"+list[i].staff_total_skill+"</td><td>"+list[i].staff_certification
-			str +="</td></tr>"	
+		switch(value){
+		case "rownum":
+			check(0);
+			
+			m=counts[0]
+			m++;
+			counts[0]=m
+			
+			c=value;
+			break;
+			
+		case "a.staff_name":
+			check(1);
+			
+			m=counts[1]
+			m++;
+			counts[1]=m
+			
+			c=value;
+			break;
+			
+		case "a.sex":
+			check(2);
+			
+			m=counts[2]
+			m++;
+			counts[2]=m
+			
+			c=value;
+			break;
+			
+		case "a.birthy":
+			check(3);
+			
+			m=counts[3]
+			m++;
+			counts[3]=m
+			
+			c=value;
+			break;
+			
+		case "a.age":
+			check(4);
+			
+			m=counts[4]
+			m++;
+			counts[4]=m
+			
+			c=value;
+			break;	
+			
+		case "a.staff_hp":
+			check(5);
+			
+			m=counts[5]
+			m++;
+			counts[5]=m
+			
+			c=value;
+			break;	
+			
+		case "a.staff_email":
+			check(6);
+			
+			m=counts[6]
+			m++;
+			counts[6]=m
+			
+			c=value;
+			break;	
+			
+		case "a.staff_id_no":
+			check(7);
+			
+			m=counts[7]
+			m++;
+			counts[7]=m
+			
+			c=value;
+			break;	
+			
+		case "a.staff_address":
+			check(8);
+			
+			m=counts[8]
+			m++;
+			counts[8]=m
+			
+			c=value;
+			break;	
+			
+		case "b.education_code":
+			check(9);
+			
+			m=counts[9]
+			m++;
+			counts[9]=m
+			
+			c=value;
+			break;	
+			
+		case "b.graduate_y":
+			check(10);
+			
+			m=counts[10]
+			m++;
+			counts[10]=m
+			
+			c=value;
+			break;	
+			
+		case "c.dev_y":
+			check(11);
+			
+			m=counts[11]
+			m++;
+			counts[11]=m
+			
+			c=value;
+			break;	
+			
+		case "c.staff_total_skill":
+			check(12);
+			
+			m=counts[12]
+			m++;
+			counts[12]=m
+			
+			c=value;
+			break;	
+			
+		case "d.staff_certification":
+			check(13);
+			
+			m=counts[13]
+			m++;
+			counts[13]=m
+			
+			c=value;
+			break;	
+			
+		}
+		
+		sortCondition={
+			c:c,
+			m:m,
+			page:"1"
+		}	
+		console.log("??"+sortCondition.c+sortCondition.m+sortCondition.page)
+		search(sortCondition);
+	}//sortCount 함수 끝
+
+		
+	function search(sortCondition){
+		console.log("!!"+sortCondition.c+sortCondition.m+sortCondition.page)	
+		
+		if(sortCondition){
+			var cnt= sortCondition.m%2
+			if(cnt==1){
+				sortCondition.m="desc"
+			}else{
+				sortCondition.m="asc"
 			}
+			console.log(sortCondition)
+			if(sortCondition.c==""){
+				condition="rownum desc";
+				page=sortCondition.page
+			}else{
 				
-			resultPlace.html(str);	
-		})
-	})
-	$("#search_btn").on("click",function(e){
-		e.preventDefault(e);
+				page=sortCondition.page
+				condition=sortCondition.c+" "+sortCondition.m
+			}
+		}else{
+			condition="rownum" 
+			page =1;
+		}
+
+		console.log(condition+"조건")
+		
 		var type="";
 		var sType="";
 		var keyword1=$("#keyword1").val();
@@ -358,10 +489,11 @@ $(document).ready(function(){
 		if(military){
 			type+="s"
 		}
-		console.log("회화"+foreignSpeak)
+		console.log(condition);
 		staffInfoService.search({
-			pageNum:0,
-			amount:0,
+			pageNum:page,
+			amount:5,
+			sortCondition:condition,
 			
 			type:type,
 
@@ -412,17 +544,166 @@ $(document).ready(function(){
 			military:military
 		},
 			function(list){
-			var str="<table id='style3'><tr> <th>번호</th><th>이름</th><th>성별</th><th>출생년도</th><th>나이</th><th>핸드폰</th>";
-			str+="<th>이메일</th><th>주민번호</th><th>거주지</th><th>최종학력</th><th>최종학력 졸업일</th><th>개발년차</th><th style='width:300px'>종합 소유 기술</th><th>자격증</th></tr>"
+			var str ='<input type="hidden" id="m1" name="m1" value="rownum"/>';
+			str+='<input type="hidden" id="m2" name="m2" value="a.staff_name"/>';
+			str+='<input type="hidden" id="m3" name="m3" value="a.sex"/>';
+			str+='<input type="hidden" id="m4" name="m4" value="a.birthy"/>';
+			str+='<input type="hidden" id="m5" name="m5" value="a.age"/>';
+			str+='<input type="hidden" id="m6" name="m6" value="a.staff_hp"/>';
+			str+='<input type="hidden" id="m7" name="m7" value="a.staff_email"/>';
+			str+='<input type="hidden" id="m8" name="m8" value="a.staff_id_no"/>';
+			str+='<input type="hidden" id="m9" name="m9" value="a.staff_address"/>';
+			str+='<input type="hidden" id="m10" name="m10" value="b.education_code"/>';
+			str+='<input type="hidden" id="m11" name="m11" value="b.graduate_y"/>';
+			str+='<input type="hidden" id="m12" name="m12" value="c.dev_y"/>';
+			str+='<input type="hidden" id="m13" name="m13" value="c.staff_total_skill"/>';
+			str+='<input type="hidden" id="m14" name="m14" value="d.staff_certification"/>';
+					
+			str+="<table id='style3'><tr> <th><div onclick='sortCount(m1)'>번호</div></th><th><div onclick='sortCount(m2)'>이름</div></th><th><div onclick='sortCount(m3)'>성별</div></th><th><div onclick='sortCount(m4)'>출생년도</div></th><th><div onclick='sortCount(m5)'>나이</div></th><th><div onclick='sortCount(m6)'>핸드폰</div></th>";
+			str+="<th><div onclick='sortCount(m7)'>이메일</div></th><th><div onclick='sortCount(m8)'>주민번호</div></th><th><div onclick='sortCount(m9)'>거주지</div></th><th><div onclick='sortCount(m10)'>최종학력</div></th><th><div onclick='sortCount(m11)'>최종학력 졸업일</div></th><th><div onclick='sortCount(m12)'>개발년차</div></th><th><div onclick='sortCount(m13)'>종합 소유 기술</div></th><th><div onclick='sortCount(m14)'>자격증</div></th></tr>"
 			if(list==null || list.length ==0){}
 			for(var i =0, len=list.length||0 ;i<len;i++){
-			str +="<tr><td>"+list[i].rownum+"</td><td>"+list[i].staff_name+"</td><td>"+list[i].sex+"</td><td>"+list[i].birthy+"</td><td>"+list[i].age;
+			str +="<tr><td>"+list[i].rn+"</td><td>"+list[i].staff_name+"</td><td>"+list[i].sex+"</td><td>"+list[i].birthy+"</td><td>"+list[i].age;
 			str +="</td><td>"+list[i].staff_hp+"</td><td>"+list[i].staff_email+"</td><td>"+list[i].staff_id_no+"</td><td>"+list[i].staff_address+"</td><td>"+list[i].staff_education;
 			str +="</td><td>"+list[i].staff_grad_y+"</td><td>"+list[i].staff_dev_year+"</td><td>"+list[i].staff_total_skill+"</td><td>"+list[i].staff_certification
 			str +="</td></tr>"	
-			}
-				
-			resultPlace.html(str);	
+				}
+				console.log("왜안돼?")
+			resultPlace.html(str);
 		})
+		
+		var str1="";
+		var pagination=$("#pagination")
+		var total=$("#total")
+		staffInfoService.getPage({
+			pageNum:page,
+			amount:5,
+			sortCondition:condition,
+			
+			type:type,
+
+			keyword1:0,
+			keyword2:0,
+			
+			dev1:dev_y1,
+			dev2:dev_y2,
+			
+			skillRadio:skillRadio,
+			skill:sType,
+			
+			project_language:project_language,
+			project_framework:project_framework,
+			project_dbms:project_dbms,
+			project_devetc:project_devetc,
+			
+			edu:edu,
+			certi:certi,
+			role:role,
+			
+			projectStartDay1:projectStartDay1,
+			projectStartDay2:projectStartDay2,
+			projectEndDay1:projectEndDay1,
+			projectEndDay2:projectEndDay2,
+			
+			college:college,
+			
+			graduateDay1:graduateDay1,
+			graduateDay2:graduateDay2,
+			
+			sex:sex,
+			
+			birthDay1:birthDay1,
+			birthDay2:birthDay2,
+			age1:age1,
+			age2:age2,
+			career:career,
+			career1:career1,
+			career2:career2,
+			foreignread:foreignRead,
+			foreignspeak:foreignSpeak,
+			soju1:soju1,
+			soju2:soju2,
+			beer1:beer1,
+			beer2:beer2,
+			
+			military:military
+		},
+		function(pageMaker){
+			if(pageMaker.prev){
+				str1+="<li class='paginate_button previous' onclick ='movePage("+(pageMaker.startPage-1)+")' >이전</a></li>"
+			}
+			for(var i = pageMaker.startPage;i<pageMaker.endPage+1;i++ ){
+				if(i==page){ 
+				str1+="<li class='paginate_button' onclick ='movePage("+i+")'>["+i+"]</a></li>";
+			}else{
+					str1+="<li class='paginate_button' onclick ='movePage("+i+")'>"+i+"</a></li>";
+				}
+			}
+			if(pageMaker.next){
+				str1+="<li class='paginate_button next' onclick ='movePage("+((pageMaker.endPage*1)+1)+")'>다음</a></li>"
+			}
+			pagination.html(str1);
+			total.html("총 "+pageMaker.total+"건");
+			
+		})	
+	}// function search() 끝
+	
+	$("#reset_btn").on("click",function(e){
+		e.preventDefault(e);
+		document.getElementById('keyword1').value="";
+		document.getElementById('keyword2').value="";
+		$("select[name='devCareer1'] option:eq(0)").prop("selected",true);
+		$("select[name='devCareer2'] option:eq(0)").prop("selected",true);
+		$("input[name='skillMethod']").prop('checked',false);
+		$("select[name='project_language'] option:eq(0)").prop("selected",true);
+		$("select[name='project_framework'] option:eq(0)").prop("selected",true);
+		$("select[name='project_dbms'] option:eq(0)").prop("selected",true);
+		$("select[name='project_devetc'] option:eq(0)").prop("selected",true);
+		$("input[name='education']").prop('checked',false);
+		$("input[name='certification']").prop('checked',false);
+		$("input[name='role']").prop('checked',false);
+		$("select[name='project_start1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_start1_m'] option:eq(0)").prop("selected",true);
+		$("select[name='project_start2_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_start2_m'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end1_m'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end2_y'] option:eq(0)").prop("selected",true);
+		$("select[name='project_end2_m'] option:eq(0)").prop("selected",true);
+		$("input[name='college']").prop('checked',false);
+		$("select[name='graduate1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='graduate2_y'] option:eq(0)").prop("selected",true);
+		$("input[name='sex'] option:eq(0)").prop("selected",true);
+		$("input[name='sex'] option:eq(0)").prop("selected",true);
+		$("select[name='birth1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='birth1_m'] option:eq(0)").prop("selected",true);
+		$("select[name='birth2_y'] option:eq(0)").prop("selected",true);
+		$("select[name='birth2_m'] option:eq(0)").prop("selected",true);
+		$("select[name='age1'] option:eq(0)").prop("selected",true);
+		$("select[name='age2'] option:eq(0)").prop("selected",true);
+		$("input[name='career']").prop('checked',false);
+		$("select[name='career1_y'] option:eq(0)").prop("selected",true);
+		$("select[name='career2_y'] option:eq(0)").prop("selected",true);
+		$("input[name='foreignlangRead']").prop('checked',false);
+		$("input[name='foreignlangSpeak']").prop('checked',false);
+		$("select[name='soju1'] option:eq(0)").prop("selected",true);
+		$("select[name='soju2'] option:eq(0)").prop("selected",true);
+		$("select[name='beer1'] option:eq(0)").prop("selected",true);
+		$("select[name='beer2'] option:eq(0)").prop("selected",true);
+		$("input[name='military']").prop('checked',false);	
+		
+		sortCondition.page=1;
+		search(sortCondition);
+
 	})
+	$("#search_btn").on("click",function(e){
+		e.preventDefault(e);
+		sortCondition.page=1;
+		search(sortCondition);
+	})
+	
+	window.movePage = function(pageNum){
+		sortCondition.page= pageNum;
+		search(sortCondition);
+	}
 })

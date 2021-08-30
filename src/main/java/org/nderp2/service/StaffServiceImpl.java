@@ -211,6 +211,11 @@ public class StaffServiceImpl implements StaffService {
 		return list;
 	}
 
+	@Override
+	public int getTotal(Criteria cri) {
+		return mapper.getTotal(cri);
+	}
+
 	
 	
 }

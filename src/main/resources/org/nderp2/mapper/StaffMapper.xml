@@ -314,7 +314,7 @@
 				and A.staff_no = E.staff_no
 				and a.staff_no = g.staff_no
 				and a.staff_no = h.staff_no
-			order by #{filterCol})
+			order by #{sortCondition})
 		where rownum>0)
 		<![CDATA[
 		where rn<=#{pageNum} * #{amount}
@@ -444,7 +444,306 @@
 					</if>	
 				</if>
 		</foreach>
-
+	</select>
+	
+	<select id="getTotal" resultType="Integer">
+	select max(rn)
+		from
+			(select rownum as rn, A.sex,A.birthy, A.age,A.staff_id_no,
+				E.career_year, E.career_code, A.STAFF_MILITARY, G.soju_code, G.beer_code,C.start_Day,C.end_Day,
+				C.dev_y,B.education_code,D.certification_code,C.role_code,c.language_code, c.framework_code, c.dbms_code, c.devetc_code,B.college_code,B.graduate_y,
+				h.foreignlangread, h.foreignlangspeak
+			from 
+				(select rownum,staff_no,substr(staff_id_no,1,4) as birthd,
+					case substr(staff_id_no, 7,1) 
+					when '1' then '남'
+					when '2' then '여'
+					when '3' then '남'
+					when '4' then '여' end as sex,
+			
+					case substr(staff_id_no, 7,1) 
+					when '1' then to_number(to_char(sysdate,'yyyy'))-1899-substr(staff_id_no, 1, 2)||'세'
+					when '2' then  to_number(to_char(sysdate,'yyyy'))-1899-substr(staff_id_no, 1, 2)||'세'
+					when '3' then  to_number(to_char(sysdate,'yyyy'))-1999-substr(staff_id_no, 1, 2)||'세'
+					when '4' then  to_number(to_char(sysdate,'yyyy'))-1999-substr(staff_id_no, 1, 2)||'세' end as age,
+					
+					case substr(staff_id_no, 7,1)
+					when '1' then 1900+substr(staff_id_no, 1, 2)||'년생'
+					when '2' then  1900+substr(staff_id_no, 1, 2)||'년생'
+					when '3' then  2000+substr(staff_id_no, 1, 2)||'년생'
+					when '4' then  2000+substr(staff_id_no, 1, 2)||'년생' end as birthy,
+					substr(staff_id_no,1,6)||'-'|| substr(staff_id_no, 7,7) as staff_id_no ,staff_military
+				from staff) A,
+				
+				
+				(select b.staff_no, b.College_Code, b.education_code, b.grad_year as graduate_y
+				from
+					(select a.college_code, a.staff_no, b.education_code,substr(a.school_graduateday,1,4) as grad_year
+					from staff_school a,(select staff_no, max(education_code) as education_code
+					from staff_school
+					group by staff_no) b
+				where a.staff_no=b.staff_no
+					and a.education_code = b.education_code) b
+					) B,
+			
+			
+				(select b.staff_no,
+					f.dev_year as dev_y,
+			    	b.language_code, c.framework_code, d.dbms_code,e.devetc_code,
+			    	g.role_code,f.start_day, f.end_day
+				from
+					(select a.staff_no, regexp_replace(listagg(a.PROJECT_language,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_language,
+					      regexp_replace(listagg(a.language_code,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as language_code
+							  from (select L.Project_language_No as project_language_no,
+					  l.staff_project_no as staff_project_no, 
+					  Code_L.language_Name as project_language,
+					  L.Project_language as language_code,
+					  S.Staff_No
+							 from code_language code_l, project_language l, staff_project s
+							 where l.project_language = code_l.language_code
+					     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+							 group by a.staff_no
+							 order by a.STAFF_NO desc) b,
+				
+					(select a.staff_no, regexp_replace(listagg(a.PROJECT_framework,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_framework,
+					      regexp_replace(listagg(a.framework_code,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as framework_code
+							  from (select L.Project_framework_No as project_framework_no,
+					  l.staff_project_no as staff_project_no, 
+					  Code_L.framework_Name as project_framework,
+					  L.Project_framework as framework_code,
+					  S.Staff_No
+							 from code_framework code_l, project_framework l, staff_project s
+							 where l.project_framework = code_l.framework_code
+					     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+							 group by a.staff_no
+							 order by a.STAFF_NO desc) c,
+				
+					(select a.staff_no, regexp_replace(listagg(a.PROJECT_dbms,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_dbms,
+					      regexp_replace(listagg(a.dbms_code,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as dbms_code
+							  from (select L.Project_dbms_No as project_dbms_no,
+					  l.staff_project_no as staff_project_no, 
+					  Code_L.dbms_Name as project_dbms,
+					  L.Project_dbms as dbms_code,
+					  S.Staff_No
+							 from code_dbms code_l, project_dbms l, staff_project s
+							 where l.project_dbms = code_l.dbms_code
+					     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+							 group by a.staff_no
+							 order by a.STAFF_NO desc) d,
+				
+					(select a.staff_no, regexp_replace(listagg(a.PROJECT_devetc,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as project_devetc,
+					      regexp_replace(listagg(a.devetc_code,',')
+							  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as devetc_code
+							  from (select L.Project_devetc_No as project_devetc_no,
+					  l.staff_project_no as staff_project_no, 
+					  Code_L.devetc_Name as project_devetc,
+					  L.Project_devetc as devetc_code,
+					  S.Staff_No
+							 from code_devetc code_l, project_devetc l, staff_project s
+							 where l.project_devetc = code_l.devetc_code
+					     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+							 group by a.staff_no
+							 order by a.STAFF_NO desc) e,
+							 
+					(select staff_no, to_number(to_char(sysdate,'yyyy'))-substr(min(project_startday),1,4)+1 as dev_year,
+						max(project_startday) as start_day,
+						max(project_endday) as end_day
+					from staff_project
+					group by staff_no) f,
+							
+				    (select a.staff_no,
+				      regexp_replace(listagg(a.role_code,',')
+						  within group(order by a.staff_no),'([^,]+)(,\1)*(,|$)', '\1\3') as role_code
+						  from (select L.Project_role_No as project_role_no,
+								  l.staff_project_no as staff_project_no, 
+								  Code_L.role_Name as project_role,
+								  L.Project_role as role_code,
+								  S.Staff_No
+								 from code_role code_l, project_role l, staff_project s
+									 where l.project_role = code_l.role_code
+							     and S.Staff_Project_No=L.Staff_Project_No)a, STAFF_PROJECT b
+					 group by a.staff_no
+					 order by a.STAFF_NO desc) g
+			     
+				  where b.Staff_No = c.Staff_No
+					  and b.Staff_No = d.Staff_No
+					  and b.Staff_No = e.Staff_No
+					  and b.staff_no =f.staff_no
+					  and b.staff_no = g.staff_no) C,
+			  
+				(select c.staff_no,
+				regexp_replace(listagg(C.certification_code, ',')within group(order by C.Staff_Certification),'([^,]+)(,\1)*(,|$)', '\1\3')
+					as certification_code
+				from
+					(select a.staff_certification_no, a.staff_no, b.certification_name as staff_certification, a.certification_code
+					from staff_certification a, code_certification b
+					where a.certification_code = b.certification_code) c,
+					staff d
+				group by C.Staff_No) D,
+				
+				
+				(select a.staff_no ,
+					round(sum((to_number(substr(a.career_retireday,1,4))-to_number(substr(a.career_hireday,1,4)))*12+
+						to_number(substr(a.career_retireday,5,2))-to_number(substr(a.career_hireday,5,2)))/12,1) as career_year,
+					regexp_replace(listagg(a.career_code,',') within group(order by a.staff_career_no), '([^,]+)(,\1)*(,|$)', '\1\3') as career_code
+				from staff_career a
+				group by a.staff_no) E,
+				
+				staff_taste G,
+				
+				(select a.staff_no, a.foreignlangread, b.foreignlangspeak
+				from
+					(select staff_no, listagg(foreignlang_code,',')
+					within group(order by foreignlang_code) as foreignlangRead, FOREIGNLANG_TYPE_CODE
+					from staff_foreignlang
+					group by staff_no, FOREIGNLANG_TYPE_CODE
+					having FOREIGNLANG_TYPE_CODE='1') a,
+					
+					(select staff_no, listagg(foreignlang_code,',')
+					within group(order by foreignlang_code) as foreignlangSpeak, FOREIGNLANG_TYPE_CODE
+					from staff_foreignlang
+					group by staff_no, FOREIGNLANG_TYPE_CODE
+					having FOREIGNLANG_TYPE_CODE='2')b
+				where a.staff_no=b.staff_no) H
+				
+			where A.staff_no = B.staff_no
+				and A.staff_no = C.staff_no
+				and A.staff_no = D.staff_no
+				and A.staff_no = E.staff_no
+				and a.staff_no = g.staff_no
+				and a.staff_no = h.staff_no)
+		where rownum>0
+		<foreach collection="typeArr" item="type">
+			<trim prefix=" AND(" suffix=")">
+				<if test="type=='a'.toString()">
+				dev_y between #{dev1} and #{dev2}
+				</if>
+				
+				<if test="type=='c'.toString()">
+				education_code in
+					<foreach collection="eduArr" item="edu" open="(" separator ="," close=")">
+					#{edu}
+					</foreach>
+				</if>
+				<if test="type=='d'.toString()">
+					<foreach collection="certiArr" item="certi" separator="or" >
+					 	certification_code like '%'||#{certi}||'%'
+					 </foreach>
+				</if>
+				<if test="type=='e'.toString()">
+					 <foreach collection="roleArr" item="role" separator="or" >
+					 	role_code like '%'||#{role}||'%'
+					 </foreach>
+				
+				</if>
+				<if test="type=='f'.toString()">
+					start_day between #{projectStartDay1} and #{projectStartDay2}
+				</if>
+				<if test="type=='g'.toString()">
+					end_day between #{projectEndDay1} and #{projectEndDay2}
+				</if>
+				<if test="type=='h'.toString()">
+					college_code in
+					<foreach collection="collegeArr" item="college" open="(" separator ="," close=")">
+					#{college}
+					</foreach>
+				</if>
+				<if test="type=='i'.toString()">
+					graduate_y between #{graduateDay1} and #{graduateDay2}
+				</if>
+				<if test="type=='j'.toString()">
+					sex in
+					<foreach collection="sexArr" item="sex" open="(" separator ="," close=")">
+						<if test="sex=='F'.toString()">
+						'여'
+						</if>
+						<if test="sex=='M'.toString()">
+						'남'
+						</if>
+					</foreach>
+				</if>
+				<if test="type=='k'.toString()">
+					substr(birthy,1,4)||substr(staff_id_no,3,2) between #{birthDay1} and #{birthDay2}
+				</if>
+				<if test="type=='l'.toString()">
+					substr(age,1,length(age)-1) between #{age1} and #{age2}
+				</if>
+				<if test="type=='m'.toString()">
+					career_code in
+					<foreach collection="careerArr" item="career" open="(" separator ="," close=")">
+					#{career}
+					</foreach>
+				</if>
+				<if test="type=='n'.toString()">
+					career_year between #{career1} and #{career2}
+				</if>
+				<if test="type=='o'.toString()">
+					foreignlangread in
+					<foreach collection="foreignreadArr" item="foreignread" open="(" separator ="," close=")">
+					#{foreignread}
+					</foreach>
+				</if>
+				<if test="type=='p'.toString()">
+					foreignlangspeak in
+					<foreach collection="foreignspeakArr" item="foreignspeak" open="(" separator ="," close=")">
+					#{foreignspeak}
+					</foreach>
+				</if>
+				<if test="type=='q'.toString()">
+					soju_code between #{soju1] and #{soju2}
+				</if>
+				<if test="type=='r'.toString()">
+					beer_code between #{beer1} and #{beer2}
+				</if>
+				<if test="type=='s'.toString()">
+					staff_military in
+					<foreach collection="militaryArr" item="military" open="(" separator ="," close=")">
+					#{military}
+					</foreach>
+				</if>
+			</trim>
+			<if test="type=='b'.toString()">
+					<if test="skillRadio=='a'.toString()">
+						<foreach collection="skillArr" item="skill" open="and (" separator=")and(" close=")" >
+								<if test="skill=='a'.toString()">
+									language_code like '%'||#{project_language}||'%'
+								</if>
+								<if test="skill=='b'.toString()">
+									framework_code like '%'||#{project_framework}||'%'
+								</if>
+								<if test="skill=='c'.toString()">
+									dbms_code like '%'||#{project_dbms}||'%'
+								</if>
+								<if test="skill=='d'.toString()">
+									devetc_code like '%'||#{project_devetc}||'%'
+								</if>
+						</foreach>
+					</if>
+					<if test="skillRadio=='o'.toString()">
+						<foreach collection="skillArr" item="skill" open="and (" separator=" or " close=")" >
+								<if test="skill=='a'.toString()">
+									language_code like '%'||#{project_language}||'%'
+								</if>
+								<if test="skill=='b'.toString()">
+									framework_code like '%'||#{project_framework}||'%'
+								</if>
+								<if test="skill=='c'.toString()">
+									dbms_code like '%'||#{project_dbms}||'%'
+								</if>
+								<if test="skill=='d'.toString()">
+									devetc_code like '%'||#{project_devetc}||'%'
+								</if>
+						</foreach>
+					</if>	
+				</if>
+		</foreach>
 	</select>
 
 </mapper>

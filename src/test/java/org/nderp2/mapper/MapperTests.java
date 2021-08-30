@@ -63,7 +63,7 @@ public class MapperTests {
 		Criteria cri = new Criteria();
 		cri.setPageNum(1);
 		cri.setAmount(3);
-		cri.setFilterCol("staff_name desc");
+		cri.setSortCondition("staff_name desc");
 		mapper.search(cri);
 	}
 }

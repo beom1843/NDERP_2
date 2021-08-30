@@ -14,8 +14,14 @@
 	position:relative;
 }
 
+#total{
+	display:inline-block;
+}
 #pagination{
 	position:relative;
+	text-align:center;
+	margin-left:auto;
+	display:inline-block;
 
 }
 

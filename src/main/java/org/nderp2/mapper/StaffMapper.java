@@ -55,5 +55,5 @@ public interface StaffMapper {
 	public int insertServer(ProjectServer server);
 
 	public List<ResultDAO> search(Criteria cri);
-	
+	public int getTotal(Criteria cri);
 }

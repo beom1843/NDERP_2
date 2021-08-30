@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ResultDAO {
 
-	private int rownum;
+	private int rn;
 	private String staff_name;
 	private String sex;
 	private String birthy;
