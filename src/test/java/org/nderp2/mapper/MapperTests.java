@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nderp2.code.domain.CodeBank;
 import org.nderp2.domain.Criteria;
+import org.nderp2.domain.ResultDAO;
 import org.nderp2.domain.Staff;
 import org.nderp2.mapper.CodeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration(classes={ org.nderp2.config.RootConfig.class})
 @Log4j
 public class MapperTests {
 
@@ -62,8 +63,15 @@ public class MapperTests {
 	public void testSearch(){
 		Criteria cri = new Criteria();
 		cri.setPageNum(1);
-		cri.setAmount(3);
-		cri.setSortCondition("staff_name desc");
-		mapper.search(cri);
+		cri.setAmount(8);
+		cri.setSortCondition("dd ");
+		List<ResultDAO> list = mapper.search(cri);
+		
+		System.out.println(cri.getSortCondition());
+		ResultDAO r = new ResultDAO();
+		for(int i =0;i<list.size();i++){
+			r= list.get(i);
+			System.out.println(r.getStaff_name());
+		}
 	}
 }

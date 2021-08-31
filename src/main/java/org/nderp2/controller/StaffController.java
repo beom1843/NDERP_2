@@ -49,6 +49,7 @@ public class StaffController {
 		System.out.println("@Controller:stype"+cri.getSkill());
 		System.out.println("@Controller:skillRdaio"+cri.getSkillRadio());
 		
+		
 		return new ResponseEntity<List<ResultDAO>>(service.search(cri), HttpStatus.OK);
 	}
 	
@@ -57,7 +58,6 @@ public class StaffController {
 			produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<PageDTO> getPage(@RequestBody Criteria cri){
-		cri.setAmount(5);
 		
 		int size = service.getTotal(cri);
 		PageDTO pageMaker = new PageDTO(cri,size);

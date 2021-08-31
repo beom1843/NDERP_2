@@ -2,6 +2,7 @@ $(document).ready(function(){
 	/*검색갯수, n행 보기*/
 	var criteriaCode="[검색 결과]: <div id='total'></div> "
 		criteriaCode+="<select name='rowCount'>"
+		criteriaCode+="<option value=''>  </option>";
 		criteriaCode+="<option value='1'>1행보기</option>"
 		criteriaCode+="<option value='2'>2행보기</option>"
 		criteriaCode+="<option value='3'>3행보기</option>"

@@ -117,7 +117,7 @@ $(document).ready(function(){
 		}
 
 	window.sortCount=function(element){
-		console.log($(element).val());
+		//console.log($(element).val());
 		//element++
 		var value = $(element).val();
 
@@ -279,12 +279,15 @@ $(document).ready(function(){
 			m:m,
 			page:"1"
 		}	
-		console.log("??"+sortCondition.c+sortCondition.m+sortCondition.page)
+
+		console.log("??"+sortCondition.c+sortCondition.m+sortCondition.page);
 		search(sortCondition);
 	}//sortCount 함수 끝
 
 		
 	function search(sortCondition){
+		
+		console.log("----------------------------------------");
 		console.log("!!"+sortCondition.c+sortCondition.m+sortCondition.page)	
 		
 		if(sortCondition){
@@ -308,7 +311,7 @@ $(document).ready(function(){
 			page =1;
 		}
 
-		console.log(condition+"조건")
+		var amount=$("select[name='rowCount']").val();
 		
 		var type="";
 		var sType="";
@@ -489,10 +492,13 @@ $(document).ready(function(){
 		if(military){
 			type+="s"
 		}
+		if(!amount){
+			amount=5
+		}
 		console.log(condition);
 		staffInfoService.search({
 			pageNum:page,
-			amount:5,
+			amount:amount,
 			sortCondition:condition,
 			
 			type:type,
@@ -577,7 +583,7 @@ $(document).ready(function(){
 		var total=$("#total")
 		staffInfoService.getPage({
 			pageNum:page,
-			amount:5,
+			amount:amount,
 			sortCondition:condition,
 			
 			type:type,
@@ -644,6 +650,8 @@ $(document).ready(function(){
 			}
 			pagination.html(str1);
 			total.html("총 "+pageMaker.total+"건");
+			console.log("시작"+pageMaker.startPage);
+			console.log("끝"+pageMaker.endPage);
 			
 		})	
 	}// function search() 끝

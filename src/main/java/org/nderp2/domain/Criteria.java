@@ -24,8 +24,6 @@ public class Criteria {
 	private String type;
 	
 	public String[] getTypeArr(){
-		System.out.println(dev1);
-		System.out.println(dev2);
 		return type == null? new String[] {}: type.split("");
 	}
 	
@@ -33,7 +31,6 @@ public class Criteria {
 	
 	private String skill;
 	public String[] getSkillArr(){
-		System.out.println("getSTYPEARR");
 		return skill ==null? new String[] {}: skill.split("");
 	}
 	
@@ -116,6 +113,5 @@ public class Criteria {
 	public String[] getMilitaryArr(){
 		return military == null? new String[] {}:military.split("");
 	}
-	
 	
 }

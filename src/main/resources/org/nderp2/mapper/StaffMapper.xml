@@ -314,7 +314,7 @@
 				and A.staff_no = E.staff_no
 				and a.staff_no = g.staff_no
 				and a.staff_no = h.staff_no
-			order by #{sortCondition})
+			order by  #{sortCondition} )
 		where rownum>0)
 		<![CDATA[
 		where rn<=#{pageNum} * #{amount}
@@ -447,7 +447,7 @@
 	</select>
 	
 	<select id="getTotal" resultType="Integer">
-	select max(rn)
+	select count(rn)
 		from
 			(select rownum as rn, A.sex,A.birthy, A.age,A.staff_id_no,
 				E.career_year, E.career_code, A.STAFF_MILITARY, G.soju_code, G.beer_code,C.start_Day,C.end_Day,
