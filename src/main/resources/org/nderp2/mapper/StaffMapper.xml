@@ -314,7 +314,7 @@
 				and A.staff_no = E.staff_no
 				and a.staff_no = g.staff_no
 				and a.staff_no = h.staff_no
-			order by #{sortCondition} )
+			)
 		where rownum>0
 
 		<foreach collection="typeArr" item="type">
@@ -440,11 +440,13 @@
 						</foreach>
 					</if>	
 				</if>
-		</foreach>)
+		</foreach>
+		)
 		<![CDATA[
 		where rn<=(#{pageNum} * #{amount})
 		and rn>((#{pageNum}-1) * #{amount})
 		]]>
+		order by ${sortCondition} ${method}
 	</select>
 	
 	<select id="getTotal" resultType="Integer">

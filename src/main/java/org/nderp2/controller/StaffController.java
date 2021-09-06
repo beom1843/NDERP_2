@@ -53,13 +53,9 @@ public class StaffController {
 					produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
 							MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<ResultDAO>> search(@RequestBody Criteria cri) {
-		System.out.println("@Controller:type");
-		System.out.println("@Controller:stype"+cri.getSkill());
-		System.out.println("@Controller:skillRdaio"+cri.getSkillRadio());
+		cri.setMethod("");
 		List<ResultDAO> list = service.search(cri);
 		
-		int size = list.size();
-		log.info(size+"가져온 갯수");
 		return new ResponseEntity<List<ResultDAO>>(list, HttpStatus.OK);
 	}
 	
@@ -71,13 +67,6 @@ public class StaffController {
 		
 		int size = service.getTotal(cri);
 		PageDTO pageMaker = new PageDTO(cri,size);
-
-		log.info("양"+cri.getAmount());
-		log.info("총합"+size);
-		log.info("페이지"+cri.getPageNum());
-		log.info("시작페이지"+pageMaker.getStartPage());
-		log.info("끝페이지"+pageMaker.getEndPage());
-		log.info("총합"+pageMaker.getTotal());
 		
 		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);
 	}

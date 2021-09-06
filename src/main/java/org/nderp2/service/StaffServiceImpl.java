@@ -200,17 +200,9 @@ public class StaffServiceImpl implements StaffService {
 
 	@Override
 	public List<ResultDAO> search(Criteria cri) {
-		log.info("****************sType"+cri.getSkill());
-		log.info("");
 		
-		log.info("AAAAAAAAAAAAAmount  "+cri.getAmount());
 		List<ResultDAO> list=mapper.search(cri);
 		
-		
-		
-		log.info("자격증"+cri.getCerti());
-		log.info("skilRadio"+cri.getSkillRadio());
-
 		return list;
 	}
 

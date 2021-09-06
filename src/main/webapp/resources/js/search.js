@@ -142,7 +142,7 @@ $(document).ready(function(){
 			c=value;
 			break;
 			
-		case "a.staff_name":
+		case "staff_name":
 			check(1);
 			
 			m=counts[1]
@@ -152,7 +152,7 @@ $(document).ready(function(){
 			c=value;
 			break;
 			
-		case "a.sex":
+		case "sex":
 			check(2);
 			
 			m=counts[2]
@@ -162,7 +162,7 @@ $(document).ready(function(){
 			c=value;
 			break;
 			
-		case "a.birthy":
+		case "birthy":
 			check(3);
 			
 			m=counts[3]
@@ -172,7 +172,7 @@ $(document).ready(function(){
 			c=value;
 			break;
 			
-		case "a.age":
+		case "age":
 			check(4);
 			
 			m=counts[4]
@@ -182,7 +182,7 @@ $(document).ready(function(){
 			c=value;
 			break;	
 			
-		case "a.staff_hp":
+		case "staff_hp":
 			check(5);
 			
 			m=counts[5]
@@ -192,7 +192,7 @@ $(document).ready(function(){
 			c=value;
 			break;	
 			
-		case "a.staff_email":
+		case "staff_email":
 			check(6);
 			
 			m=counts[6]
@@ -202,7 +202,7 @@ $(document).ready(function(){
 			c=value;
 			break;	
 			
-		case "a.staff_id_no":
+		case "staff_id_no":
 			check(7);
 			
 			m=counts[7]
@@ -212,7 +212,7 @@ $(document).ready(function(){
 			c=value;
 			break;	
 			
-		case "a.staff_address":
+		case "staff_address":
 			check(8);
 			
 			m=counts[8]
@@ -222,7 +222,7 @@ $(document).ready(function(){
 			c=value;
 			break;	
 			
-		case "b.education_code":
+		case "education_code":
 			check(9);
 			
 			m=counts[9]
@@ -232,7 +232,7 @@ $(document).ready(function(){
 			c=value;
 			break;	
 			
-		case "b.graduate_y":
+		case "graduate_y":
 			check(10);
 			
 			m=counts[10]
@@ -242,7 +242,7 @@ $(document).ready(function(){
 			c=value;
 			break;	
 			
-		case "c.dev_y":
+		case "dev_y":
 			check(11);
 			
 			m=counts[11]
@@ -252,7 +252,7 @@ $(document).ready(function(){
 			c=value;
 			break;	
 			
-		case "c.staff_total_skill":
+		case "staff_total_skill":
 			check(12);
 			
 			m=counts[12]
@@ -262,7 +262,7 @@ $(document).ready(function(){
 			c=value;
 			break;	
 			
-		case "d.staff_certification":
+		case "staff_certification":
 			check(13);
 			
 			m=counts[13]
@@ -551,19 +551,19 @@ $(document).ready(function(){
 		},
 			function(list){
 			var str ='<input type="hidden" id="m1" name="m1" value="rownum"/>';
-			str+='<input type="hidden" id="m2" name="m2" value="a.staff_name"/>';
-			str+='<input type="hidden" id="m3" name="m3" value="a.sex"/>';
-			str+='<input type="hidden" id="m4" name="m4" value="a.birthy"/>';
-			str+='<input type="hidden" id="m5" name="m5" value="a.age"/>';
-			str+='<input type="hidden" id="m6" name="m6" value="a.staff_hp"/>';
-			str+='<input type="hidden" id="m7" name="m7" value="a.staff_email"/>';
-			str+='<input type="hidden" id="m8" name="m8" value="a.staff_id_no"/>';
-			str+='<input type="hidden" id="m9" name="m9" value="a.staff_address"/>';
-			str+='<input type="hidden" id="m10" name="m10" value="b.education_code"/>';
-			str+='<input type="hidden" id="m11" name="m11" value="b.graduate_y"/>';
-			str+='<input type="hidden" id="m12" name="m12" value="c.dev_y"/>';
-			str+='<input type="hidden" id="m13" name="m13" value="c.staff_total_skill"/>';
-			str+='<input type="hidden" id="m14" name="m14" value="d.staff_certification"/>';
+			str+='<input type="hidden" id="m2" name="m2" value="staff_name"/>';
+			str+='<input type="hidden" id="m3" name="m3" value="sex"/>';
+			str+='<input type="hidden" id="m4" name="m4" value="birthy"/>';
+			str+='<input type="hidden" id="m5" name="m5" value="age"/>';
+			str+='<input type="hidden" id="m6" name="m6" value="staff_hp"/>';
+			str+='<input type="hidden" id="m7" name="m7" value="staff_email"/>';
+			str+='<input type="hidden" id="m8" name="m8" value="staff_id_no"/>';
+			str+='<input type="hidden" id="m9" name="m9" value="staff_address"/>';
+			str+='<input type="hidden" id="m10" name="m10" value="education_code"/>';
+			str+='<input type="hidden" id="m11" name="m11" value="graduate_y"/>';
+			str+='<input type="hidden" id="m12" name="m12" value="dev_y"/>';
+			str+='<input type="hidden" id="m13" name="m13" value="staff_total_skill"/>';
+			str+='<input type="hidden" id="m14" name="m14" value="staff_certification"/>';
 					
 			str+="<table id='style3'><tr> <th><div onclick='sortCount(m1)'>번호</div></th><th><div onclick='sortCount(m2)'>이름</div></th><th><div onclick='sortCount(m3)'>성별</div></th><th><div onclick='sortCount(m4)'>출생년도</div></th><th><div onclick='sortCount(m5)'>나이</div></th><th><div onclick='sortCount(m6)'>핸드폰</div></th>";
 			str+="<th><div onclick='sortCount(m7)'>이메일</div></th><th><div onclick='sortCount(m8)'>주민번호</div></th><th><div onclick='sortCount(m9)'>거주지</div></th><th><div onclick='sortCount(m10)'>최종학력</div></th><th><div onclick='sortCount(m11)'>최종학력 졸업일</div></th><th><div onclick='sortCount(m12)'>개발년차</div></th><th><div onclick='sortCount(m13)'>종합 소유 기술</div></th><th><div onclick='sortCount(m14)'>자격증</div></th></tr>"

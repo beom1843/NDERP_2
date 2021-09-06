@@ -64,8 +64,9 @@ public class MapperTests {
 		Criteria cri = new Criteria();
 		cri.setPageNum(1);
 		cri.setAmount(8);
-		cri.setSortCondition("a. staff_no");
-		cri.setMethod("as");
+		cri.setSortCondition(" staff_name desc");
+		cri.setMethod(" ");
+		
 		List<ResultDAO> list = mapper.search(cri);
 		
 		System.out.println(cri.getSortCondition());
@@ -74,5 +75,6 @@ public class MapperTests {
 			r= list.get(i);
 			System.out.println(r.getStaff_name());
 		}
+		
 	}
 }
