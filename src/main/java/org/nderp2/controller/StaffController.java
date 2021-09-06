@@ -56,9 +56,11 @@ public class StaffController {
 		System.out.println("@Controller:type");
 		System.out.println("@Controller:stype"+cri.getSkill());
 		System.out.println("@Controller:skillRdaio"+cri.getSkillRadio());
+		List<ResultDAO> list = service.search(cri);
 		
-		
-		return new ResponseEntity<List<ResultDAO>>(service.search(cri), HttpStatus.OK);
+		int size = list.size();
+		log.info(size+"가져온 갯수");
+		return new ResponseEntity<List<ResultDAO>>(list, HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/page",
