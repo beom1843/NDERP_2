@@ -127,7 +127,7 @@
 	<select id="search" resultType="org.nderp2.domain.ResultDAO">
 	select *
 	from
-		(select rownum as rn, staff_name, sex,birthy, age,staff_hp,staff_email, staff_id_no, staff_address,
+		(select rn, staff_name, sex,birthy, age,staff_hp,staff_email, staff_id_no, staff_address,
 			staff_education,staff_grad_y,
 			staff_dev_year, staff_total_skill,
 			staff_certification,
@@ -314,11 +314,11 @@
 				and A.staff_no = E.staff_no
 				and a.staff_no = g.staff_no
 				and a.staff_no = h.staff_no
-			order by  #{sortCondition} )
+			order by #{method} )
 		where rownum>0)
 		<![CDATA[
-		where rn<=#{pageNum} * #{amount}
-		and rn>(#{pageNum}-1) * #{amount}
+		where rn<=(#{pageNum} * #{amount})
+		and rn>((#{pageNum}-1) * #{amount})
 		]]>
 		<foreach collection="typeArr" item="type">
 			<trim prefix=" AND(" suffix=")">

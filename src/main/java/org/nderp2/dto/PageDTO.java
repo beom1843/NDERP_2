@@ -23,10 +23,12 @@ public class PageDTO {
 		this.cri = cri;
 		this.total = total;
 		
-		this.endPage = (int) (Math.ceil(((double)cri.getPageNum())/(cri.getAmount())))*(cri.getAmount());
-		this.startPage = this.endPage - ((cri.getAmount())-1);
-
-		this.value = ((double) cri.getPageNum())/(cri.getAmount());
+		int amount = cri.getAmount();
+		
+		this.endPage = (int) (Math.ceil(((double)cri.getPageNum())/amount))*amount;
+		this.startPage = this.endPage - amount+1;
+		
+		this.value = ((double) cri.getPageNum())/amount;
 		
 		this.realEnd = (int) (Math.ceil((double)(total *1.0)/cri.getAmount()));
 		

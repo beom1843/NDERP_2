@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
@@ -29,15 +32,20 @@ public class StaffController {
 
 	private StaffService service;
 	
+	@ApiOperation(value="정규직 등록")
+	@ApiResponses({
+		@ApiResponse(code=200,message="OK"),
+		@ApiResponse(code=500,message="Exception")
+	})
 	@PostMapping(value="/create",
 				consumes="application/json",
 				produces={MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> createStaff(@RequestBody Staff staff){
 			int insertCount = service.create(staff);
 			
-			return insertCount==1
-					? new ResponseEntity<>("success",HttpStatus.OK)
-					: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return "".equals(insertCount)
+					? new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR)
+					: new ResponseEntity<>("success",HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/searchResult",
@@ -61,6 +69,13 @@ public class StaffController {
 		
 		int size = service.getTotal(cri);
 		PageDTO pageMaker = new PageDTO(cri,size);
+
+		log.info("양"+cri.getAmount());
+		log.info("총합"+size);
+		log.info("페이지"+cri.getPageNum());
+		log.info("시작페이지"+pageMaker.getStartPage());
+		log.info("끝페이지"+pageMaker.getEndPage());
+		log.info("총합"+pageMaker.getTotal());
 		
 		return new ResponseEntity<PageDTO>(pageMaker,HttpStatus.OK);
 	}

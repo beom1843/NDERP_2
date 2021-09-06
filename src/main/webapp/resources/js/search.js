@@ -574,7 +574,6 @@ $(document).ready(function(){
 			str +="</td><td>"+list[i].staff_grad_y+"</td><td>"+list[i].staff_dev_year+"</td><td>"+list[i].staff_total_skill+"</td><td>"+list[i].staff_certification
 			str +="</td></tr>"	
 				}
-				console.log("왜안돼?")
 			resultPlace.html(str);
 		})
 		
@@ -641,6 +640,10 @@ $(document).ready(function(){
 			for(var i = pageMaker.startPage;i<pageMaker.endPage+1;i++ ){
 				if(i==page){ 
 				str1+="<li class='paginate_button' onclick ='movePage("+i+")'>["+i+"]</a></li>";
+				console.log("---------------------")
+				console.log(i);
+				console.log("시작페이지"+pageMaker.startPage);
+				console.log("끝페이지"+pageMaker.endPage);
 			}else{
 					str1+="<li class='paginate_button' onclick ='movePage("+i+")'>"+i+"</a></li>";
 				}
