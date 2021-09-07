@@ -9,10 +9,11 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-
+@EnableAspectJAutoProxy
 @Configuration
 @MapperScan(basePackages = {"org.nderp2.mapper"}) // mapper
 @ComponentScan(basePackages = {"org.nderp2.service"})

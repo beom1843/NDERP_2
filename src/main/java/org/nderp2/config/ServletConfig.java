@@ -13,8 +13,9 @@ import org.springframework.web.servlet.view.JstlView;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableSwagger2
 @EnableWebMvc
-@EnableAspectJAutoProxy
+//@EnableAspectJAutoProxy
 @Configuration
 @ComponentScan(basePackages = {"org.nderp2.controller"})
 public class ServletConfig implements WebMvcConfigurer {
@@ -36,9 +37,11 @@ public class ServletConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 
 		/*아래 레지스트리 추가*/
-//		registry
-//        .addResourceHandler("/swagger-ui/index.html")
-//        .addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/swagger-ui.html")
+        .addResourceLocations("classpath:/META-INF/resources/");
+        registry
+        .addResourceHandler("/webjars/**")
+        .addResourceLocations("classpath:/META-INF/resources/webjars/");
 
 	}
 }
