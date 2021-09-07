@@ -117,8 +117,6 @@ $(document).ready(function(){
 		}
 
 	window.sortCount=function(element){
-		//console.log($(element).val());
-		//element++
 		var value = $(element).val();
 
 
@@ -299,10 +297,9 @@ $(document).ready(function(){
 			}
 			console.log(sortCondition)
 			if(sortCondition.c==""){
-				condition="rownum desc";
+				condition="rownum asc";
 				page=sortCondition.page
 			}else{
-				
 				page=sortCondition.page
 				condition=sortCondition.c+" "+sortCondition.m
 			}
@@ -317,6 +314,9 @@ $(document).ready(function(){
 		var sType="";
 		var keyword1=$("#keyword1").val();
 		var keyword2=$("#keyword2").val();
+		var keywordRadio=$("select[name='keyMethod']").val();
+		var keyword="";
+		
 		var dev_y1=$("select[name='devCareer1']").val();
 		var dev_y2=$("select[name='devCareer2']").val();
 		
@@ -434,19 +434,15 @@ $(document).ready(function(){
 		if(project_language||project_framework||project_dbms||project_devetc){
 			type+="b"
 			if(project_language){
-				console.log("언어"+project_language)
 				sType+="a"
 			}
 			if(project_framework){
-				console.log("프워"+project_framework)
 				sType+="b"
 			}
 			if(project_dbms){
-				console.log("dbms"+project_dbms)
 				sType+="c"
 			}
 			if(project_devetc){
-				console.log("devetc"+project_devetc)
 				sType+="d"
 			}
 		}
@@ -492,10 +488,19 @@ $(document).ready(function(){
 		if(military){
 			type+="s"
 		}
+		if((keyword1||(keyword2&&keyword))&&keywordRadio){
+			type+="t";
+			if(keyword1){
+				keyword+="a";
+			}
+			if(keyword2){
+				keyword+="b"
+			}
+			
+		}
 		if(!amount){
 			amount=5
 		}
-		console.log(condition);
 		staffInfoService.search({
 			pageNum:page,
 			amount:amount,
@@ -503,8 +508,10 @@ $(document).ready(function(){
 			
 			type:type,
 
-			keyword1:0,
-			keyword2:0,
+			keyword1:keyword1,
+			keyword2:keyword2,
+			keywordRadio:keywordRadio,
+			keyword:keyword,
 			
 			dev1:dev_y1,
 			dev2:dev_y2,
@@ -587,8 +594,10 @@ $(document).ready(function(){
 			
 			type:type,
 
-			keyword1:0,
-			keyword2:0,
+			keyword1:keyword1,
+			keyword2:keyword2,
+			
+			keywordRadio:keywordRadio,
 			
 			dev1:dev_y1,
 			dev2:dev_y2,
@@ -635,17 +644,13 @@ $(document).ready(function(){
 		},
 		function(pageMaker){
 			if(pageMaker.prev){
-				str1+="<li class='paginate_button previous' onclick ='movePage("+(pageMaker.startPage-1)+")' >이전</a></li>"
+				str1+="<li class='paginate_button previous' onclick ='movePage("+(pageMaker.startPage-1)+")' ><a href='#'>이전</a></li>"
 			}
 			for(var i = pageMaker.startPage;i<pageMaker.endPage+1;i++ ){
 				if(i==page){ 
-				str1+="<li class='paginate_button' onclick ='movePage("+i+")'>["+i+"]</a></li>";
-				console.log("---------------------")
-				console.log(i);
-				console.log("시작페이지"+pageMaker.startPage);
-				console.log("끝페이지"+pageMaker.endPage);
+				str1+="<li class='paginate_button' onclick ='movePage("+i+")'><a href='#'>["+i+"]</a></li>";
 			}else{
-					str1+="<li class='paginate_button' onclick ='movePage("+i+")'>"+i+"</a></li>";
+					str1+="<li class='paginate_button' onclick ='movePage("+i+")'><a href='#'>"+i+"</a></li>";
 				}
 			}
 			if(pageMaker.next){
@@ -653,9 +658,6 @@ $(document).ready(function(){
 			}
 			pagination.html(str1);
 			total.html("총 "+pageMaker.total+"건");
-			console.log("시작"+pageMaker.startPage);
-			console.log("끝"+pageMaker.endPage);
-			
 		})	
 	}// function search() 끝
 	

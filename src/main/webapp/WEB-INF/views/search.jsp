@@ -26,8 +26,8 @@
 				<td>
 					<input type="text" id="keyword1"> 
 						<select name="keyMethod">
-							<option value="or">or</option>
-							<option value="and">and</option>
+							<option value="o">or</option>
+							<option value="a">and</option>
 						</select> 
 					<input type="text" id="keyword2">
 					<div class="delete" id="d_keyword"></div>

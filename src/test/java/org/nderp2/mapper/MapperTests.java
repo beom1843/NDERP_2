@@ -62,10 +62,14 @@ public class MapperTests {
 	@Test
 	public void testSearch(){
 		Criteria cri = new Criteria();
+		
+		cri.setType("t");
 		cri.setPageNum(1);
-		cri.setAmount(8);
-		cri.setSortCondition(" staff_name desc");
-		cri.setMethod(" ");
+		cri.setAmount(10);
+		cri.setSortCondition("rownum");
+		cri.setKeyword("a");
+		cri.setKeywordRadio("a");
+		cri.setKeyword1("서울");
 		
 		List<ResultDAO> list = mapper.search(cri);
 		

@@ -39,6 +39,11 @@ public class Criteria {
 	
 	private String keyword1;
 	private String keyword2;
+	private String keyword;
+	public String[] getKeywordArr(){
+		return keyword==null? new String[] {}:keyword.split("");
+	}
+	private String keywordRadio;
 	
 	private int project_language;
 	private int project_framework;

@@ -55,6 +55,7 @@ public class StaffController {
 	public ResponseEntity<List<ResultDAO>> search(@RequestBody Criteria cri) {
 		cri.setMethod("");
 		List<ResultDAO> list = service.search(cri);
+		log.info(cri.getKeyword()+"//"+cri.getKeyword1()+"//"+cri.getKeyword2()+"//"+cri.getKeywordRadio());
 		
 		return new ResponseEntity<List<ResultDAO>>(list, HttpStatus.OK);
 	}

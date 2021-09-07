@@ -440,6 +440,28 @@
 						</foreach>
 					</if>	
 				</if>
+				<if test="type=='t'.toString()">
+				<if test="keywordRadio=='a'.toString()">
+					<foreach collection="keywordArr" item="keyword" open="and (" separator=")and(" close=")" >
+					   	<if test="keyword=='a'.toString()">
+					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword1}||'%'					    
+					    </if>
+					    <if test="keyword=='b'.toString()">
+					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword2}||'%'					    
+					    </if>
+					</foreach>
+				</if>
+				<if test="keywordRadio=='o'.toString()">	
+					<foreach collection="keywordArr" item="keyword" open="and (" separator=" or " close=")" >
+					   	<if test="keyword=='a'.toString()">
+					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword1}||'%'					    
+					    </if>
+					    <if test="keyword=='b'.toString()">
+					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword2}||'%'					    
+					    </if>
+					</foreach>					
+				</if>
+			</if>				
 		</foreach>
 		)
 		<![CDATA[
@@ -713,39 +735,61 @@
 				</if>
 			</trim>
 			<if test="type=='b'.toString()">
-					<if test="skillRadio=='a'.toString()">
-						<foreach collection="skillArr" item="skill" open="and (" separator=")and(" close=")" >
-								<if test="skill=='a'.toString()">
-									language_code like '%'||#{project_language}||'%'
-								</if>
-								<if test="skill=='b'.toString()">
-									framework_code like '%'||#{project_framework}||'%'
-								</if>
-								<if test="skill=='c'.toString()">
-									dbms_code like '%'||#{project_dbms}||'%'
-								</if>
-								<if test="skill=='d'.toString()">
-									devetc_code like '%'||#{project_devetc}||'%'
-								</if>
-						</foreach>
-					</if>
-					<if test="skillRadio=='o'.toString()">
-						<foreach collection="skillArr" item="skill" open="and (" separator=" or " close=")" >
-								<if test="skill=='a'.toString()">
-									language_code like '%'||#{project_language}||'%'
-								</if>
-								<if test="skill=='b'.toString()">
-									framework_code like '%'||#{project_framework}||'%'
-								</if>
-								<if test="skill=='c'.toString()">
-									dbms_code like '%'||#{project_dbms}||'%'
-								</if>
-								<if test="skill=='d'.toString()">
-									devetc_code like '%'||#{project_devetc}||'%'
-								</if>
-						</foreach>
-					</if>	
+				<if test="skillRadio=='a'.toString()">
+					<foreach collection="skillArr" item="skill" open="and (" separator=")and(" close=")" >
+							<if test="skill=='a'.toString()">
+								language_code like '%'||#{project_language}||'%'
+							</if>
+							<if test="skill=='b'.toString()">
+								framework_code like '%'||#{project_framework}||'%'
+							</if>
+							<if test="skill=='c'.toString()">
+								dbms_code like '%'||#{project_dbms}||'%'
+							</if>
+							<if test="skill=='d'.toString()">
+								devetc_code like '%'||#{project_devetc}||'%'
+							</if>
+					</foreach>
 				</if>
+				<if test="skillRadio=='o'.toString()">
+					<foreach collection="skillArr" item="skill" open="and (" separator=" or " close=")" >
+							<if test="skill=='a'.toString()">
+								language_code like '%'||#{project_language}||'%'
+							</if>
+							<if test="skill=='b'.toString()">
+								framework_code like '%'||#{project_framework}||'%'
+							</if>
+							<if test="skill=='c'.toString()">
+								dbms_code like '%'||#{project_dbms}||'%'
+							</if>
+							<if test="skill=='d'.toString()">
+								devetc_code like '%'||#{project_devetc}||'%'
+							</if>
+					</foreach>
+				</if>	
+			</if>
+			<if test="type=='t'.toString()">
+				<if test="keywordRadio=='a'.toString()">
+					<foreach collection="keywordArr" item="keyword" open="and (" separator=")and(" close=")" >
+					   	<if test="keyword=='a'.toString()">
+					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword1}||'%'					    
+					    </if>
+					    <if test="keyword=='b'.toString()">
+					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword2}||'%'					    
+					    </if>
+					</foreach>
+				</if>
+				<if test="keywordRadio=='o'.toString()">	
+					<foreach collection="keywordArr" item="keyword" open="and (" separator=" or " close=")" >
+					   	<if test="keyword=='a'.toString()">
+					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword1}||'%'					    
+					    </if>
+					    <if test="keyword=='b'.toString()">
+					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword2}||'%'					    
+					    </if>
+					</foreach>					
+				</if>
+			</if>
 		</foreach>
 	</select>
 
