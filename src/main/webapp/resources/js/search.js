@@ -491,9 +491,11 @@ $(document).ready(function(){
 		if((keyword1||(keyword2&&keyword))&&keywordRadio){
 			type+="t";
 			if(keyword1){
+				keyword1=keyword1.toLowerCase();
 				keyword+="a";
 			}
 			if(keyword2){
+				keyword2=keyword2.toLowerCase();
 				keyword+="b"
 			}
 			

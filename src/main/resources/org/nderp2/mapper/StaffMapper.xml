@@ -444,20 +444,20 @@
 				<if test="keywordRadio=='a'.toString()">
 					<foreach collection="keywordArr" item="keyword" open="and (" separator=")and(" close=")" >
 					   	<if test="keyword=='a'.toString()">
-					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword1}||'%'					    
+					    lower(staff_name||staff_total_skill||staff_certification||staff_Address like) '%'||#{keyword1}||'%'					    
 					    </if>
 					    <if test="keyword=='b'.toString()">
-					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword2}||'%'					    
+					    lower(staff_name||staff_total_skill||staff_certification||staff_Address) like '%'||#{keyword2}||'%'					    
 					    </if>
 					</foreach>
 				</if>
 				<if test="keywordRadio=='o'.toString()">	
 					<foreach collection="keywordArr" item="keyword" open="and (" separator=" or " close=")" >
 					   	<if test="keyword=='a'.toString()">
-					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword1}||'%'					    
+					    lower(staff_name||staff_total_skill||staff_certification||staff_Address) like '%'||#{keyword1}||'%'					    
 					    </if>
 					    <if test="keyword=='b'.toString()">
-					    staff_total_skill||staff_certification||staff_Address like '%'||#{keyword2}||'%'					    
+					    lower(staff_name||staff_total_skill||staff_certification||staff_Address) like '%'||#{keyword2}||'%'					    
 					    </if>
 					</foreach>					
 				</if>
