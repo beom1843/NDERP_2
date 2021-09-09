@@ -53,7 +53,16 @@ public interface StaffMapper {
 	public int insertLanguage(ProjectLanguage language);
 	public int insertOs(ProjectOs os);
 	public int insertServer(ProjectServer server);
-
+	
+	public Staff readStaff(int staff_no);
+	public Staff readBank(int staff_no);
+	public List<Career> readCareer(int staff_no);
+	public List<Certification> readCertification(int staff_no);
+	public List<Family> readFamily(int staff_no);
+	public List<Foreignlang> readForeignlang(int staff_no);
+	public List<Hobby> readHobby(int staff_no);
+	
+	
 	public List<ResultDAO> search(Criteria cri);
 	public int getTotal(Criteria cri);
 }

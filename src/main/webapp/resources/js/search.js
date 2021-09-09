@@ -598,8 +598,8 @@ $(document).ready(function(){
 
 			keyword1:keyword1,
 			keyword2:keyword2,
-			
 			keywordRadio:keywordRadio,
+			keyword:keyword,
 			
 			dev1:dev_y1,
 			dev2:dev_y2,

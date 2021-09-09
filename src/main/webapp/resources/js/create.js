@@ -851,7 +851,7 @@ $(document).ready(function(){
 				projectArr:projectArr
 			}, function(result){
 				alert("등록되었습니다!")
-				window.opener.document.location.href = "http://localhost:8081/staff_search_form?redirect=1";
+				window.opener.document.location.href = "http://localhost:8081/search?redirect=1";
 				window.open("about:blank","_self").close();
 			})
 			
