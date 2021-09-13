@@ -30,4 +30,9 @@ public class PageController {
 		
 	}
 	
+	@GetMapping("/read")
+	public void read(){
+		
+	}
+	
 }

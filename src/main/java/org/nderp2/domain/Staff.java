@@ -22,10 +22,10 @@ public class Staff {
 	private List<School> schoolArr;
 	private List<Family> familyArr;
 	private List<Career> careerArr;
-	private int[] certificationArr;
+	private List<Certification> certificationArr;
 	private List<Foreignlang> foreignlangArr;
 	private Institution institution;
 	private Taste taste;
-	private String[] hobbyArr;
+	private List<Hobby> hobbyArr;
 	private List<Project> projectArr;
 }

@@ -1,5 +1,6 @@
 package org.nderp2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.nderp2.domain.Bank;
@@ -78,11 +79,8 @@ public class StaffServiceImpl implements StaffService {
 			re+=mapper.insertCareer(career);
 		}
 		
-		int[] certiArr = staff.getCertificationArr();
-		for(int certifi_code: certiArr){
-			Certification certi = new Certification();
-			certi.setCertification_code(certifi_code);
-			certi.setStaff_no(staff_no);
+		List<Certification> certiArr = staff.getCertificationArr();
+		for(Certification certi: certiArr){
 			re+=mapper.insertCertification(certi);
 		}
 		
@@ -98,10 +96,10 @@ public class StaffServiceImpl implements StaffService {
 		institution.setStaff_no(staff_no);
 		mapper.insertInstitution(institution);
 		int institution_no = mapper.getCurrentInstNo();
-		int[] instStackArr = institution.getInst_stack_code();
-		for(int instStack: instStackArr){
+		List<InstitutionStack> instStackArr = institution.getInst_stack_code();
+		for(InstitutionStack instStack: instStackArr){
 			InstitutionStack stack = new InstitutionStack();
-			stack.setInstitution_stack_code(instStack);
+			stack.setInstitution_stack_code(instStack.getInstitution_stack_code());
 			stack.setInstitution_no(institution_no);
 			re+=mapper.insertInstStack(stack);
 		}
@@ -110,22 +108,22 @@ public class StaffServiceImpl implements StaffService {
 		taste.setStaff_no(staff_no);
 		re+= mapper.insertTaste(taste);
 		
-		int[] interestArr = taste.getInterest();
+		List<TasteInterest> interestArr = taste.getInterest();
 		int taste_no = mapper.getCurrentTasteNo();
-		for(int interest_code : interestArr){
+		for(TasteInterest interest_code : interestArr){
 			TasteInterest interest = new TasteInterest();
-			interest.setTaste_interest_code(interest_code);
+			interest.setTaste_interest_code(interest_code.getTaste_interest_code());
 			interest.setTaste_no(taste_no);
 			re+= mapper.insertTasteInterest(interest);
 			log.info(interest);
 		}
 		
 		
-		String[] hobbyArr = staff.getHobbyArr();
+		List<Hobby> hobbyArr = staff.getHobbyArr();
 		
-		for(String hobby_desc : hobbyArr){
+		for(Hobby hobby_desc : hobbyArr){
 			Hobby hobby = new Hobby();
-			hobby.setHobby(hobby_desc);
+			hobby.setHobby(hobby_desc.getHobby());
 			hobby.setStaff_no(staff_no);
 			re+= mapper.insertHobby(hobby);
 		}
@@ -139,58 +137,46 @@ public class StaffServiceImpl implements StaffService {
 			
 			int project_no=mapper.getCurrentProjectNo();	
 			
-			int[] roleArr = project.getProject_role();
-			for(int roleCode : roleArr){
+			List<ProjectRole> roleArr = project.getProject_role();
+			for(ProjectRole roleCode : roleArr){
 				System.out.println("ServiceImpl!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				System.out.println("roleCode"+roleCode);
-				ProjectRole role = new ProjectRole();
-				role.setProject_role(roleCode);
-				role.setStaff_project_no(project_no);
-				re+=mapper.insertRole(role);
+				roleCode.setStaff_project_no(project_no);
+				re+=mapper.insertRole(roleCode);
 			}
 			
 			
-			int[] dbmsArr = project.getProject_dbms();
-			for(int dbmsCode: dbmsArr){
-				ProjectDbms dbms = new ProjectDbms();
-				dbms.setProject_dbms(dbmsCode);
-				dbms.setStaff_project_no(project_no);
-				re+=mapper.insertDbms(dbms);
+			List<ProjectDbms> dbmsArr = project.getProject_dbms();
+			for(ProjectDbms dbmsCode: dbmsArr){
+				dbmsCode.setStaff_project_no(project_no);
+				re+=mapper.insertDbms(dbmsCode);
 			}
 			
-			int[] devetcArr = project.getProject_devetc();
-			for(int devetcCode: devetcArr){
-				ProjectDevetc devetc = new ProjectDevetc();
-				devetc.setProject_devetc(devetcCode);
-				devetc.setStaff_project_no(project_no);
-				re+= mapper.insertDevetc(devetc);
+			List<ProjectDevetc> devetcArr = project.getProject_devetc();
+			for(ProjectDevetc devetcCode: devetcArr){
+				devetcCode.setStaff_project_no(project_no);
+				re+= mapper.insertDevetc(devetcCode);
 			}
 			
-			int[] frameworkArr = project.getProject_framework();
-			for(int frameworkCode: frameworkArr){
-				ProjectFramework framework = new ProjectFramework();
-				framework.setProject_framework(frameworkCode);
-				framework.setStaff_project_no(project_no);
-				re+= mapper.insertFramework(framework);
+			List<ProjectFramework> frameworkArr = project.getProject_framework();
+			for(ProjectFramework frameworkCode: frameworkArr){
+				frameworkCode.setStaff_project_no(project_no);
+				re+= mapper.insertFramework(frameworkCode);
 			}
 			
-			int[] languageArr = project.getProject_language();
-			for(int languageCode: languageArr){
+			List<ProjectLanguage> languageArr = project.getProject_language();
+			for(ProjectLanguage languageCode: languageArr){
 				ProjectLanguage language = new ProjectLanguage();
-				language.setProject_language(languageCode);
+				language.setProject_language(languageCode.getProject_language());
 				language.setStaff_project_no(project_no);
 				re+= mapper.insertLanguage(language);
 			}
 			
-			int osCode = project.getProject_os();
-			ProjectOs os = new ProjectOs();
-			os.setProject_os(osCode);
+			ProjectOs os = project.getProject_os();
 			os.setStaff_project_no(project_no);
 			re+=mapper.insertOs(os);
 				
-			int serverCode= project.getProject_server();
-			ProjectServer server = new ProjectServer();
-			server.setProject_server(serverCode);
+			ProjectServer server= project.getProject_server();
 			server.setStaff_project_no(project_no);
 			re+=mapper.insertServer(server);
 		}
@@ -209,6 +195,43 @@ public class StaffServiceImpl implements StaffService {
 	@Override
 	public int getTotal(Criteria cri) {
 		return mapper.getTotal(cri);
+	}
+
+	@Override
+	public Staff readStaff(int staff_no) {
+		Staff staff = mapper.readStaff(staff_no);
+		staff.setBank(mapper.readBank(staff_no));
+		staff.setCareerArr(mapper.readCareer(staff_no));
+		staff.setCertificationArr(mapper.readCertification(staff_no));
+		staff.setFamilyArr(mapper.readFamily(staff_no));
+		staff.setForeignlangArr(mapper.readForeignlang(staff_no));
+		staff.setHobbyArr(mapper.readHobby(staff_no));
+		staff.setHotline(mapper.readHotline(staff_no));
+		staff.setInstitution(mapper.readInstitution(staff_no));
+		
+		List<Project> projects=mapper.readProject(staff_no);
+		List<Project> staff_project = new ArrayList<Project>();
+		
+		for(Project project:projects){
+			int project_no =project.getStaff_project_no();
+			project.setProject_dbms(mapper.readProjDbms(project_no));
+			project.setProject_devetc(mapper.readProjDevetc(project_no));
+			project.setProject_framework(mapper.readProjFramework(project_no));
+			project.setProject_language(mapper.readProjLanguage(project_no));
+			project.setProject_os(mapper.readProjOs(project_no));
+			staff_project.add(project);
+		}
+		staff.setProjectArr(staff_project);
+		
+		staff.setSchoolArr(mapper.readSchool(staff_no));
+		Institution institution = mapper.readInstitution(staff_no);
+		institution.setInst_stack_code(mapper.readInstStack(institution.getInstitution_no()));
+		staff.setInstitution(institution);
+		Taste taste = mapper.readTaste(staff_no);
+		taste.setInterest(mapper.readTasteInterest(taste.getStaff_taste_no()));
+		staff.setTaste(taste);
+		
+		return staff;
 	}
 
 	

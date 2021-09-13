@@ -7,6 +7,7 @@ public class ResultDAO {
 
 	private int rn;
 	private String staff_name;
+	private int staff_no;
 	private String sex;
 	private String birthy;
 	private String age;

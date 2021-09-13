@@ -191,37 +191,37 @@
 	
 	<select id="readProjDbms" resultType="org.nderp2.domain.ProjectDbms">
 		select * from project_dbms
-		where project_no = #{project_no}
+		where staff_project_no = #{project_no}
 	</select>	
 	
 	<select id="readProjDevetc" resultType="org.nderp2.domain.ProjectDevetc">
 		select * from project_devetc
-		where project_no = #{project_no}
+		where staff_project_no = #{project_no}
 	</select>	
 	
 	<select id="readProjFramework" resultType="org.nderp2.domain.ProjectFramework">
-		select * from project_framwork
-		where project_no = #{project_no}
+		select * from project_framework
+		where staff_project_no = #{project_no}
 	</select>	
 	
 	<select id="readProjLanguage" resultType="org.nderp2.domain.ProjectLanguage">
 		select * from project_language
-		where project_no = #{project_no}
+		where staff_project_no = #{project_no}
 	</select>	
 	
 	<select id="readProjOs" resultType="org.nderp2.domain.ProjectOs">
 		select * from project_os
-		where project_no = #{project_no}
+		where staff_project_no = #{project_no}
 	</select>	
 	
 	<select id="readProjRole" resultType="org.nderp2.domain.ProjectRole">
 		select * from project_role
-		where project_no = #{project_no}
+		where staff_project_no = #{project_no}
 	</select>	
 	
 	<select id="readProjServer" resultType="org.nderp2.domain.ProjectServer">
 		select * from project_server
-		where project_no = #{project_no}
+		where staff_project_no = #{project_no}
 	</select>	
 	
 	<select id="readInstStack" resultType="org.nderp2.domain.InstitutionStack">
@@ -232,7 +232,7 @@
 	<select id="search" resultType="org.nderp2.domain.ResultDAO">
 	select *
 	from
-		(select rownum as rn, staff_name, sex,birthy, age,staff_hp,staff_email, staff_id_no, staff_address,
+		(select rownum as rn, staff_no ,staff_name, sex,birthy, age,staff_hp,staff_email, staff_id_no, staff_address,
 			staff_education,staff_grad_y,
 			staff_dev_year, staff_total_skill,
 			staff_certification,
@@ -240,7 +240,7 @@
 			dev_y, education_code,certification_code,role_code, language_code, framework_code, dbms_code, devetc_code,college_code,graduate_y,
 			foreignlangread, foreignlangspeak 
 		from
-			(select rownum as rn, A.staff_name, A.sex,A.birthy, A.age,A.staff_hp,A.staff_email, A.staff_id_no, A.staff_address,
+			(select rownum as rn,A.staff_no, A.staff_name, A.sex,A.birthy, A.age,A.staff_hp,A.staff_email, A.staff_id_no, A.staff_address,
 				B.education_name as staff_education, B.grad_year as staff_grad_y,
 				C.dev_year as staff_dev_year, C.total_skill as staff_total_skill,
 				D.certification as staff_certification,

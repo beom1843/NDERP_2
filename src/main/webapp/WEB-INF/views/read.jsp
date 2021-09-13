@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>정규직 확인</title>
+
+	<!-- jQuery library -->
+	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+	<!-- CodeInfo Module -->
+	<script src="/resources/js/staffInfo.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css"	href="/resources/css/create.css" />
+
+
 </head>
 <body>
 <div class ="page">
 		<div class="title">
+		
+		<input type="hidden" id="staff_no" value="<%=request.getParameter("staff_no") %>">
 			1. 개인정보
 		</div>
 		<div id = "title1">
@@ -371,6 +385,10 @@
 		</div>
 			
 	</div>
+	
+	<script src="/resources/js/codeInfo.js"></script>
+	<script src="/resources/js/create_code.js"></script>
+	<script src="/resources/js/read.js"></script>
 
 
 </body>

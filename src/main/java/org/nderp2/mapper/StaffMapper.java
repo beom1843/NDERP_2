@@ -55,12 +55,26 @@ public interface StaffMapper {
 	public int insertServer(ProjectServer server);
 	
 	public Staff readStaff(int staff_no);
-	public Staff readBank(int staff_no);
+	public Bank readBank(int staff_no);
 	public List<Career> readCareer(int staff_no);
 	public List<Certification> readCertification(int staff_no);
 	public List<Family> readFamily(int staff_no);
 	public List<Foreignlang> readForeignlang(int staff_no);
 	public List<Hobby> readHobby(int staff_no);
+	public Hotline readHotline(int staff_no);
+	public Institution readInstitution(int staff_no);
+	public List<Project> readProject(int staff_no);
+	public List<School> readSchool(int staff_no);
+	public Taste readTaste(int staff_no);
+	public List<TasteInterest> readTasteInterest(int taste_no);
+	public List<ProjectDbms> readProjDbms(int project_no);
+	public List<ProjectDevetc> readProjDevetc(int project_no);
+	public List<ProjectFramework> readProjFramework(int project_no);
+	public List<ProjectLanguage> readProjLanguage(int project_no);
+	public ProjectOs readProjOs(int project_no);
+	public List<ProjectRole> readProjRole(int project_no);
+	public ProjectServer readProjServer(int project_no);
+	public List<InstitutionStack> readInstStack(int institution_no);
 	
 	
 	public List<ResultDAO> search(Criteria cri);

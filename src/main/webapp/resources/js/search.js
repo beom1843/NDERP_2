@@ -578,7 +578,7 @@ $(document).ready(function(){
 			str+="<th><div onclick='sortCount(m7)'>이메일</div></th><th><div onclick='sortCount(m8)'>주민번호</div></th><th><div onclick='sortCount(m9)'>거주지</div></th><th><div onclick='sortCount(m10)'>최종학력</div></th><th><div onclick='sortCount(m11)'>최종학력 졸업일</div></th><th><div onclick='sortCount(m12)'>개발년차</div></th><th><div onclick='sortCount(m13)'>종합 소유 기술</div></th><th><div onclick='sortCount(m14)'>자격증</div></th></tr>"
 			if(list==null || list.length ==0){}
 			for(var i =0, len=list.length||0 ;i<len;i++){
-			str +="<tr><td>"+list[i].rn+"</td><td>"+list[i].staff_name+"</td><td>"+list[i].sex+"</td><td>"+list[i].birthy+"</td><td>"+list[i].age;
+			str +="<tr><td>"+list[i].rn+"</td><td><a onclick= upDelLink("+list[i].staff_no+")>"+list[i].staff_name+"</a></td><td>"+list[i].sex+"</td><td>"+list[i].birthy+"</td><td>"+list[i].age;
 			str +="</td><td>"+list[i].staff_hp+"</td><td>"+list[i].staff_email+"</td><td>"+list[i].staff_id_no+"</td><td>"+list[i].staff_address+"</td><td>"+list[i].staff_education;
 			str +="</td><td>"+list[i].staff_grad_y+"</td><td>"+list[i].staff_dev_year+"</td><td>"+list[i].staff_total_skill+"</td><td>"+list[i].staff_certification
 			str +="</td></tr>"	
@@ -721,4 +721,13 @@ $(document).ready(function(){
 		sortCondition.page= pageNum;
 		search(sortCondition);
 	}
+	
+	window.upDelLink = function(staff_no){
+		var url="read?staff_no="+staff_no;
+		var name = "Update_or_Delete";
+		var option="location= no,height=100";
+		window.open(url,name,option);
+	}
+	
+	
 })

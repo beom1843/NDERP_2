@@ -1,5 +1,7 @@
 package org.nderp2.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -9,6 +11,6 @@ public class Institution {
 	private String institution_name;
 	private int institution_period;
 	private String institution_grad;
-	private int[] inst_stack_code;
+	private List<InstitutionStack> inst_stack_code;
 	
 }

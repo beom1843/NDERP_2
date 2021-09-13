@@ -10,4 +10,5 @@ public interface StaffService {
 	public int create(Staff staff);
 	public List<ResultDAO> search(Criteria cri);
 	public int getTotal(Criteria cri);
+	public Staff readStaff(int staff_no);
 }

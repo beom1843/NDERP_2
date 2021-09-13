@@ -529,15 +529,23 @@ $(document).ready(function(){
 		
 		//5. 자격증
 		
-		var certificationArr=[];
 
+
+		//Certification 객체 정의
+		var Certification = function(certification_code){
+			this.certification_code=certification_code;
+		}
+		
+			//certification을 넣을 리스트 정의
+		
+		var certificationArr=[];
 		
 		if(!($('input[name="certification"]:checked').val())){
 			alert("[5] 자격증 정보를 정확하게 입력하세요!");
 			allIsOk +=1;
 		}else{
 			$('input[name="certification"]:checked').each(function(i){
-				certificationArr.push($(this).val());
+				var certi = new Certification($(this).val())
 			})
 		}
 		
@@ -575,7 +583,9 @@ $(document).ready(function(){
 			this.inst_stack_code = inst_stack_code;
 		}
 	
-		
+		var InstitutionStack = function(institution_stack_code){
+			this.institution_stack_code=institution_stack_code;
+		}
 		
 		var i_name = $("#institution_name").val();
 		var i_period = $("select[name='institution_period'").val();
@@ -585,7 +595,9 @@ $(document).ready(function(){
 		var inst_stackArr = [];
 		
 		$("input[name='inst_stack']:checked").each(function(i){
-			inst_stackArr.push($(this).val());
+			//inst_stackArr.push($(this).val());
+			var stack = new InstitutionStack($(this).val);
+			inst_stackArr.push(stack);
 		})
 
 		console.log("i1"+i_name);
@@ -637,24 +649,31 @@ $(document).ready(function(){
 		}
 		
 		//9. 취미
-		var hobby1 = $("#hobby1").val();
-		var hobby2 = $("#hobby2").val();
-		var hobby3 = $("#hobby3").val();
+		var h1 = $("#hobby1").val();
+		var h2 = $("#hobby2").val();
+		var h3 = $("#hobby3").val();
+
+		var Hobby = function(hobby){
+			this.hobby = hobby;
+			}
+
 		var hobbyArr = [];
 		
 		if(hobby1){
+			var hobby1 = new Hobby(hobby1)
 			hobbyArr.push(hobby1);
 		}else if(!hobby1){
 			alert("[9] 취미를 정확하게 입력하세요!");
 			allIsOk +=1;
 		}
 		if(hobby2){
+			var hobby2 = new Hobby(hobby2)
 			hobbyArr.push(hobby2);
 		}
 		if(hobby3){
+			var hobby3 = new Hobby(hobby3)
 			hobbyArr.push(hobby3);
 		}
-		
 		
 		
 		//10. 개발 경력
@@ -702,40 +721,65 @@ $(document).ready(function(){
 		
 		var cust = $("#project_customer").val();
 		var comp = $("#project_company").val();
+		var ProjectRole = function(project_role){
+			this.project_role = project_role;
+			}
+	
 		var roleArr =[];
 		
 		$("input[name='role']:checked").each(function(i){
-			roleArr.push($(this).val());
+			var role = new ProjectRole($(this).val())
+			roleArr.push(role);
 		});
 		
-		var server = $("select[name ='server_code']").val();
-		var os = $("select[name ='os_code']").val();
+		var ProjectServer = function(project_server){
+			this.project_server = project_server;
+			}
+		var server = new ProjectServer($("select[name ='server_code']").val());
+	
+		var ProjectOs = function(project_os){
+			this.project_os = project_os;
+			}		
+		var os = new ProjectOs($("select[name ='os_code']").val());
 		
+		var ProjectLanguage = function(project_language){
+			this.project_language = project_language;
+			}
+		var ProjectFramework = function(project_framework){
+			this.project_framework = project_framework;
+			}
+		var ProjectDbms = function(project_dbms){
+			this.project_dbms = project_dbms;
+			}
+		var ProjectDevetc = function(project_devetc){
+			this.project_devetc = project_devetc;
+			}
 		var langArr=[];
 		var frameworkArr=[];
 		var dbmsArr=[];
 		var devetcArr=[];
 		
 		for(var i = 1 ; i<=6;i++){
-			var lang=$("select[name='language"+i+"']").val()
+			var lang=new ProjectLanguage($("select[name='language"+i+"']").val())
 			if(lang){
 				langArr.push(lang);	
 			}
 		}
+		
 		for(var i = 1 ; i<=2;i++){
-			var frmwrk = $("select[name='framework"+i+"']").val()
+			var frmwrk =new ProjectFramework( $("select[name='framework"+i+"']").val())
 			if(frmwrk){
 			frameworkArr.push(frmwrk);	
 			}
 		}
 		for(var i = 1 ; i<=3;i++){
-			var db = $("select[name='dbms"+i+"']").val()
+			var db = new ProjectDbms( $("select[name='dbms"+i+"']").val())
 			if(db){
 			dbmsArr.push(db);	
 			}
 		}
 		for(var i = 1 ; i<=4;i++){
-			var dvtc = $("select[name='devetc"+i+"']").val()
+			var dvtc = new ProjectDevetc($("select[name='devetc"+i+"']").val())
 			if(dvtc){
 			devetcArr.push(dvtc);	
 			}
