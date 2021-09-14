@@ -400,10 +400,12 @@ $(document).ready(function(){
 			f_livew = 0;
 		}
 		
-		if(f_code&&f_name&&f_job&&f_year){
+		if(f_code&&f_name&&f_job&&f_year){//가족이 1인 이상 있다면
+			//가족 객체에 첫번 째 가족을 넣음
 			var family = new Family(f_code, f_name, f_job, f_year,f_livew);
 			familyArr.push(family);
 			
+			//가족이 2인 이상 있다면 name에 서수를 붙여 추가했으므로, for문으로 내용을 추가함
 			for(var i =1; i<familyCnt; i++){
 				f_code = $("select[name='family_code"+i+"']").val();
 				f_name = $('#family_name'+i).val();

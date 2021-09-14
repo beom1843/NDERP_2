@@ -10,4 +10,5 @@ public class Family {
 	private String family_job;
 	private String family_birthy;
 	private int family_livew;
+	
 }

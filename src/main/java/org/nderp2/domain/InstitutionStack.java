@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class InstitutionStack {
-
+	
+	private int institution_stack_no;
 	private int institution_no;
 	private int institution_stack_code;
 }

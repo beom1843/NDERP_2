@@ -5,8 +5,6 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.nderp2.domain.Criteria;
-import org.nderp2.domain.Hobby;
-import org.nderp2.domain.Hotline;
 import org.nderp2.domain.ResultDAO;
 import org.nderp2.domain.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,7 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration(classes={org.nderp2.config.RootConfig.class})
 @Log4j
 @WebAppConfiguration
 public class ServiceTests {
@@ -55,9 +53,11 @@ public class ServiceTests {
 	}*/
 	
 	@Test
-	public void searchTest(){
-		Criteria cri = new Criteria(0, 0);
-		List<ResultDAO> list = service.search(cri);
-		log.info(list);
+	public void getTest(){
+		Staff staff = service.readStaff(143);
+		log.info(staff.getInstitution());
+		log.info(staff.getInstitution().getInst_stack_code());
+		
 	}
+	
 }

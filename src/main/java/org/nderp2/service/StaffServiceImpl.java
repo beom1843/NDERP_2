@@ -26,10 +26,8 @@ import org.nderp2.domain.ResultDAO;
 import org.nderp2.domain.School;
 import org.nderp2.domain.Staff;
 import org.nderp2.domain.Taste;
-import org.nderp2.mapper.CodeMapper;
 import org.nderp2.mapper.StaffMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -214,18 +212,21 @@ public class StaffServiceImpl implements StaffService {
 		
 		for(Project project:projects){
 			int project_no =project.getStaff_project_no();
+			project.setProject_role(mapper.readProjRole(project_no));
 			project.setProject_dbms(mapper.readProjDbms(project_no));
 			project.setProject_devetc(mapper.readProjDevetc(project_no));
 			project.setProject_framework(mapper.readProjFramework(project_no));
 			project.setProject_language(mapper.readProjLanguage(project_no));
 			project.setProject_os(mapper.readProjOs(project_no));
+			project.setProject_server(mapper.readProjServer(project_no));
 			staff_project.add(project);
 		}
 		staff.setProjectArr(staff_project);
 		
 		staff.setSchoolArr(mapper.readSchool(staff_no));
 		Institution institution = mapper.readInstitution(staff_no);
-		institution.setInst_stack_code(mapper.readInstStack(institution.getInstitution_no()));
+		institution.setInst_stack_code(mapper.readInstStack(institution.getStaff_institution_no()));
+
 		staff.setInstitution(institution);
 		Taste taste = mapper.readTaste(staff_no);
 		taste.setInterest(mapper.readTasteInterest(taste.getStaff_taste_no()));

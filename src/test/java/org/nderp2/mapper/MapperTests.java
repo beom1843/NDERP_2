@@ -4,11 +4,8 @@ import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.nderp2.code.domain.CodeBank;
 import org.nderp2.domain.Criteria;
 import org.nderp2.domain.ResultDAO;
-import org.nderp2.domain.Staff;
-import org.nderp2.mapper.CodeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

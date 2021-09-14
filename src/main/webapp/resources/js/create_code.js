@@ -333,7 +333,7 @@ $(document).ready(function(){
 			var str = "";
 			if(list == null || list.length ==0){ }
 			for(var i=0, len=list.length||0;i<len;i++){
-			str +="<input type='checkbox' id='certification' name='certification' value='"+list[i].certification_code+"' />";
+			str +="<input type='checkbox' id='certification"+(i+1)+"' name='certification' value='"+list[i].certification_code+"' />";
 			str += list[i].certification_name;
 			}
 			certification_Chk.html(str);
@@ -346,12 +346,12 @@ $(document).ready(function(){
 			var str1="";
 			if(list == null || list.length ==0){ }
 			for(var i=0, len=list.length||0;i<len;i++){
-			str +="<input type='checkbox' id='foreignlang' name='foreignlangRead' value='"+list[i].foreignlang_code+"' />";
+			str +="<input type='checkbox' id='foreignlang"+(i+1)+"' name='foreignlangRead' value='"+list[i].foreignlang_code+"' />";
 			str += list[i].foreignlang_name;
 			}
 			foreignlang_read.html(str);
 			for(var i=0, len=list.length||0;i<len;i++){
-			str1 +="<input type='checkbox' id='foreignlang' name='foreignlangSpeak' value='"+list[i].foreignlang_code+"' />";
+			str1 +="<input type='checkbox' id='foreignlang"+(i+1)+"' name='foreignlangSpeak' value='"+list[i].foreignlang_code+"' />";
 			str1 += list[i].foreignlang_name;
 			}
 			foreignlang_speak.html(str1);
@@ -364,7 +364,7 @@ $(document).ready(function(){
 			var str = "";
 			if(list == null || list.length ==0){ }
 			for(var i=0, len=list.length||0;i<len;i++){
-			str +="<input type='checkbox' id='inst_stack' name='inst_stack' value='"+list[i].inst_stack_code+"' />";
+			str +="<input type='checkbox' id='inst_stack"+(i+1)+"' name='inst_stack' value='"+list[i].inst_stack_code+"' />";
 			str += list[i].inst_stack_name;
 			}
 			inst_stack_Chk.html(str);
@@ -376,7 +376,7 @@ $(document).ready(function(){
 			var str = "";
 			if(list == null || list.length ==0){ }
 			for(var i=0, len=list.length||0;i<len;i++){
-			str +="<input type='checkbox' id='interest' name='interest' value='"+list[i].interest_code+"' />";
+			str +="<input type='checkbox' id='interest"+i+"' name='interest' value='"+list[i].interest_code+"' />";
 			str += list[i].interest_name;
 			}
 			interest_Chk.html(str);
@@ -388,12 +388,12 @@ $(document).ready(function(){
 			var str = "";
 			if(list == null || list.length ==0){ }
 			for(var i=0, len=3||0;i<len;i++){
-			str +="<input type='checkbox' id='role' name='role' value='"+list[i].role_code+"' />";
+			str +="<input type='checkbox' id='role"+(i+1)+"' name='role' value='"+list[i].role_code+"' />";
 			str += list[i].role_name;
 			}
 			str+="<br>";
 			for(var i=3, len=list.length||0;i<len;i++){
-				str +="<input type='checkbox' id='role' name='role' value='"+list[i].role_code+"' />";
+				str +="<input type='checkbox' id='role"+(i+1)+"' name='role' value='"+list[i].role_code+"' />";
 				str += list[i].role_name;
 				}
 			project_role_Chk.html(str);

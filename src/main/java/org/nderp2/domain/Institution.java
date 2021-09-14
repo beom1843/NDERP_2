@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Institution {
 	private int staff_no;
-	private int institution_no;
+	private int staff_institution_no;
 	private String institution_name;
 	private int institution_period;
 	private String institution_grad;

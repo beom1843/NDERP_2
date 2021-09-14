@@ -9,9 +9,8 @@
 
 	<!-- jQuery library -->
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+	
 
-	<!-- CodeInfo Module -->
-	<script src="/resources/js/staffInfo.js"></script>
 
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css"	href="/resources/css/create.css" />
@@ -386,7 +385,10 @@
 			
 	</div>
 	
+
+	<!-- CodeInfo Module -->
 	<script src="/resources/js/codeInfo.js"></script>
+	<script src="/resources/js/staffInfo.js"></script>
 	<script src="/resources/js/create_code.js"></script>
 	<script src="/resources/js/read.js"></script>
 
