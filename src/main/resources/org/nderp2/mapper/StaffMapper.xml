@@ -547,9 +547,9 @@
 				</if>
 				<if test="type=='t'.toString()">
 					<if test="keywordRadio=='a'.toString()">
-						<foreach collection="keywordArr" item="keyword" open="and (" separator=")and(" close=")" >
+						<foreach collection="keywordArr" item="keyword" open="and (" separator=" and " close=")" >
 						   	<if test="keyword=='a'.toString()">
-						    lower(staff_name||staff_total_skill||staff_certification||staff_Address like) '%'||#{keyword1}||'%'					    
+						    lower(staff_name||staff_total_skill||staff_certification||staff_Address) like '%'||#{keyword1}||'%'					    
 						    </if>
 						    <if test="keyword=='b'.toString()">
 						    lower(staff_name||staff_total_skill||staff_certification||staff_Address) like '%'||#{keyword2}||'%'					    
@@ -557,7 +557,7 @@
 						</foreach>
 					</if>
 					<if test="keywordRadio=='o'.toString()">	
-						<foreach collection="keywordArr" item="keyword" open="and (" separator=" or " close=")" >
+						<foreach collection="keywordArr" item="keyword" open="or (" separator=" or " close=")" >
 						   	<if test="keyword=='a'.toString()">
 						    lower(staff_name||staff_total_skill||staff_certification||staff_Address) like '%'||#{keyword1}||'%'					    
 						    </if>
@@ -887,7 +887,7 @@
 				<if test="keywordRadio=='a'.toString()">
 					<foreach collection="keywordArr" item="keyword" open="and (" separator=")and(" close=")" >
 					   	<if test="keyword=='a'.toString()">
-					    lower(staff_name||staff_total_skill||staff_certification||staff_address like) '%'||#{keyword1}||'%'					    
+					    lower(staff_name||staff_total_skill||staff_certification||staff_address) like '%'||#{keyword1}||'%'					    
 					    </if>
 					    <if test="keyword=='b'.toString()">
 					    lower(staff_name||staff_total_skill||staff_certification||staff_address) like '%'||#{keyword2}||'%'					    
@@ -895,7 +895,7 @@
 					</foreach>
 				</if>
 				<if test="keywordRadio=='o'.toString()">	
-					<foreach collection="keywordArr" item="keyword" open="and (" separator=" or " close=")" >
+					<foreach collection="keywordArr" item="keyword" open="or (" separator=" or " close=")" >
 					   	<if test="keyword=='a'.toString()">
 					    lower(staff_name||staff_total_skill||staff_certification||staff_address) like '%'||#{keyword1}||'%'					    
 					    </if>
