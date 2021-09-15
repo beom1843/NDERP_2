@@ -40,12 +40,11 @@ $(document).ready(function(){
 		$("input[name='college']").prop('checked',false);
 	})	
 	$("#d_grad").on("click",function(e){
-		$("select[name='graduate1_y'] option:eq(0)").prop("selected",false);
+		$("select[name='graduate1_y'] option:eq(0)").prop("selected",true);
 		$("select[name='graduate2_y'] option:eq(0)").prop("selected",true);
 	})
 	$("#d_sex").on("click",function(e){
-		$("input[name='sex'] option:eq(0)").prop("selected",false);
-		$("input[name='sex'] option:eq(0)").prop("selected",false);
+		$("input[name='sex']" ).prop('checked',false);
 	})
 	$("#d_birthy").on("click",function(e){
 		$("select[name='birth1_y'] option:eq(0)").prop("selected",true);
@@ -688,8 +687,7 @@ $(document).ready(function(){
 		$("input[name='college']").prop('checked',false);
 		$("select[name='graduate1_y'] option:eq(0)").prop("selected",true);
 		$("select[name='graduate2_y'] option:eq(0)").prop("selected",true);
-		$("input[name='sex'] option:eq(0)").prop("selected",true);
-		$("input[name='sex'] option:eq(0)").prop("selected",true);
+		$("input[name='sex']").prop('checked',false);
 		$("select[name='birth1_y'] option:eq(0)").prop("selected",true);
 		$("select[name='birth1_m'] option:eq(0)").prop("selected",true);
 		$("select[name='birth2_y'] option:eq(0)").prop("selected",true);
