@@ -346,7 +346,10 @@ $(document).ready(function(){
 
 				
 			}
-		}
+		}//프로젝트 불러오기
+		
+		
+		
 		
 		
 		})

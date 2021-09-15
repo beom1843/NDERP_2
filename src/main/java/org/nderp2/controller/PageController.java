@@ -25,10 +25,6 @@ public class PageController {
 	
 	}
 	
-	@GetMapping("/blank")
-	public void blank(){
-		
-	}
 	
 	@GetMapping("/read")
 	public void read(){
