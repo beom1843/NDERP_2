@@ -90,7 +90,7 @@
 					~
 					<select class="year" name="project_start2_y"></select>년
 					<select class="month" name="project_start2_m"></select>월
-					<div id="today"><a href="#">[오늘]</a></div>
+					<div id="start_today"><a href="#">[오늘]</a></div>
 					<div class="delete" id="d_start"></div>
 				</td>
 			</tr>
@@ -102,7 +102,7 @@
 					~
 					<select class="year" name="project_end2_y"></select>년
 					<select class="month" name="project_end2_m"></select>월
-					<div id="today"><a href="#">[오늘]</a></div>
+					<div id="end_today"><a href="#">[오늘]</a></div>
 					<div class="delete" id="d_end"></div>
 				</td>
 			</tr>

@@ -88,6 +88,29 @@ $(document).ready(function(){
 		var option="height=100";
 		window.open(url,name,option);
 	})
+
+	
+	$("#start_today").on("click",function(e){
+		var today = new Date();
+		e.preventDefault(e);
+		$("select[name='project_start2_y']").val(today.getFullYear())
+		$("select[name='project_start2_m']").val(today.getMonth()+1)
+		
+		$("select[name='project_start1_y']").val(today.getFullYear())
+		$("select[name='project_start1_m']").val(today.getMonth())
+		
+	})
+	
+	$("#end_today").on("click",function(e){
+		var today = new Date();
+		e.preventDefault(e);
+		$("select[name='project_end1_y']").val(today.getFullYear())
+		$("select[name='project_end1_m']").val(today.getMonth())
+		
+		$("select[name='project_end2_y']").val(today.getFullYear())
+		$("select[name='project_end2_m']").val(today.getMonth()+1)
+	})
+	
 	
 	var resultPlace=$("#result");
 	

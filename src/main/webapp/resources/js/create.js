@@ -247,6 +247,7 @@ $(document).ready(function(){
 			} if(!bank_no){
 				message +="월급통장 번호, "
 			}
+			console.log(message)
 			
 		}
 		
@@ -651,9 +652,9 @@ $(document).ready(function(){
 		}
 		
 		//9. 취미
-		var h1 = $("#hobby1").val();
-		var h2 = $("#hobby2").val();
-		var h3 = $("#hobby3").val();
+		var hobby1 = $("#hobby1").val();
+		var hobby2 = $("#hobby2").val();
+		var hobby3 = $("#hobby3").val();
 
 		var Hobby = function(hobby){
 			this.hobby = hobby;
